@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5CEB50ED246443D2004092A8 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB50EC246443D2004092A8 /* Card.swift */; };
 		C531C49324643DE900E192E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531C49224643DE900E192E8 /* AppDelegate.swift */; };
 		C531C49524643DE900E192E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531C49424643DE900E192E8 /* SceneDelegate.swift */; };
 		C531C49724643DE900E192E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531C49624643DE900E192E8 /* ContentView.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5CEB50EC246443D2004092A8 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		C531C48F24643DE900E192E8 /* TerraCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TerraCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C531C49224643DE900E192E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C531C49424643DE900E192E8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5CEB50EB246443AC004092A8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5CEB50EC246443D2004092A8 /* Card.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		C531C48624643DE900E192E8 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +109,7 @@
 		C531C49124643DE900E192E8 /* TerraCards */ = {
 			isa = PBXGroup;
 			children = (
+				5CEB50EB246443AC004092A8 /* Model */,
 				C531C49224643DE900E192E8 /* AppDelegate.swift */,
 				C531C49424643DE900E192E8 /* SceneDelegate.swift */,
 				C531C49624643DE900E192E8 /* ContentView.swift */,
@@ -270,6 +281,7 @@
 				C531C49324643DE900E192E8 /* AppDelegate.swift in Sources */,
 				C531C49524643DE900E192E8 /* SceneDelegate.swift in Sources */,
 				C531C49724643DE900E192E8 /* ContentView.swift in Sources */,
+				5CEB50ED246443D2004092A8 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
