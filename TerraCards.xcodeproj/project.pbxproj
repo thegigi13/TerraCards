@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5CEB50ED246443D2004092A8 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB50EC246443D2004092A8 /* Card.swift */; };
+		5CEB50EF24645567004092A8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB50EE24645567004092A8 /* HomeView.swift */; };
 		94B8D82124644DEE002AD58C /* CardRectoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D82024644DEE002AD58C /* CardRectoView.swift */; };
 		94B8D82324644DFD002AD58C /* CardVersoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D82224644DFD002AD58C /* CardVersoView.swift */; };
 		94B8D82524644EAC002AD58C /* CardsModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D82424644EAC002AD58C /* CardsModelView.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		5CEB50EC246443D2004092A8 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		5CEB50EE24645567004092A8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		94B8D82024644DEE002AD58C /* CardRectoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRectoView.swift; sourceTree = "<group>"; };
 		94B8D82224644DFD002AD58C /* CardVersoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardVersoView.swift; sourceTree = "<group>"; };
 		94B8D82424644EAC002AD58C /* CardsModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsModelView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				94B8D82024644DEE002AD58C /* CardRectoView.swift */,
 				94B8D82224644DFD002AD58C /* CardVersoView.swift */,
+				5CEB50EE24645567004092A8 /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				C531C49524643DE900E192E8 /* SceneDelegate.swift in Sources */,
 				C531C49724643DE900E192E8 /* ContentView.swift in Sources */,
 				94B8D82324644DFD002AD58C /* CardVersoView.swift in Sources */,
+				5CEB50EF24645567004092A8 /* HomeView.swift in Sources */,
 				94B8D82524644EAC002AD58C /* CardsModelView.swift in Sources */,
 				5CEB50ED246443D2004092A8 /* Card.swift in Sources */,
 			);
