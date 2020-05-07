@@ -1,0 +1,593 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C531C49324643DE900E192E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531C49224643DE900E192E8 /* AppDelegate.swift */; };
+		C531C49524643DE900E192E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531C49424643DE900E192E8 /* SceneDelegate.swift */; };
+		C531C49724643DE900E192E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531C49624643DE900E192E8 /* ContentView.swift */; };
+		C531C49924643DEA00E192E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C531C49824643DEA00E192E8 /* Assets.xcassets */; };
+		C531C49C24643DEA00E192E8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C531C49B24643DEA00E192E8 /* Preview Assets.xcassets */; };
+		C531C49F24643DEA00E192E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C531C49D24643DEA00E192E8 /* LaunchScreen.storyboard */; };
+		C531C4AA24643DEA00E192E8 /* TerraCardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531C4A924643DEA00E192E8 /* TerraCardsTests.swift */; };
+		C531C4B524643DEA00E192E8 /* TerraCardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531C4B424643DEA00E192E8 /* TerraCardsUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C531C4A624643DEA00E192E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C531C48724643DE900E192E8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C531C48E24643DE900E192E8;
+			remoteInfo = TerraCards;
+		};
+		C531C4B124643DEA00E192E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C531C48724643DE900E192E8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C531C48E24643DE900E192E8;
+			remoteInfo = TerraCards;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C531C48F24643DE900E192E8 /* TerraCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TerraCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C531C49224643DE900E192E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C531C49424643DE900E192E8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		C531C49624643DE900E192E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C531C49824643DEA00E192E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C531C49B24643DEA00E192E8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C531C49E24643DEA00E192E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C531C4A024643DEA00E192E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C531C4A524643DEA00E192E8 /* TerraCardsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TerraCardsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C531C4A924643DEA00E192E8 /* TerraCardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraCardsTests.swift; sourceTree = "<group>"; };
+		C531C4AB24643DEA00E192E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C531C4B024643DEA00E192E8 /* TerraCardsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TerraCardsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C531C4B424643DEA00E192E8 /* TerraCardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraCardsUITests.swift; sourceTree = "<group>"; };
+		C531C4B624643DEA00E192E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C531C48C24643DE900E192E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C531C4A224643DEA00E192E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C531C4AD24643DEA00E192E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C531C48624643DE900E192E8 = {
+			isa = PBXGroup;
+			children = (
+				C531C49124643DE900E192E8 /* TerraCards */,
+				C531C4A824643DEA00E192E8 /* TerraCardsTests */,
+				C531C4B324643DEA00E192E8 /* TerraCardsUITests */,
+				C531C49024643DE900E192E8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C531C49024643DE900E192E8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C531C48F24643DE900E192E8 /* TerraCards.app */,
+				C531C4A524643DEA00E192E8 /* TerraCardsTests.xctest */,
+				C531C4B024643DEA00E192E8 /* TerraCardsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C531C49124643DE900E192E8 /* TerraCards */ = {
+			isa = PBXGroup;
+			children = (
+				C531C49224643DE900E192E8 /* AppDelegate.swift */,
+				C531C49424643DE900E192E8 /* SceneDelegate.swift */,
+				C531C49624643DE900E192E8 /* ContentView.swift */,
+				C531C49824643DEA00E192E8 /* Assets.xcassets */,
+				C531C49D24643DEA00E192E8 /* LaunchScreen.storyboard */,
+				C531C4A024643DEA00E192E8 /* Info.plist */,
+				C531C49A24643DEA00E192E8 /* Preview Content */,
+			);
+			path = TerraCards;
+			sourceTree = "<group>";
+		};
+		C531C49A24643DEA00E192E8 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C531C49B24643DEA00E192E8 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C531C4A824643DEA00E192E8 /* TerraCardsTests */ = {
+			isa = PBXGroup;
+			children = (
+				C531C4A924643DEA00E192E8 /* TerraCardsTests.swift */,
+				C531C4AB24643DEA00E192E8 /* Info.plist */,
+			);
+			path = TerraCardsTests;
+			sourceTree = "<group>";
+		};
+		C531C4B324643DEA00E192E8 /* TerraCardsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C531C4B424643DEA00E192E8 /* TerraCardsUITests.swift */,
+				C531C4B624643DEA00E192E8 /* Info.plist */,
+			);
+			path = TerraCardsUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C531C48E24643DE900E192E8 /* TerraCards */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C531C4B924643DEA00E192E8 /* Build configuration list for PBXNativeTarget "TerraCards" */;
+			buildPhases = (
+				C531C48B24643DE900E192E8 /* Sources */,
+				C531C48C24643DE900E192E8 /* Frameworks */,
+				C531C48D24643DE900E192E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TerraCards;
+			productName = TerraCards;
+			productReference = C531C48F24643DE900E192E8 /* TerraCards.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C531C4A424643DEA00E192E8 /* TerraCardsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C531C4BC24643DEA00E192E8 /* Build configuration list for PBXNativeTarget "TerraCardsTests" */;
+			buildPhases = (
+				C531C4A124643DEA00E192E8 /* Sources */,
+				C531C4A224643DEA00E192E8 /* Frameworks */,
+				C531C4A324643DEA00E192E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C531C4A724643DEA00E192E8 /* PBXTargetDependency */,
+			);
+			name = TerraCardsTests;
+			productName = TerraCardsTests;
+			productReference = C531C4A524643DEA00E192E8 /* TerraCardsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C531C4AF24643DEA00E192E8 /* TerraCardsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C531C4BF24643DEA00E192E8 /* Build configuration list for PBXNativeTarget "TerraCardsUITests" */;
+			buildPhases = (
+				C531C4AC24643DEA00E192E8 /* Sources */,
+				C531C4AD24643DEA00E192E8 /* Frameworks */,
+				C531C4AE24643DEA00E192E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C531C4B224643DEA00E192E8 /* PBXTargetDependency */,
+			);
+			name = TerraCardsUITests;
+			productName = TerraCardsUITests;
+			productReference = C531C4B024643DEA00E192E8 /* TerraCardsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C531C48724643DE900E192E8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = MacBookGP;
+				TargetAttributes = {
+					C531C48E24643DE900E192E8 = {
+						CreatedOnToolsVersion = 11.4.1;
+					};
+					C531C4A424643DEA00E192E8 = {
+						CreatedOnToolsVersion = 11.4.1;
+						TestTargetID = C531C48E24643DE900E192E8;
+					};
+					C531C4AF24643DEA00E192E8 = {
+						CreatedOnToolsVersion = 11.4.1;
+						TestTargetID = C531C48E24643DE900E192E8;
+					};
+				};
+			};
+			buildConfigurationList = C531C48A24643DE900E192E8 /* Build configuration list for PBXProject "TerraCards" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C531C48624643DE900E192E8;
+			productRefGroup = C531C49024643DE900E192E8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C531C48E24643DE900E192E8 /* TerraCards */,
+				C531C4A424643DEA00E192E8 /* TerraCardsTests */,
+				C531C4AF24643DEA00E192E8 /* TerraCardsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C531C48D24643DE900E192E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C531C49F24643DEA00E192E8 /* LaunchScreen.storyboard in Resources */,
+				C531C49C24643DEA00E192E8 /* Preview Assets.xcassets in Resources */,
+				C531C49924643DEA00E192E8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C531C4A324643DEA00E192E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C531C4AE24643DEA00E192E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C531C48B24643DE900E192E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C531C49324643DE900E192E8 /* AppDelegate.swift in Sources */,
+				C531C49524643DE900E192E8 /* SceneDelegate.swift in Sources */,
+				C531C49724643DE900E192E8 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C531C4A124643DEA00E192E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C531C4AA24643DEA00E192E8 /* TerraCardsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C531C4AC24643DEA00E192E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C531C4B524643DEA00E192E8 /* TerraCardsUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C531C4A724643DEA00E192E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C531C48E24643DE900E192E8 /* TerraCards */;
+			targetProxy = C531C4A624643DEA00E192E8 /* PBXContainerItemProxy */;
+		};
+		C531C4B224643DEA00E192E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C531C48E24643DE900E192E8 /* TerraCards */;
+			targetProxy = C531C4B124643DEA00E192E8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C531C49D24643DEA00E192E8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C531C49E24643DEA00E192E8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C531C4B724643DEA00E192E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C531C4B824643DEA00E192E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C531C4BA24643DEA00E192E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"TerraCards/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = TerraCards/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.biodiversity.TerraCards;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C531C4BB24643DEA00E192E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"TerraCards/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = TerraCards/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.biodiversity.TerraCards;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C531C4BD24643DEA00E192E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TerraCardsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.biodiversity.TerraCardsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TerraCards.app/TerraCards";
+			};
+			name = Debug;
+		};
+		C531C4BE24643DEA00E192E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TerraCardsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.biodiversity.TerraCardsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TerraCards.app/TerraCards";
+			};
+			name = Release;
+		};
+		C531C4C024643DEA00E192E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TerraCardsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.biodiversity.TerraCardsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TerraCards;
+			};
+			name = Debug;
+		};
+		C531C4C124643DEA00E192E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = TerraCardsUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.biodiversity.TerraCardsUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TerraCards;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C531C48A24643DE900E192E8 /* Build configuration list for PBXProject "TerraCards" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C531C4B724643DEA00E192E8 /* Debug */,
+				C531C4B824643DEA00E192E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C531C4B924643DEA00E192E8 /* Build configuration list for PBXNativeTarget "TerraCards" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C531C4BA24643DEA00E192E8 /* Debug */,
+				C531C4BB24643DEA00E192E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C531C4BC24643DEA00E192E8 /* Build configuration list for PBXNativeTarget "TerraCardsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C531C4BD24643DEA00E192E8 /* Debug */,
+				C531C4BE24643DEA00E192E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C531C4BF24643DEA00E192E8 /* Build configuration list for PBXNativeTarget "TerraCardsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C531C4C024643DEA00E192E8 /* Debug */,
+				C531C4C124643DEA00E192E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C531C48724643DE900E192E8 /* Project object */;
+}
