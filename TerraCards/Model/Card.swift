@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MapKit
 
 struct Card {
    let name: String
