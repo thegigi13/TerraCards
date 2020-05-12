@@ -13,6 +13,7 @@
 		94B8D82524644EAC002AD58C /* CardsModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D82424644EAC002AD58C /* CardsModelView.swift */; };
 		C519C47B246A796200425756 /* CardTrophee.swift in Sources */ = {isa = PBXBuildFile; fileRef = C519C47A246A796200425756 /* CardTrophee.swift */; };
 		C519C47D246A79CA00425756 /* CardTropheeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C519C47C246A79CA00425756 /* CardTropheeView.swift */; };
+		C519C481246ACD7300425756 /* CardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C519C480246ACD7300425756 /* CardStore.swift */; };
 		C51B15C0246939D0004D35D6 /* TropheesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51B15BF246939D0004D35D6 /* TropheesView.swift */; };
 		C51B15C224696D50004D35D6 /* EvolutionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51B15C124696D50004D35D6 /* EvolutionBar.swift */; };
 		C531C49324643DE900E192E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531C49224643DE900E192E8 /* AppDelegate.swift */; };
@@ -49,6 +50,8 @@
 		94B8D82424644EAC002AD58C /* CardsModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsModelView.swift; sourceTree = "<group>"; };
 		C519C47A246A796200425756 /* CardTrophee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTrophee.swift; sourceTree = "<group>"; };
 		C519C47C246A79CA00425756 /* CardTropheeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTropheeView.swift; sourceTree = "<group>"; };
+		C519C47F246ABFF200425756 /* CardData.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = CardData.geojson; sourceTree = "<group>"; };
+		C519C480246ACD7300425756 /* CardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStore.swift; sourceTree = "<group>"; };
 		C51B15BF246939D0004D35D6 /* TropheesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TropheesView.swift; sourceTree = "<group>"; };
 		C51B15C124696D50004D35D6 /* EvolutionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionBar.swift; sourceTree = "<group>"; };
 		C531C48F24643DE900E192E8 /* TerraCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TerraCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +100,7 @@
 			children = (
 				5CEB50EC246443D2004092A8 /* Card.swift */,
 				C519C47A246A796200425756 /* CardTrophee.swift */,
+				C519C480246ACD7300425756 /* CardStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -119,6 +123,14 @@
 				94B8D82424644EAC002AD58C /* CardsModelView.swift */,
 			);
 			path = ModelViews;
+			sourceTree = "<group>";
+		};
+		C519C47E246ABF8000425756 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C519C47F246ABFF200425756 /* CardData.geojson */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		C531C48624643DE900E192E8 = {
@@ -144,6 +156,7 @@
 		C531C49124643DE900E192E8 /* TerraCards */ = {
 			isa = PBXGroup;
 			children = (
+				C519C47E246ABF8000425756 /* Resources */,
 				5CEB50EB246443AC004092A8 /* Model */,
 				C531C49224643DE900E192E8 /* AppDelegate.swift */,
 				C531C49424643DE900E192E8 /* SceneDelegate.swift */,
@@ -324,6 +337,7 @@
 				C531C49724643DE900E192E8 /* ContentView.swift in Sources */,
 				C519C47D246A79CA00425756 /* CardTropheeView.swift in Sources */,
 				94B8D82324644DFD002AD58C /* CardVersoView.swift in Sources */,
+				C519C481246ACD7300425756 /* CardStore.swift in Sources */,
 				94B8D82524644EAC002AD58C /* CardsModelView.swift in Sources */,
 				5CEB50ED246443D2004092A8 /* Card.swift in Sources */,
 			);

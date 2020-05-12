@@ -7,29 +7,7 @@
 //
 
 import SwiftUI
-
-
-/*
-struct Trophee {
-    var name : String
-    let colorTrophee
-}
-
-final class ListeTrophee: ObservableObject {
-    @Published var trophee: [Trophee] = [
-    .init(name: "hat-school"),
-    .init(name: "Cadeaux-cards"),
-    .init(name: "Quizz"),
-    .init(name: "Rare"),
-    .init(name: "Insectes"),
-    .init(name: "Arbres"),
-    .init(name: "Mollusques"),
-    .init(name: "Poissons"),
-    .init(name: "Plantes")
-    ]
-}
-
-*/
+import MapKit
 
 
 struct TropheesView: View {
@@ -39,14 +17,17 @@ struct TropheesView: View {
     @State var tropheeListe:[CarteTrophee] = [
 
         CarteTrophee(id: .init(), name: "hat-school", colorTrophee: .black, numberMax: 170, numberMin: 50, textType: "Total de cartes :"),
+     
+        
+        
         CarteTrophee(id: .init(), name: "Cadeaux-cards", colorTrophee: .black, numberMax: 20, numberMin: 2, textType: "Cartes recus ce jour :"),
         CarteTrophee(id: .init(), name: "Quizz", colorTrophee: .black, numberMax: 20, numberMin: 1, textType: "Quizz réussis :"),
-        CarteTrophee(id: .init(), name: "Rare", colorTrophee: .gray, numberMax: 50, numberMin: 0, textType: "Cartes rares :"),
+        CarteTrophee(id: .init(), name: "Rare", colorTrophee: .gray, numberMax: 10, numberMin: 0, textType: "  Cartes rares :"),
         CarteTrophee(id: .init(), name: "Insectes", colorTrophee: .gold, numberMax: 170, numberMin: 170, textType: "Cartes insectes :"),
-        CarteTrophee(id: .init(), name: "Arbres", colorTrophee: .black, numberMax: 10, numberMin: 1, textType: "Cartes arbres"),
+        CarteTrophee(id: .init(), name: "Arbres", colorTrophee: .black, numberMax: 10, numberMin: 1, textType: "Cartes arbres :"),
         CarteTrophee(id: .init(), name: "Mollusques", colorTrophee: .black, numberMax: 20, numberMin: 2, textType: "Cartes Mollusques :"),
         CarteTrophee(id: .init(), name: "Poissons", colorTrophee: .gray, numberMax: 20, numberMin: 0, textType: "Cartes Poissons :"),
-        CarteTrophee(id: .init(), name: "Plantes", colorTrophee: .black, numberMax: 20, numberMin: 1, textType: "Cartes plantes :"),
+        CarteTrophee(id: .init(), name: "Plantes", colorTrophee: .black, numberMax: 20, numberMin: 1, textType: " Cartes plantes :"),
         
         
         CarteTrophee(id: .init(), name: "Grands-mammiferes", colorTrophee: .gray, numberMax: 20, numberMin: 0, textType: "Grands mammifères :"),
@@ -63,6 +44,7 @@ struct TropheesView: View {
             ZStack {
                 Color.colorTrophees
                  VStack {
+                    Spacer()
                         ScrollView(.vertical, showsIndicators: false) {
                             ForEach(tropheeListe , id: \.id) { trophee in
                                 

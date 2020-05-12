@@ -13,9 +13,6 @@ struct EvolutionBar: View {
     @State var valMax = CGFloat(170)
     @State var val = CGFloat(10)
     
-    
-    
-    
     var body: some View {
         ZStack(alignment: .topLeading) {
             Rectangle()
