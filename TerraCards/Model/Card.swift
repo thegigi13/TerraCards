@@ -10,7 +10,8 @@ import Foundation
 import MapKit
 
 struct Card {
-   let name: String
+    let id = UUID()
+    let name: String
     let imageRecto: String
     let imageVerso: String
     let habitats: [HabitatType]
