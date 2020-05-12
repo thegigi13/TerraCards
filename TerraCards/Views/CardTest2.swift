@@ -8,36 +8,27 @@
 
 import SwiftUI
 
-class PositionController: ObservableObject {
+class PositionController2: ObservableObject {
     @Published var currentPosition: CGSize = .zero
-    @Published var currentAngle: Double = 89
+    @Published var currentAngle: Double = .zero
 
     @Published var newPosition: CGSize = .zero
     
     @Published var totalWidthDrag: CGFloat = .zero {
         didSet {
             print("blabla2 \(totalWidthDrag)")
-            
-            if totalWidthDrag > 420 || totalWidthDrag < -420
-            { totalWidthDrag = CGFloat(Int(totalWidthDrag).quotientAndRemainder(dividingBy: 420).1)
-                
-            }
-            
-            if Int(currentAngle) % 180 == 0 {
-                
-            }
 
             switch totalWidthDrag {
             case 30 ..< 210:
-                currentPosition.width = 30 - 30*(totalWidthDrag-30)/180
+                currentPosition.width = 30 - 30*totalWidthDrag/210
                 currentAngle = Double(totalWidthDrag - 30)
                 
             case 210 ..< 240:
-                currentPosition.width = 0 + (totalWidthDrag - 210)
+                currentPosition.width = 0 - (totalWidthDrag - 210)
 
                 currentAngle = 180
             case 240 ..< 420:
-                currentPosition.width = 30 - 30*(totalWidthDrag-240)/180
+                currentPosition.width = -30 + 30*totalWidthDrag/420
                 currentAngle = Double(totalWidthDrag - 60)
             case 420 ..< 450:
                 currentPosition.width = 0 + (totalWidthDrag - 420)
@@ -45,13 +36,12 @@ class PositionController: ObservableObject {
                 currentAngle = 0
             case 450 ..< .infinity:
                 currentPosition.width = 0
-                currentPosition.width = 30 - 30*(totalWidthDrag-450)/180
-                currentAngle = Double(totalWidthDrag - 90)
+                currentAngle = Double(totalWidthDrag - 450)
                 
             
                 
             case -210 ..< -30:
-                currentPosition.width = (-30 - 30*(totalWidthDrag+30)/180)
+                currentPosition.width = -30
                 currentAngle = Double(totalWidthDrag + 30)
             case -270 ..< -210:
                 currentPosition.width = -30 - (totalWidthDrag + 210)
@@ -78,41 +68,103 @@ class PositionController: ObservableObject {
     @Published var newTotalWidthDrag: CGFloat = .zero
 }
 
-struct CardRectoView: View {
-    @ObservedObject var positionController = PositionController()
-    
+struct CardTest2: View {
+    @ObservedObject var positionController = PositionController2()
+    @State var currentPosition: CGSize = .zero {
+        didSet {
+           
+        }
+    }
+
+    @State var currentAngle: Double = .zero {
+        didSet {
+            
+        }
+    }
+    @State var flipped = false
+    @State var newPosition: CGSize = .zero
     
     
     var drag: some Gesture {
         DragGesture()
             .onChanged { value in
-                self.positionController.currentPosition.height =  self.positionController.newPosition.height + value.translation.height
-                
-                self.positionController.totalWidthDrag = value.translation.width + self.positionController.newTotalWidthDrag
+                self.currentPosition.height =  self.newPosition.height + value.translation.height
+                self.currentPosition.width =  self.newPosition.width + value.translation.width
+                self.currentAngle = Double(self.currentPosition.width/1.5)
+                if self.flipped {
+                    if self.currentAngle >= 0 {
+                        self.currentAngle += 180
+                    } else {
+                        self.currentAngle -= 180
+                    }
+                }
+
             }
             .onEnded { value in
-                self.positionController.newPosition = self.positionController.currentPosition
-                
-                
-                
-                
-                switch  self.positionController.currentAngle {
-                case (-1 * .infinity) ..< -45 : withAnimation() {
-                        //self.positionController.totalWidthDrag = -240
+                let q = Int(self.currentPosition.width/1.5).quotientAndRemainder(dividingBy: 90).0
+                print("hehe \(q)")
+                var resetAngle: Double = 0
+                if abs(q) == 0 || abs(q) > 1 {
+                    if self.flipped && self.currentPosition.width/1.5 > 0{
+                            resetAngle = Double(180)
                     }
-                    
-                    
-                case 45 ..< .infinity : withAnimation() {
-                        //self.positionController.totalWidthDrag = 240
+                    else if (self.flipped && self.currentPosition.width/1.5 < 0) {
+                            resetAngle = Double(-180)
+                        
+                    } else {
+                        resetAngle = 0
                     }
-                
-                default :
-                    print("pataplouf")
-                    self.positionController.currentAngle = 0
-                    self.positionController.totalWidthDrag = 0
+                }
+                if abs(q) == 1 {
+                    if !self.flipped {
+                        resetAngle = Double(180*q)
+                        self.flipped = true
+                    } else {
+                        resetAngle = Double(360*q)
+                        self.flipped = false
+                    }
                 }
                 
-                self.positionController.newTotalWidthDrag = self.positionController.totalWidthDrag
+                withAnimation() {
+                    self.currentAngle = resetAngle
+                    
+                    self.currentPosition.width = 0
+                    self.newPosition.width = 0
+                }
+                
+                
+//                switch self.currentPosition.width/1.5 {
+//                case -90 ..< 90:
+//
+//
+//
+//                case -180 ..< -90 : withAnimation() {
+//                    self.currentAngle = -180
+//                    self.currentPosition.width = 0
+//                    self.newPosition.width = 0
+//                    self.flipped = true
+//                }
+//
+//                case 90 ..< 180 : withAnimation() {
+//                    self.currentAngle = 180
+//                    self.currentPosition.width = 0
+//                    self.newPosition.width = 0
+//                    self.flipped = true
+//                }
+//
+//                case 45 ..< .infinity : withAnimation() {
+//                        //self.positionController.totalWidthDrag = 240
+//                    }
+//
+//                default :
+//                    print("pataplouf")
+//                    self.currentAngle = 0
+//
+//                }
+                self.newPosition = self.currentPosition
+
+                
+                
             }
     }
     
@@ -136,7 +188,7 @@ struct CardRectoView: View {
                 
                 VStack {
                     VStack {
-                        Text("Angle : \(self.positionController.currentAngle)")
+                        Text("Angle : \(self.currentAngle)")
                         Text("TotalWidthDrag : \(self.positionController.totalWidthDrag)")
                     }
                     HStack {
@@ -205,14 +257,11 @@ struct CardRectoView: View {
             }
             
 
-            .frame(width: UIScreen.main.bounds.width * 85/100, height: UIScreen.main.bounds.height * 85/100)
+            .frame(width: UIScreen.main.bounds.width * 85/100, height: UIScreen.main.bounds.height * 75/100)
             .cornerRadius(70)
-            .shadow(color: Color.black, radius: 4, x: 4, y: 4)
-                
-                .rotation3DEffect(Angle(degrees: positionController.currentAngle) , axis: (x: 0, y: 1, z: 0), anchor: .center)
-                
-            .offset(x: positionController.currentPosition.width, y: positionController.currentPosition.height)
-                
+            .shadow(color: Color.black.opacity(0.4), radius: 8, x: 4, y: 4)
+            .rotation3DEffect(Angle(degrees: currentAngle) , axis: (x: 0, y: 1, z: 0), anchor: .center)
+            .offset(x: currentPosition.width, y: currentPosition.height)
             
             .gesture(drag)
             
@@ -222,8 +271,8 @@ struct CardRectoView: View {
     }
 }
 
-struct CardRectoView_Previews: PreviewProvider {
+struct CardTest2_Previews: PreviewProvider {
     static var previews: some View {
-        CardRectoView()
+        CardTest2()
     }
 }

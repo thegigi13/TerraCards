@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5CEB50ED246443D2004092A8 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB50EC246443D2004092A8 /* Card.swift */; };
+		946190302469F1BB0086BE1B /* CardTest2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9461902F2469F1BB0086BE1B /* CardTest2.swift */; };
+		94619032246AAED40086BE1B /* CardTest3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94619031246AAED40086BE1B /* CardTest3.swift */; };
 		947D4FF124696D3400A212A0 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947D4FF024696D3400A212A0 /* CardView.swift */; };
 		94B8D82124644DEE002AD58C /* CardRectoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D82024644DEE002AD58C /* CardRectoView.swift */; };
 		94B8D82324644DFD002AD58C /* CardVersoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D82224644DFD002AD58C /* CardVersoView.swift */; };
@@ -42,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		5CEB50EC246443D2004092A8 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		9461902F2469F1BB0086BE1B /* CardTest2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTest2.swift; sourceTree = "<group>"; };
+		94619031246AAED40086BE1B /* CardTest3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTest3.swift; sourceTree = "<group>"; };
 		947D4FF024696D3400A212A0 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		94B8D82024644DEE002AD58C /* CardRectoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRectoView.swift; sourceTree = "<group>"; };
 		94B8D82224644DFD002AD58C /* CardVersoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardVersoView.swift; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				94B8D82024644DEE002AD58C /* CardRectoView.swift */,
+				94619031246AAED40086BE1B /* CardTest3.swift */,
+				9461902F2469F1BB0086BE1B /* CardTest2.swift */,
 				947D4FF024696D3400A212A0 /* CardView.swift */,
 				94B8D82224644DFD002AD58C /* CardVersoView.swift */,
 				94B8D82624645421002AD58C /* CollectionView.swift */,
@@ -303,10 +309,12 @@
 			files = (
 				94B8D82124644DEE002AD58C /* CardRectoView.swift in Sources */,
 				947D4FF124696D3400A212A0 /* CardView.swift in Sources */,
+				94619032246AAED40086BE1B /* CardTest3.swift in Sources */,
 				C531C49324643DE900E192E8 /* AppDelegate.swift in Sources */,
 				C531C49524643DE900E192E8 /* SceneDelegate.swift in Sources */,
 				C531C49724643DE900E192E8 /* ContentView.swift in Sources */,
 				94B8D82324644DFD002AD58C /* CardVersoView.swift in Sources */,
+				946190302469F1BB0086BE1B /* CardTest2.swift in Sources */,
 				94B8D82524644EAC002AD58C /* CardsLists.swift in Sources */,
 				94B8D82724645421002AD58C /* CollectionView.swift in Sources */,
 				5CEB50ED246443D2004092A8 /* Card.swift in Sources */,
