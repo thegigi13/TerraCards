@@ -12,6 +12,7 @@ import SwiftUI
 /*
 struct Trophee {
     var name : String
+    let colorTrophee
 }
 
 final class ListeTrophee: ObservableObject {
@@ -32,120 +33,70 @@ final class ListeTrophee: ObservableObject {
 
 
 struct TropheesView: View {
-  
+    
     @State private var numberTotalCard:Int = 9
-  
-    var tropheeListe = ["hat-school", "Cadeaux-cards", "Quizz", "Rare", "Insectes", "Arbres", "Mollusques", "Poissons", "Plantes" ]
+    
+    @State var tropheeListe:[CarteTrophee] = [
+
+        CarteTrophee(id: .init(), name: "hat-school", colorTrophee: .black, numberMax: 170, numberMin: 50, textType: "Total de cartes :"),
+        CarteTrophee(id: .init(), name: "Cadeaux-cards", colorTrophee: .black, numberMax: 20, numberMin: 2, textType: "Cartes recus ce jour :"),
+        CarteTrophee(id: .init(), name: "Quizz", colorTrophee: .black, numberMax: 20, numberMin: 1, textType: "Quizz réussis :"),
+        CarteTrophee(id: .init(), name: "Rare", colorTrophee: .gray, numberMax: 50, numberMin: 0, textType: "Cartes rares :"),
+        CarteTrophee(id: .init(), name: "Insectes", colorTrophee: .gold, numberMax: 170, numberMin: 170, textType: "Cartes insectes :"),
+        CarteTrophee(id: .init(), name: "Arbres", colorTrophee: .black, numberMax: 10, numberMin: 1, textType: "Cartes arbres"),
+        CarteTrophee(id: .init(), name: "Mollusques", colorTrophee: .black, numberMax: 20, numberMin: 2, textType: "Cartes Mollusques :"),
+        CarteTrophee(id: .init(), name: "Poissons", colorTrophee: .gray, numberMax: 20, numberMin: 0, textType: "Cartes Poissons :"),
+        CarteTrophee(id: .init(), name: "Plantes", colorTrophee: .black, numberMax: 20, numberMin: 1, textType: "Cartes plantes :"),
+        
+        
+        CarteTrophee(id: .init(), name: "Grands-mammiferes", colorTrophee: .gray, numberMax: 20, numberMin: 0, textType: "Grands mammifères :"),
+        CarteTrophee(id: .init(), name: "Oiseaux", colorTrophee: .black, numberMax: 20, numberMin: 1, textType: "Cartes Oiseaux :"),
+        CarteTrophee(id: .init(), name: "Reptiles", colorTrophee: .gray, numberMax: 20, numberMin: 0, textType: "Cartes reptiles :"),
+        CarteTrophee(id: .init(), name: "Amphibiens", colorTrophee: .black, numberMax: 20, numberMin: 1, textType: "Cartes Amphibiens :"),
+        CarteTrophee(id: .init(), name: "Petits-mammiferes", colorTrophee: .gray, numberMax: 20, numberMin: 0, textType: "Petits mammiphères :"),
+        CarteTrophee(id: .init(), name: "Arachnides", colorTrophee: .black, numberMax: 20, numberMin: 1, textType: "Cartes arachnides :")
+        
+      ]
     
     var body: some View {
-        
-        ZStack {
-                         Color.colorTrophees
         NavigationView {
- 
-        VStack {
-
-            List {
-                ForEach(self.tropheeListe, id: \.self) {nameTrophee in
-                    
-                    HStack {
-                        CardRectoView(image: nameTrophee , contour: Color.gold)
-                            .padding()
-                        VStack {
-                            Text("Total de \(self.numberTotalCard) cartes")
-                                .foregroundColor(Color.gray)
-                            EvolutionBar()
-                                .padding()
-                        }.padding()
-                    }.background(Color.colorTrophees)
+            ZStack {
+                Color.colorTrophees
+                 VStack {
+                        ScrollView(.vertical, showsIndicators: false) {
+                            ForEach(tropheeListe , id: \.id) { trophee in
+                                
+                                HStack {
+                                    CardTropheeView(image: trophee.name , contour: trophee.colorTrophee)
+                                        .padding()
+                                    VStack {
+                                        
+                                        HStack {
+                                            Text("\(trophee.textType ?? "Cartes ")")
+                                                .font(.callout)
+                                                
+                                            Text("\(trophee.numberMin)")
+                                               
+                                        }.foregroundColor(Color.gray)
+                                        EvolutionBar(valMax: CGFloat(trophee.numberMax), val: CGFloat(trophee.numberMin))
+                                            .padding()
+                                    }.padding()
+                                }.background(Color.colorTrophees)
+                            }
+                    }
                 }
-                
-            }
-            
-            
- /*           HStack {
-                CardRectoView(image: "hat-school", contour: Color.gold)
-                    .padding()
-                VStack {
-                    Text("Total de \(self.numberTotalCard) cartes")
-                        .foregroundColor(Color.gray)
-                    EvolutionBar().padding()
-                }.padding()
-            }
-          HStack {
-                CardRectoView(image: "Cadeaux-cards", contour: Color.gold)
-                    .padding()
-                VStack {
-                    Text("Cartes reçus aujourd'hui : 0")
-                        .foregroundColor(Color.gray)
-                    EvolutionBar().padding()
-                }.padding()
-            }
-           HStack {
-                CardRectoView(image: "Quizz", contour: Color.gray)
-                    .padding()
-                VStack {
-                    Text("Quizz Réussis : 0")
-                        .foregroundColor(Color.gray)
-                    EvolutionBar().padding()
-                }.padding()
-            }
-            HStack {
-                CardRectoView(image: "Rare", contour: Color.gray)
-                    .padding()
-                VStack {
-                    Text("Cartes Rares : 0")
-                        .foregroundColor(Color.gray)
-                    EvolutionBar().padding()
-                }.padding()
-            }
-            HStack {
-                CardRectoView(image: "Insectes", contour: Color.silver)
-                    .padding()
-                VStack {
-                    Text("Cartes Insectes : 3")
-                        .foregroundColor(Color.gray)
-                    EvolutionBar().padding()
-                }.padding()
-            }
-            HStack {
-                CardRectoView(image: "Arbres", contour: Color.gray)
-                    .padding()
-                VStack {
-                    Text("Cartes Arbres : 0")
-                        .foregroundColor(Color.gray)
-                    EvolutionBar().padding()
-                }.padding()
-            }
-            HStack {
-                CardRectoView(image: "Mollusques", contour: Color.gray)
-                    .padding()
-                VStack {
-                    Text("Cartes Poissons : 0")
-                        .foregroundColor(Color.gray)
-                    EvolutionBar().padding()
-                }.padding()
-            }
-            HStack {
-                CardRectoView(image: "Plantes", contour: Color.silver)
-                    .padding()
-                VStack {
-                    Text("Cartes Mollusques : 0")
-                        .foregroundColor(Color.gray)
-                    EvolutionBar().padding()
-                }.padding()
-            }
- */
-        }.background(Color.colorTrophees)
-        .navigationBarTitle("Trophee")
-        .navigationBarItems(leading: Text("Accueil"))
-            }
+            }.edgesIgnoringSafeArea(.all)
+            .navigationBarTitle("Trophee", displayMode: .inline)
+            .navigationBarItems(leading: Text("Accueil"))
         }
     }
 }
 
 struct TropheesView_Previews: PreviewProvider {
     static var previews: some View {
-        TropheesView()
+
+            TropheesView()
+
+        
     }
 }

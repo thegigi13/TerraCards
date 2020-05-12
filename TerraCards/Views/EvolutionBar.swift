@@ -11,15 +11,17 @@ import SwiftUI
 struct EvolutionBar: View {
     
     @State var valMax = CGFloat(170)
-    @State var val = CGFloat(20)
+    @State var val = CGFloat(10)
+    
+    
+    
     
     var body: some View {
         ZStack(alignment: .topLeading) {
             Rectangle()
-                .frame(width: self.valMax, height: 2.0)
+                .frame(width: 170, height: 2.0)
                 .foregroundColor(Color.gray)
                 .opacity(0.2)
-            
             Rectangle()
                 .frame(width: self.val, height: 2.0)
                 .foregroundColor(Color.blue)
