@@ -38,8 +38,10 @@ enum HabitatType {
         }
     }
 }
-enum CollectionType {
+
+enum CollectionType: CaseIterable{
     case tree, fish, mollusc, largeMammal, bird, insect, reptile, plant, amphibian, smallMammal, spider
+    
     var name : String {
         get {
             switch self {
@@ -57,6 +59,25 @@ enum CollectionType {
             }
         }
     }
+    
+    var image : String {
+        get {
+            switch self {
+                case .tree : return "pictureFrog"
+                case .fish : return "pictureFrog"
+                case .mollusc : return "pictureFrog"
+                case .largeMammal : return "pictureFrog"
+                case .bird : return "pictureFrog"
+                case .insect : return "pictureFrog"
+                case .reptile : return "pictureFrog"
+                case .plant : return "pictureFrog"
+                case .amphibian : return "pictureFrog"
+                case .smallMammal : return "pictureFrog"
+                case .spider : return "pictureFrog"
+            }
+        }
+    }
+    
 }
 
 enum AlertType {

@@ -9,8 +9,38 @@
 import SwiftUI
 
 struct HomeView: View {
+    let collectionTypes = CollectionType.allCases
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView{
+            ZStack {
+                Color.offWhite
+                
+                VStack{
+                    // Zone du haut
+                    HStack{
+                        VStack{
+                            Image(systemName: "rosette")
+                            Text("Trophées")
+                        }
+                        Text("Terra Cards").font(.largeTitle).padding()
+                        VStack{
+                            Image(systemName: "gear")
+                            Text("Profil")
+                        }
+                    }
+                    
+                    // faire apparaitre les noms de CollectionType
+                    VStack{
+                        ForEach(collectionTypes, id:\.self){type in
+                            LittleCardView(titreCollection: "\(type.name)", imageCollection : "\(type.image)")
+                        }
+                    }
+                    
+                }.padding(.top, 40)
+            }
+        }.edgesIgnoringSafeArea(.all)
+        
     }
 }
 
