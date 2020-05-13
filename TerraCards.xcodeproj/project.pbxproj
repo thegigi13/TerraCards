@@ -24,6 +24,7 @@
 		C531C49F24643DEA00E192E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C531C49D24643DEA00E192E8 /* LaunchScreen.storyboard */; };
 		C531C4AA24643DEA00E192E8 /* TerraCardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531C4A924643DEA00E192E8 /* TerraCardsTests.swift */; };
 		C531C4B524643DEA00E192E8 /* TerraCardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531C4B424643DEA00E192E8 /* TerraCardsUITests.swift */; };
+		C5334BEC246BEB9500E33872 /* Accueil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5334BEB246BEB9500E33872 /* Accueil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		C531C4B024643DEA00E192E8 /* TerraCardsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TerraCardsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C531C4B424643DEA00E192E8 /* TerraCardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraCardsUITests.swift; sourceTree = "<group>"; };
 		C531C4B624643DEA00E192E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5334BEB246BEB9500E33872 /* Accueil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accueil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				C51B15BF246939D0004D35D6 /* TropheesView.swift */,
 				C51B15C124696D50004D35D6 /* EvolutionBar.swift */,
 				C519C47C246A79CA00425756 /* CardTropheeView.swift */,
+				C5334BEB246BEB9500E33872 /* Accueil.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				C51B15C224696D50004D35D6 /* EvolutionBar.swift in Sources */,
 				94B8D82124644DEE002AD58C /* CardRectoView.swift in Sources */,
 				C531C49324643DE900E192E8 /* AppDelegate.swift in Sources */,
+				C5334BEC246BEB9500E33872 /* Accueil.swift in Sources */,
 				C51B15C0246939D0004D35D6 /* TropheesView.swift in Sources */,
 				C531C49524643DE900E192E8 /* SceneDelegate.swift in Sources */,
 				C519C47B246A796200425756 /* CardTrophee.swift in Sources */,

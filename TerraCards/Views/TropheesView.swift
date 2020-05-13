@@ -11,14 +11,13 @@ import MapKit
 
 
 struct TropheesView: View {
-    
-    @State private var numberTotalCard:Int = 9
-    
+   
+    @State var accueil:Bool = false
     @State var tropheeListe:[CarteTrophee] = [
 
-        CarteTrophee(id: .init(), name: "hat-school", colorTrophee: .black, numberMax: 170, numberMin: 50, textType: "Total de cartes :"),
-     
+      
         
+        CarteTrophee(id: .init(), name: "hat-school", colorTrophee: .black, numberMax: 170, numberMin: 50, textType: "Total de cartes :"),
         
         CarteTrophee(id: .init(), name: "Cadeaux-cards", colorTrophee: .black, numberMax: 20, numberMin: 2, textType: "Cartes recus ce jour :"),
         CarteTrophee(id: .init(), name: "Quizz", colorTrophee: .black, numberMax: 20, numberMin: 1, textType: "Quizz réussis :"),
@@ -39,12 +38,13 @@ struct TropheesView: View {
         
       ]
     
+    
+    
     var body: some View {
         NavigationView {
             ZStack {
                 Color.colorTrophees
                  VStack {
-                    Spacer()
                         ScrollView(.vertical, showsIndicators: false) {
                             ForEach(tropheeListe , id: \.id) { trophee in
                                 
@@ -65,11 +65,12 @@ struct TropheesView: View {
                                     }.padding()
                                 }.background(Color.colorTrophees)
                             }
-                    }
+                        }.padding(.top, 90.0)
                 }
             }.edgesIgnoringSafeArea(.all)
             .navigationBarTitle("Trophee", displayMode: .inline)
-            .navigationBarItems(leading: Text("Accueil"))
+                .navigationBarItems(leading: Button(action: {self.accueil = true }) { Text("Accueil")}.sheet(isPresented: self.$accueil) { Accueil() }
+            )
         }
     }
 }
