@@ -41,7 +41,7 @@ struct TropheesView: View {
     
     
     var body: some View {
-        NavigationView {
+    //    NavigationView {
             ZStack {
                 Color.colorTrophees
                  VStack {
@@ -65,13 +65,16 @@ struct TropheesView: View {
                                     }.padding()
                                 }.background(Color.colorTrophees)
                             }
-                        }.padding(.top, 90.0)
+                        }.padding(.top, 70.0)
                 }
-            }.edgesIgnoringSafeArea(.all)
-            .navigationBarTitle("Trophee", displayMode: .inline)
+            }
+           .edgesIgnoringSafeArea(.all)
+    /*
+                .navigationBarTitle("Trophées", displayMode: .inline)
                 .navigationBarItems(leading: Button(action: {self.accueil = true }) { Text("Accueil")}.sheet(isPresented: self.$accueil) { Accueil() }
             )
-        }
+ */
+  //      }
     }
 }
 
