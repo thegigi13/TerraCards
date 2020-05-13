@@ -21,8 +21,7 @@ struct LittleCardView: View {
                     .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
                     .padding(.horizontal, 10)
                         .overlay(Image("\(imageCollection)").resizable().frame(width: 90, height: 90))
-                
-                Text("\(titreCollection)")
+                    Text (titreCollection)
             }
     }
 }

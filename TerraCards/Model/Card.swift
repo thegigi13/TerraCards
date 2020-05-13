@@ -40,8 +40,31 @@ enum HabitatType {
     }
 }
 
-enum CollectionType: CaseIterable{
-    case tree, fish, mollusc, largeMammal, bird, insect, reptile, plant, amphibian, smallMammal, spider
+enum CollectionType: CaseIterable, Identifiable{
+    case tree, fish, mollusc, largeMammal, bird, insect, reptile, plant, amphibian, smallMammal, spider, dinosaur
+    
+    var id : UUID {
+        return UUID()
+    }
+    
+    var index : Int {
+        get {
+            switch self {
+                case .tree : return 0
+                case .fish : return 1
+                case .mollusc : return 2
+                case .largeMammal : return 3
+                case .bird : return 4
+                case .insect : return 5
+                case .reptile : return 6
+                case .plant : return 7
+                case .amphibian : return 8
+                case .smallMammal : return 9
+                case .spider : return 10
+                case .dinosaur : return 11
+            }
+        }
+    }
     
     var name : String {
         get {
@@ -57,6 +80,7 @@ enum CollectionType: CaseIterable{
                 case .amphibian : return "Amphibiens"
                 case .smallMammal : return "Petits Mammifères"
                 case .spider : return "Arachnides"
+                case .dinosaur : return "Dinosaures"
             }
         }
     }
@@ -65,16 +89,17 @@ enum CollectionType: CaseIterable{
         get {
             switch self {
                 case .tree : return "pictureFrog"
-                case .fish : return "pictureFrog"
+                case .fish : return "lotte"
                 case .mollusc : return "pictureFrog"
-                case .largeMammal : return "pictureFrog"
-                case .bird : return "pictureFrog"
+                case .largeMammal : return "chat"
+                case .bird : return "mesange"
                 case .insect : return "pictureFrog"
                 case .reptile : return "pictureFrog"
                 case .plant : return "pictureFrog"
                 case .amphibian : return "pictureFrog"
                 case .smallMammal : return "pictureFrog"
                 case .spider : return "pictureFrog"
+                case .dinosaur : return "pictureFrog"
             }
         }
     }
