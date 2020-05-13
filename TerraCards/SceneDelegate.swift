@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Create the SwiftUI view that provides the window contents.
         
-        let cards = CardsModelView()
+        let cards = CardsLists()
         
         let contentView = ContentView().environmentObject(cards)
 

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @EnvironmentObject var cardsModelView: CardsModelView
+    @EnvironmentObject var cardsModelView: CardsLists
     
     var body: some View {
         Text("Hello, World!)")
