@@ -13,7 +13,7 @@ struct ContentView: View {
     @EnvironmentObject var cardsModelView: CardsModelView
     
     var body: some View {
-        TropheesView()
+        Text("Hello, World!)")
     }
 }
 
