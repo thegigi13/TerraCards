@@ -9,6 +9,10 @@
 import Foundation
 import SwiftUI
 
+
+
+
+// liste de toute les cartes
 class CardStore : ObservableObject {
      
     @Published var allCards: [Card] = [
@@ -42,6 +46,21 @@ class CardStore : ObservableObject {
              obtained: true,
              collection: CollectionType.tree, alert: AlertType.greenAlert)
     ]
+    
+    
+    
+    // nombre de carte par type de collection
+    func getCards(collection: CollectionType) -> [Card] {
+        var cards = [Card]()
+        
+        allCards.forEach { card in
+            
+            if card.collection == collection {cards.append(card) }
+            
+        }
+        return cards
+    }
+    
 }
 
 

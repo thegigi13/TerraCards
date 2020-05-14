@@ -19,6 +19,7 @@ struct AppView: View {
                     Image(systemName: "rosette")
                     Text("Trophées")
                 })
+            
         NavigationView { // bouton de la tabBar de Accueil
             Accueil()
         }
