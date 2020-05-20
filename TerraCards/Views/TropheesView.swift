@@ -11,24 +11,11 @@ import MapKit
 
 
 struct TropheesView: View {
-   
-    let collection = [CollectionType.dinosaur, CollectionType.insect, CollectionType.plant, CollectionType.bird, CollectionType.amphibian, CollectionType.fish, CollectionType.largeMammal, CollectionType.mollusc, CollectionType.reptile, CollectionType.smallMammal, CollectionType.tree, CollectionType.spider]
     
+    private let collection = CollectionType.allCases
+    private let listeCards = CardStore()
     
     @State var accueil:Bool = false
-    @State var tropheeListe:[CarteTrophee] = [
-
-
-        CarteTrophee(id: .init(), name: "Cadeaux-cards", colorTrophee: .black, numberMax: 20, numberMin: 2, textType: "Cartes recus ce jour :"),
-        CarteTrophee(id: .init(), name: "Quizz", colorTrophee: .black, numberMax: 20, numberMin: 1, textType: "Quizz réussis :"),
-        CarteTrophee(id: .init(), name: "Rare", colorTrophee: .gray, numberMax: 10, numberMin: 0, textType: "  Cartes rares :"),
-        CarteTrophee(id: .init(), name: "insectes", colorTrophee: .gold, numberMax: 170, numberMin: 170, textType: "Cartes insectes :"),
-        CarteTrophee(id: .init(), name: "Arbres", colorTrophee: .black, numberMax: 10, numberMin: 1, textType: "Cartes arbres :"),
-        CarteTrophee(id: .init(), name: "Mollusques", colorTrophee: .black, numberMax: 20, numberMin: 2, textType: "Cartes Mollusques :"),
-
-      ]
-    
-    
     
     var body: some View {
     //    NavigationView {
@@ -36,14 +23,39 @@ struct TropheesView: View {
                 Color.colorTrophees
                  VStack {
                         ScrollView(.vertical, showsIndicators: false) {
-                            
-                            HStack {
-                                CardTropheeView(image: "hat-school" , contour: Color.gray)
+                            HStack {   // carte total
+                                CardTropheeView(image: "hat-school" , contour: listeCards.numbersColorCards())
                                     .padding()
                                 VStack {
                                     
                                     HStack {
                                         Text("Total de Cartes")
+                                            .font(.callout)
+                                        Text("\(listeCards.cardsObtained())")
+                                    }.foregroundColor(Color.gray)
+                                    EvolutionBar(valMax: CGFloat(CGFloat(listeCards.numbersMaxCards())), val: CGFloat(CGFloat(listeCards.cardsObtained())))
+                                        .padding()
+                                }.padding()
+                            }.background(Color.colorTrophees)
+                            HStack {   // carte cadeeaux
+                                CardTropheeView(image: "Cadeaux-cards" , contour: Color.gray)
+                                    .padding()
+                                VStack {
+                                    HStack {
+                                        Text("Cartes Cadeaux")
+                                            .font(.callout)
+                                        Text("4")
+                                    }.foregroundColor(Color.gray)
+                                    EvolutionBar(valMax: CGFloat(4), val: CGFloat(20))
+                                        .padding()
+                                }.padding()
+                            }.background(Color.colorTrophees)
+                            HStack {  // carte quizz
+                                CardTropheeView(image: "Quizz" , contour: Color.gray)
+                                    .padding()
+                                VStack {
+                                    HStack {
+                                        Text("Cartes Quizz")
                                             .font(.callout)
                                             
                                         Text("4")
@@ -53,28 +65,20 @@ struct TropheesView: View {
                                         .padding()
                                 }.padding()
                             }.background(Color.colorTrophees)
-                            
-                            
-                            
-                            
-                            
                             ForEach(collection , id: \.id) { trophee in
-                                
+                                  // toute les autres carte
                                 HStack {
-                                    CardTropheeView(image: trophee.name, contour: Color.gray)
+                                    CardTropheeView(image: trophee.name, contour: self.listeCards.numberCardsMaxCollection(collection: trophee).cardColor)
                                         .padding()
                                     VStack {
-                                        
                                         HStack {
-                                            Text("Cartes")
+                                            Text(" Cartes ")
                                             Text("\(trophee.name)")
                                                 .font(.callout)
-                                                
-                                            Text("5")
-                                           
-                                               
+                                            Text("\(self.listeCards.numberCardsMaxCollection(collection: trophee).obtained)")
                                         }.foregroundColor(Color.gray)
-                                        EvolutionBar(valMax: CGFloat(30), val: CGFloat(50))
+                                        EvolutionBar(valMax: CGFloat(self.listeCards.numberCardsMaxCollection(collection: trophee).collectionMax),
+                                                     val: CGFloat(self.listeCards.numberCardsMaxCollection(collection: trophee).obtained))
                                             .padding()
                                     }.padding()
                                 }.background(Color.colorTrophees)
@@ -96,7 +100,6 @@ struct TropheesView_Previews: PreviewProvider {
     static var previews: some View {
 
             TropheesView()
-
         
     }
 }
