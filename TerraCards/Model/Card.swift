@@ -103,7 +103,6 @@ enum CollectionType: CaseIterable, Identifiable{
             }
         }
     }
-    
 }
 
 enum AlertType {

@@ -19,11 +19,6 @@ extension Color {
     static let colorTrophees = Color(red: 187/255, green: 222/255, blue: 221/255)
 }
 
-
-
-
-
-
 struct CarteTrophee: Identifiable {
     let id:UUID
     let name:String
@@ -31,15 +26,8 @@ struct CarteTrophee: Identifiable {
     let numberMax:Int
     let numberMin:Int
     let textType:String?
-   
-    
-}
-    
-
-
-
-
-
+ }
+ 
 struct listeCardTrophee {
     
     @State var tropheeListe:[CarteTrophee] = [
@@ -66,8 +54,6 @@ struct listeCardTrophee {
          ]
        
 }
-
-
 
 
 /*
@@ -102,7 +88,6 @@ func parameTropheeCard(nameType: String) -> CarteTrophee {
     return tropheeCard // retour d'une carte trophee
   
 }
-    
     
 */
 
