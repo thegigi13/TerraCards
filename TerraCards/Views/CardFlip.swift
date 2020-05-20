@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct CardTest3<Content: View>: View {
+struct CardFlip<Content: View, Content2: View>: View {
     @State var currentPosition: CGSize = .zero
     @State var currentAngle: Double = .zero
     var currentAngleMod: Double {
@@ -159,23 +159,18 @@ struct CardTest3<Content: View>: View {
     
     let bgColor: Color = Color("tree")
     
-    let versoView: () -> AnyView
-    let rectoView: () -> Content
+    let versoView: Content2
+    let rectoView: Content
+    
+    @inlinable public init(@ViewBuilder versoView: () -> Content2, @ViewBuilder rectoView: () -> Content) {
+        self.versoView = versoView()
+        self.rectoView = rectoView()
+    }
     
     var body: some View {
         ZStack {
-            VStack {
-                Spacer().frame(height: 130)
-                Text("\(currentAngle)").padding()
-                Spacer()
-            }
-            .frame(width: UIScreen.main.bounds.width * 100/100, height: UIScreen.main.bounds.height * 120/100)
-            .background(bgColor)
-            .edgesIgnoringSafeArea(.all)
-            
             ZStack {
-                versoView()
-                    
+                versoView
                     .background(bgColor.opacity(0.3))
                     .background(Color("cardBackground"))
                     
@@ -184,15 +179,17 @@ struct CardTest3<Content: View>: View {
                 
                 VStack {
                     Spacer()
-                }.frame(width: 700,height: 700)
+                }.frame(width: UIScreen.main.bounds.width * 85/100, height: UIScreen.main.bounds.height * 75/100)
                     .background(Color.gray)
-                    
+
                     .zIndex((89.7...90.3).contains(abs(currentAngle)) || (269.7...270.3).contains(abs(currentAngle)) ? 2 : 0)
                 
-                rectoView()
+                rectoView
                     .background(Color("cardBackground"))
+                
             }
             .frame(width: UIScreen.main.bounds.width * 85/100, height: UIScreen.main.bounds.height * 75/100)
+                
             .cornerRadius(70)
             .shadow(color: Color.black.opacity(0.4), radius: abs(shadow), x: shadow, y:  abs(shadow))
             .rotation3DEffect(Angle(degrees: currentAngleMod) , axis: (x: 0, y: 1, z: 0), anchor: .center)
@@ -205,150 +202,34 @@ struct CardTest3<Content: View>: View {
             }
             .frame(width: UIScreen.main.bounds.width * 85/100, height: UIScreen.main.bounds.height * 75/100)
             .background(Color.gray)
-                
+
             .cornerRadius(70)
             .rotation3DEffect(Angle(degrees: currentAngleMod) , axis: (x: 0, y: 1, z: 0), anchor: .center)
             .offset(x: Int(currentAngle)%180 == 0 ? currentPosition.width : (left ? currentPosition.width+2 : currentPosition.width-2), y:  currentPosition.height)
             .zIndex(0)
-            
-            //            VStack {
-            //                Spacer()
-            //            }
-            //            .frame(width: UIScreen.main.bounds.width * 85/100, height: UIScreen.main.bounds.height * 75/100)
-            //            .background(Color.red)
-            //
-            //            .cornerRadius(70)
-            //                .rotation3DEffect(Angle(degrees: currentAngleMod) , axis: (x: 0, y: 1, z: 0), anchor: .center)
-            //            .offset(x: recto ? currentPosition.width+2 : currentPosition.width+2, y:  currentPosition.height)
-            //            .zIndex(0)
-            
-        }
-    }
-}
 
-struct CardRecto: View {
-    var body: some View {
-        VStack {
-            HStack {
+            VStack {
                 Spacer()
-                Image(systemName: "xmark")
-                    .frame(width: 20)
-                    .padding()
-                    .overlay(
-                        Circle()
-                            .stroke(lineWidth: 1)
-                            .padding(6)
-                )
-                    .padding(.trailing, 20)
-                    .padding(.top, 30)
-                    .opacity(0.3)
-                
-                
             }
-            Image("chene")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 270)
-                .padding(.top, 30)
-            Spacer()
-            
-            HStack {
-                Text("Chêne")
-                    .font(.title)
-                Circle()
-                    .stroke(lineWidth: 1)
-                    .frame(width: 25, height: 25)
-                    .overlay(
-                        Text("?")
-                )
-                    .opacity(0.3)
-            }
-            Spacer()
-            HStack(spacing: 20) {
-                VStack {
-                    Image("foret")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width:50)
-                    Text("forêt")
-                        .font(.footnote)
-                }
-                VStack {
-                    Image("campagne")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width:50)
-                    Text("campagne")
-                        .font(.footnote)
-                }
-                
-            }
-            .opacity(0.8)
-            Spacer().frame(height: 30)
+            .frame(width: UIScreen.main.bounds.width * 85/100, height: UIScreen.main.bounds.height * 75/100)
+            .background(Color.gray)
+
+            .cornerRadius(70)
+            .rotation3DEffect(Angle(degrees: currentAngleMod) , axis: (x: 0, y: 1, z: 0), anchor: .center)
+            .offset(x: Int(currentAngle)%180 == 0 ? currentPosition.width : (left ? currentPosition.width+4 : currentPosition.width-4), y:  currentPosition.height)
+            .zIndex(0)
         }
     }
 }
 
-struct CardVerso: View {
-    var body: some View {
-        VStack {
-            ZStack {
-                VStack {
-                    Image("photoChene")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(height: UIScreen.main.bounds.height * 85/100 / 2)
-                    Spacer()
-                }
-                VStack {
-                    HStack {
-                        Spacer()
-                        Image(systemName: "xmark")
-                            .frame(width: 20)
-                            .padding()
-                            .overlay(
-                                Circle()
-                                    .stroke(lineWidth: 1)
-                                    .padding(6)
-                        )
-                            .padding(.trailing, 20)
-                            .padding(.top, 30)
-                            .opacity(0.3)
-                        
-                    }
-                    Spacer()
-                }
-                
-            }
-            
-            HStack {
-                Text("Chêne")
-                    .font(.title)
-                Circle()
-                    .stroke(lineWidth: 1)
-                    .frame(width: 25, height: 25)
-                    .overlay(
-                        Text("?")
-                )
-                    .opacity(0.3)
-            }
-            Spacer()
-            HStack {
-                Text("Le chêne est un bel ardre que l'on aime bien dans nos régions. Le chêne est un bel ardre que l'on aime bien dans nos régions. Le chêne est un bel ardre que l'on aime bien dans nos régions. Le chêne est un bel ardre que l'on aime bien dans nos régions. ")
-            }
-            .frame(width: 270)
-            
-            Spacer().frame(height: 50)
-        }
-    }
-}
 
-struct CardTest3_Previews: PreviewProvider {
+
+struct CardFlip_Previews: PreviewProvider {
     static var previews: some View {
-        CardTest3(versoView: {
-            AnyView(CardVerso())
+        CardFlip(versoView: {
+            CardVerso(card: Card())
         }, rectoView: {
-            CardRecto()
+            CardRecto(card: Card())
             
         })
     }
