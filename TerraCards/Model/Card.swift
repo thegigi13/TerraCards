@@ -40,7 +40,7 @@ enum HabitatType {
     }
 }
 
-enum CollectionType: CaseIterable, Identifiable{
+enum CollectionType: String, CaseIterable, Identifiable{
     case tree, fish, mollusc, largeMammal, bird, insect, reptile, plant, amphibian, smallMammal, spider, dinosaur
     
     var id : UUID {
@@ -72,7 +72,7 @@ enum CollectionType: CaseIterable, Identifiable{
                 case .tree : return "Arbres"
                 case .fish : return "Poissons"
                 case .mollusc : return "Mollusques"
-                case .largeMammal : return "Grands Mammifères"
+                case .largeMammal : return "Mammifères"
                 case .bird : return "Oiseaux"
                 case .insect : return "Insectes"
                 case .reptile : return "Reptiles"
@@ -88,18 +88,18 @@ enum CollectionType: CaseIterable, Identifiable{
     var image : String {
         get {
             switch self {
-                case .tree : return "pictureFrog"
+                case .tree : return "grenouille"
                 case .fish : return "lotte"
-                case .mollusc : return "pictureFrog"
+                case .mollusc : return "grenouille"
                 case .largeMammal : return "chat"
                 case .bird : return "mesange"
-                case .insect : return "pictureFrog"
-                case .reptile : return "pictureFrog"
-                case .plant : return "pictureFrog"
-                case .amphibian : return "pictureFrog"
-                case .smallMammal : return "pictureFrog"
-                case .spider : return "pictureFrog"
-                case .dinosaur : return "pictureFrog"
+                case .insect : return "grenouille"
+                case .reptile : return "grenouille"
+                case .plant : return "grenouille"
+                case .amphibian : return "grenouille"
+                case .smallMammal : return "grenouille"
+                case .spider : return "grenouille"
+                case .dinosaur : return "grenouille"
             }
         }
     }

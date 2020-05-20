@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5C16F838246A93F9006D4771 /* LittleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16F837246A93F9006D4771 /* LittleCardView.swift */; };
+		5C43258824750D7300EC7F9E /* NewCardsWonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43258724750D7300EC7F9E /* NewCardsWonView.swift */; };
 		5C7C8EAB246AC44200202CDA /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 5C7C8EAA246AC44200202CDA /* QGrid */; };
 		5CEB50ED246443D2004092A8 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB50EC246443D2004092A8 /* Card.swift */; };
 		5CEB50EF24645567004092A8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB50EE24645567004092A8 /* HomeView.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		5C16F837246A93F9006D4771 /* LittleCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LittleCardView.swift; sourceTree = "<group>"; };
+		5C43258724750D7300EC7F9E /* NewCardsWonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardsWonView.swift; sourceTree = "<group>"; };
 		5CEB50EC246443D2004092A8 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		5CEB50EE24645567004092A8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5CEB50F024694847004092A8 /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				947D4FF024696D3400A212A0 /* CardView.swift */,
 				94B8D82224644DFD002AD58C /* CardVersoView.swift */,
 				5CEB50EE24645567004092A8 /* HomeView.swift */,
+				5C43258724750D7300EC7F9E /* NewCardsWonView.swift */,
 				94B8D82624645421002AD58C /* CollectionView.swift */,
 			);
 			path = Views;
@@ -338,6 +341,7 @@
 				94B8D82524644EAC002AD58C /* CardsLists.swift in Sources */,
 				94B8D82524644EAC002AD58C /* CardsLists.swift in Sources */,
 				94B8D82724645421002AD58C /* CollectionView.swift in Sources */,
+				5C43258824750D7300EC7F9E /* NewCardsWonView.swift in Sources */,
 				5CEB50ED246443D2004092A8 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
