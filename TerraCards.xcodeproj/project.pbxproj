@@ -3,16 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C16F838246A93F9006D4771 /* LittleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16F837246A93F9006D4771 /* LittleCardView.swift */; };
-		5C43258824750D7300EC7F9E /* NewCardsWonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43258724750D7300EC7F9E /* NewCardsWonView.swift */; };
-		5C7C8EAB246AC44200202CDA /* QGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 5C7C8EAA246AC44200202CDA /* QGrid */; };
+		5C43258B247560DE00EC7F9E /* NewCardsWonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C432589247560B000EC7F9E /* NewCardsWonView.swift */; };
+		5C43258C247560DE00EC7F9E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43258A247560DE00EC7F9E /* HomeView.swift */; };
+		5C43258F2475612B00EC7F9E /* LittleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43258E2475612B00EC7F9E /* LittleCardView.swift */; };
 		5CEB50ED246443D2004092A8 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB50EC246443D2004092A8 /* Card.swift */; };
-		5CEB50EF24645567004092A8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB50EE24645567004092A8 /* HomeView.swift */; };
-		5CEB50F124694847004092A8 /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEB50F024694847004092A8 /* ExtensionColor.swift */; };
 		947D4FF124696D3400A212A0 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947D4FF024696D3400A212A0 /* CardView.swift */; };
 		94B8D82124644DEE002AD58C /* CardRectoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D82024644DEE002AD58C /* CardRectoView.swift */; };
 		94B8D82324644DFD002AD58C /* CardVersoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B8D82224644DFD002AD58C /* CardVersoView.swift */; };
@@ -46,11 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5C16F837246A93F9006D4771 /* LittleCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LittleCardView.swift; sourceTree = "<group>"; };
-		5C43258724750D7300EC7F9E /* NewCardsWonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardsWonView.swift; sourceTree = "<group>"; };
+		5C432589247560B000EC7F9E /* NewCardsWonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewCardsWonView.swift; path = TerraCards/Views/NewCardsWonView.swift; sourceTree = SOURCE_ROOT; };
+		5C43258A247560DE00EC7F9E /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = TerraCards/Views/HomeView.swift; sourceTree = SOURCE_ROOT; };
+		5C43258E2475612B00EC7F9E /* LittleCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LittleCardView.swift; sourceTree = "<group>"; };
 		5CEB50EC246443D2004092A8 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		5CEB50EE24645567004092A8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		5CEB50F024694847004092A8 /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
 		947D4FF024696D3400A212A0 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		94B8D82024644DEE002AD58C /* CardRectoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRectoView.swift; sourceTree = "<group>"; };
 		94B8D82224644DFD002AD58C /* CardVersoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardVersoView.swift; sourceTree = "<group>"; };
@@ -77,7 +74,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C7C8EAB246AC44200202CDA /* QGrid in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,20 +94,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5C16F836246A93F9006D4771 /* ModelViews */ = {
+		5C43258D2475612B00EC7F9E /* ModelViews */ = {
 			isa = PBXGroup;
 			children = (
-				5C16F837246A93F9006D4771 /* LittleCardView.swift */,
+				5C43258E2475612B00EC7F9E /* LittleCardView.swift */,
 			);
-			path = ModelViews;
-			sourceTree = "<group>";
+			name = ModelViews;
+			path = TerraCards/ModelViews;
+			sourceTree = SOURCE_ROOT;
 		};
 		5CEB50EB246443AC004092A8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				5CEB50EC246443D2004092A8 /* Card.swift */,
-				5CEB50F024694847004092A8 /* ExtensionColor.swift */,
 				94B8D82424644EAC002AD58C /* CardsLists.swift */,
+				5C43258D2475612B00EC7F9E /* ModelViews */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -119,11 +116,11 @@
 		94B8D81E24644DC5002AD58C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5C43258A247560DE00EC7F9E /* HomeView.swift */,
+				5C432589247560B000EC7F9E /* NewCardsWonView.swift */,
 				94B8D82024644DEE002AD58C /* CardRectoView.swift */,
 				947D4FF024696D3400A212A0 /* CardView.swift */,
 				94B8D82224644DFD002AD58C /* CardVersoView.swift */,
-				5CEB50EE24645567004092A8 /* HomeView.swift */,
-				5C43258724750D7300EC7F9E /* NewCardsWonView.swift */,
 				94B8D82624645421002AD58C /* CollectionView.swift */,
 			);
 			path = Views;
@@ -152,7 +149,6 @@
 		C531C49124643DE900E192E8 /* TerraCards */ = {
 			isa = PBXGroup;
 			children = (
-				5C16F836246A93F9006D4771 /* ModelViews */,
 				5CEB50EB246443AC004092A8 /* Model */,
 				C531C49224643DE900E192E8 /* AppDelegate.swift */,
 				C531C49424643DE900E192E8 /* SceneDelegate.swift */,
@@ -208,9 +204,6 @@
 			dependencies = (
 			);
 			name = TerraCards;
-			packageProductDependencies = (
-				5C7C8EAA246AC44200202CDA /* QGrid */,
-			);
 			productName = TerraCards;
 			productReference = C531C48F24643DE900E192E8 /* TerraCards.app */;
 			productType = "com.apple.product-type.application";
@@ -283,9 +276,6 @@
 				Base,
 			);
 			mainGroup = C531C48624643DE900E192E8;
-			packageReferences = (
-				5C7C8EA9246AC44200202CDA /* XCRemoteSwiftPackageReference "QGrid" */,
-			);
 			productRefGroup = C531C49024643DE900E192E8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -331,17 +321,15 @@
 			files = (
 				94B8D82124644DEE002AD58C /* CardRectoView.swift in Sources */,
 				947D4FF124696D3400A212A0 /* CardView.swift in Sources */,
+				5C43258F2475612B00EC7F9E /* LittleCardView.swift in Sources */,
+				5C43258B247560DE00EC7F9E /* NewCardsWonView.swift in Sources */,
 				C531C49324643DE900E192E8 /* AppDelegate.swift in Sources */,
-				5CEB50F124694847004092A8 /* ExtensionColor.swift in Sources */,
 				C531C49524643DE900E192E8 /* SceneDelegate.swift in Sources */,
+				5C43258C247560DE00EC7F9E /* HomeView.swift in Sources */,
 				C531C49724643DE900E192E8 /* ContentView.swift in Sources */,
 				94B8D82324644DFD002AD58C /* CardVersoView.swift in Sources */,
-				5C16F838246A93F9006D4771 /* LittleCardView.swift in Sources */,
-				5CEB50EF24645567004092A8 /* HomeView.swift in Sources */,
-				94B8D82524644EAC002AD58C /* CardsLists.swift in Sources */,
 				94B8D82524644EAC002AD58C /* CardsLists.swift in Sources */,
 				94B8D82724645421002AD58C /* CollectionView.swift in Sources */,
-				5C43258824750D7300EC7F9E /* NewCardsWonView.swift in Sources */,
 				5CEB50ED246443D2004092A8 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -661,25 +649,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		5C7C8EA9246AC44200202CDA /* XCRemoteSwiftPackageReference "QGrid" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Q-Mobile/QGrid";
-			requirement = {
-				kind = exactVersion;
-				version = 0.1.4;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		5C7C8EAA246AC44200202CDA /* QGrid */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5C7C8EA9246AC44200202CDA /* XCRemoteSwiftPackageReference "QGrid" */;
-			productName = QGrid;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C531C48724643DE900E192E8 /* Project object */;
 }
