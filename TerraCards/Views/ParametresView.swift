@@ -23,13 +23,14 @@ struct choice {
 
 struct ParametresView: View {
     
-    @State var annul:Bool = false
-    @State var accueil:Bool = false
+    @State var choiceHabitat = ["sea", "mountain", "city", "countryside"]
+ 
     @State var activationLocal:Bool = false
-    @State var choice:Bool = true
-    @State var environment:String = ""
-    @State var valideColor:Color = .gray
-    var greenColor = Color.green
+    @State var choiceEnvironnement:String = ""
+    @State var colorMountain = Color.gray
+    @State var colorCity = Color.green
+    @State var colorSea = Color.gray
+    @State var colorCoutryside = Color.gray
     
     var body: some View {
   //      NavigationView {
@@ -39,33 +40,36 @@ struct ParametresView: View {
                 HStack {
                     VStack {
                         ZStack {
-                            Button(action: {
-                                self.choice.toggle()
-                            }) {
                                 Image("montagne").renderingMode(.original)
                                     .resizable()
-                                    .overlay(Circle().stroke(valideColor,lineWidth: 4))
-                            }
-                            if choice {
-                                Circle().stroke(greenColor , lineWidth: 4)
-                            }
+                                    .overlay(Circle().stroke(self.colorMountain,lineWidth: 4))
+
                         }.frame(width: 150.0, height: 150.0)
+                        .onTapGesture {
+                            self.choiceEnvironnement = self.choiceHabitat[1]
+                            self.colorCity = Color.gray
+                            self.colorMountain = Color.green
+                            self.colorSea = Color.gray
+                            self.colorCoutryside = Color.gray
+                            print("choix environnement \(self.choiceEnvironnement)")
+                        }
                          Text("En montagne")
                     }.padding()
                     VStack {
   
                      ZStack {
-                            Button(action: {
-                                self.choice.toggle()
-                            }) {
                                 Image("ville").renderingMode(.original)
                                     .resizable()
-                                    .overlay(Circle().stroke(valideColor,lineWidth: 4))
-                            }
-                            if choice {
-                                Circle().stroke(greenColor , lineWidth: 4)
-                            }
+                                    .overlay(Circle().stroke(self.colorCity,lineWidth: 4))
                         }.frame(width: 150.0, height: 150.0)
+                        .onTapGesture {
+                            self.choiceEnvironnement = self.choiceHabitat[1]
+                            self.colorCity = Color.green
+                            self.colorMountain = Color.gray
+                            self.colorSea = Color.gray
+                            self.colorCoutryside = Color.gray
+                            print("choix environnement \(self.choiceEnvironnement)")
+                        }
 
                         Text("En Ville")
                     }.padding()
@@ -73,33 +77,35 @@ struct ParametresView: View {
                 HStack {
                     VStack {
                         ZStack {
-                            Button(action: {
-                                self.choice.toggle()
-                            }) {
                                 Image("foret")
                                     .renderingMode(.original)
                                     .resizable()
-                                    .overlay(Circle().stroke(valideColor,lineWidth: 4))
-                            }
-                            if choice {
-                                Circle().stroke(greenColor , lineWidth: 4)
-                            }
+                                    .overlay(Circle().stroke(self.colorSea,lineWidth: 4))
                         }.frame(width: 150.0, height: 150.0)
+                        .onTapGesture {
+                            self.choiceEnvironnement = self.choiceHabitat[1]
+                            self.colorCity = Color.gray
+                            self.colorMountain = Color.gray
+                            self.colorSea = Color.green
+                            self.colorCoutryside = Color.gray
+                            print("choix environnement \(self.choiceEnvironnement)")
+                        }
                         Text("En forêt")
                     }.padding()
                     VStack {
                         ZStack {
-                            Button(action: {
-                                self.choice.toggle()
-                            }) {
                                 Image("campagne").renderingMode(.original)
                                     .resizable()
-                                    .overlay(Circle().stroke(valideColor,lineWidth: 4))
-                            }
-                            if choice {
-                                Circle().stroke(greenColor , lineWidth: 4)
-                            }
+                                    .overlay(Circle().stroke(self.colorCoutryside,lineWidth: 4))
                         }.frame(width: 150.0, height: 150.0)
+                        .onTapGesture {
+                            self.choiceEnvironnement = self.choiceHabitat[1]
+                            self.colorCity = Color.gray
+                            self.colorMountain = Color.gray
+                            self.colorSea = Color.gray
+                            self.colorCoutryside = Color.green
+                            print("choix environnement \(self.choiceEnvironnement)")
+                        }
                         Text("En campagne")
                     }.padding()
                 }
