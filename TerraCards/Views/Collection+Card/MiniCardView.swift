@@ -54,7 +54,7 @@ struct MiniCardView: View {
                     .scaleEffect(self.scale, anchor: .center)
                     
                     .onTapGesture {
-                            //self.disappear()
+                        self.disappear()
                         
                         
                         withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.7, blendDuration: 1)) {

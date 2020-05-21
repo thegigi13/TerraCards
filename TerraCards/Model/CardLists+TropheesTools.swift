@@ -33,7 +33,7 @@ class CardStore : ObservableObject {
 //        Card(name: "Arachnides",
 //             imageRecto: "moustique",
 //             imageVerso: "Le moustique-tigre",
-//             habitats: [.mountain],
+//             habitats: [.mountains],
 //             season: "En étè",
 //             averageSize: "2",
 //             anecdote: "Le moustique tigre est l’un des 100 espèces les plus invasives du monde! On le retrouve sur les 5 continents",
@@ -72,7 +72,9 @@ class CardStore : ObservableObject {
 //            alert: AlertType.greenAlert)
         Card()
     ]
-    
+}
+
+extension CardsLists {
     /*
       fonction qui calcule le nombre total de carte
      */
