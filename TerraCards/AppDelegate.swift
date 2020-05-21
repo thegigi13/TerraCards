@@ -22,15 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
 
         
-        cards.fetchAllCards {response in
-            switch response {
-            case .success:
-                print("all cards fetched and loaded")
-            case .failure:
-                print("problem during downloading or decoding")
-                // retry ??
-            }
-        }
+        
         
         registerBackgroundTaks()
 
@@ -53,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         monitor.start(queue: DispatchQueue.global())
         
         // à enlever avant production
-        UserSettings.nbLaunches = 0
+        UserSettings.nbLaunches = 2
         FileProvider.clearImagesFromCacheFolder(){response in
             print("ok")
         }
@@ -63,10 +55,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("nombre de lancement de l'app : \(UserSettings.nbLaunches)")
         
         if UserSettings.nbLaunches == 1 {
-            UserSettings.userCards = ["Mésange Bleue", "Chêne", "Dauphin"]
+            UserSettings.userCards = ["Mésange bleue", "Chêne", "Dauphin"]
         }
         print("cartes déjà gagnées : \(UserSettings.userCards)")
 
+        cards.fillLists {response in
+            switch response {
+            case .success:
+                // à retirer en prod
+                var cardsToAdd: [Card] = []
+                cardsToAdd.append(self.cards.allCards.first(where: {$0.name == "Ortie"})!)
+                cardsToAdd.append(self.cards.allCards.first(where: {$0.name == "Pavot cornu"})!)
+                cardsToAdd.append(self.cards.allCards.first(where: {$0.name == "Jacinthe des bois"})!)
+                self.cards.winCards(cards: cardsToAdd)
+                for card in self.cards.wonCards {
+                    print(card.name ?? "")
+                }
+            case .failure:
+                print("problem during downloading or decoding")
+                // retry ??
+            }
+        }
         return true
     }
 

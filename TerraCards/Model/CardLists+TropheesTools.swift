@@ -92,10 +92,8 @@ extension CardsLists {
      */
     func cardsObtained() -> Int {
        var number = 0
-       allCards.forEach { card in
-        if card.obtained {
+       wonCards.forEach { card in
             number += 1
-        }
        }
         print("------------ cartes obtenue  : \(number)")
        return number
@@ -103,7 +101,7 @@ extension CardsLists {
     
     
     /*
-     retourne la couleur pour le contoure de la carte trophee de toute les cartes
+     retourne la couleur pour le contour de la carte trophee de toute les cartes
      */
     func numbersColorCards() -> Color {
         var numberMax = 0
@@ -143,9 +141,12 @@ extension CardsLists {
         allCards.forEach { card in
             if card.collection == collection {
                 numbersMaxCollection += 1
-                if card.obtained == true {
-                    numbersObtainedCollection += 1
-                }
+            }
+        }
+        
+        wonCards.forEach { card in
+            if card.collection == collection {
+                numbersObtainedCollection += 1
             }
         }
         if (numbersObtainedCollection > 0 && numbersObtainedCollection < Int(4/5 * numbersMaxCollection)) {   // condition entre carte min et max
@@ -160,7 +161,7 @@ extension CardsLists {
             }
         } else { colorCardTrophee = Color.gray } // couleur gray si pas de carte obtenue
          
-        return (numbersMaxCollection, numbersObtainedCollection, colorCardTrophee)
+        return (numbersObtainedCollection, numbersMaxCollection, colorCardTrophee)
     }
 
     

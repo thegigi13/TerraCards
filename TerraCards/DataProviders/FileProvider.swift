@@ -13,6 +13,9 @@ import SwiftUI
 
 enum FileError: Error {
     case unknown
+    case imageNotFound
+    case writingError(error: Error)
+    case deletingError(error: Error)
 }
 
 struct FileProvider {
@@ -43,14 +46,14 @@ struct FileProvider {
         let filePath = fileURL.path
 
         if FileManager.default.fileExists(atPath: filePath) {
-            print("trouvée dans le cache")
+            print("image trouvée dans le cache")
             image = Image(uiImage: UIImage(contentsOfFile: filePath) ?? UIImage(systemName: "chene")!)
             completion?(.success(fileURL))
             return image
         }
         
-        completion?(.failure(.unknown))
-        print("chemin invalide")
+        completion?(.failure(.imageNotFound))
+        print("image non trouvée")
         return image
     }
     
@@ -66,7 +69,7 @@ struct FileProvider {
             }
         } catch {
             print("erreur inscription dans cache : \(error)")
-            completion?(.failure(.unknown))
+            completion?(.failure(.writingError(error: error)))
         }
         
     }
@@ -86,7 +89,7 @@ struct FileProvider {
             }
         } catch {
             print("Could not clear cache folder: \(error)")
-            completion?(.failure(.unknown))
+            completion?(.failure(.deletingError(error: error)))
         }
     }
     

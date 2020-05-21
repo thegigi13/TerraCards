@@ -14,7 +14,7 @@ struct CollectionView: View {
     var collection: CollectionType = .plant
     
     var collec: [Card] {
-        cardsModelView.allCards.filter({$0.collection == self.collection})
+        cardsModelView.wonCards.filter({$0.collection == self.collection})
     }
     
     var collec3by3: [[Card]] {

@@ -11,7 +11,7 @@ import SwiftUI
 
 class CardsLists: ObservableObject {
     @Published var wonCards: [Card] = []
-    @Published var missingCards: [Card] = []
+    //@Published var missingCards: [Card] = []
     @Published var allCards: [Card] = []
 
     @Published var connection: Bool = true
