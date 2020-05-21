@@ -202,26 +202,73 @@ enum HabitatType: String, Codable {
         }
     }
 }
-enum CollectionType: String, Codable {
-    case tree, fish, mollusc, largeMammal, bird, insect, reptile, plant, amphibian, smallMammal, spider
+
+
+enum CollectionType: String, CaseIterable, Identifiable, Codable{
+    case tree, fish, mollusc, largeMammal, bird, insect, reptile, plant, amphibian, smallMammal, spider, dinosaur
+    
+    var id : UUID {
+        return UUID()
+    }
+    
+    var index : Int {
+        get {
+            switch self {
+                case .tree : return 0
+                case .fish : return 1
+                case .mollusc : return 2
+                case .largeMammal : return 3
+                case .bird : return 4
+                case .insect : return 5
+                case .reptile : return 6
+                case .plant : return 7
+                case .amphibian : return 8
+                case .smallMammal : return 9
+                case .spider : return 10
+                case .dinosaur : return 11
+            }
+        }
+    }
     
     var name : String {
         get {
             switch self {
-            case .tree : return "Arbres"
-            case .fish : return "Poissons"
-            case .mollusc : return "Mollusques"
-            case .largeMammal : return "Grands Mammifères"
-            case .bird : return "Oiseaux"
-            case .insect : return "Insectes"
-            case .reptile : return "Reptiles"
-            case .plant : return "Plantes"
-            case .amphibian : return "Amphibiens"
-            case .smallMammal : return "Petits Mammifères"
-            case .spider : return "Arachnides"
+
+                case .tree : return "Arbres"
+                case .fish : return "Poissons"
+                case .mollusc : return "Mollusques"
+                case .largeMammal : return "Mammifères"
+                case .bird : return "Oiseaux"
+                case .insect : return "Insectes"
+                case .reptile : return "Reptiles"
+                case .plant : return "Plantes"
+                case .amphibian : return "Amphibiens"
+                case .smallMammal : return "Petits Mammifères"
+                case .spider : return "Arachnides"
+                case .dinosaur : return "Dinosaures"
             }
         }
     }
+    
+    var image : String {
+        get {
+            switch self {
+                case .tree : return "arbre"
+                case .fish : return "lotte"
+                case .mollusc : return "grenouille"
+                case .largeMammal : return "chat"
+                case .bird : return "mesange"
+                case .insect : return "abeille charpentiere"
+                case .reptile : return "grenouille"
+                case .plant : return "plantes"
+                case .amphibian : return "grenouille"
+                case .smallMammal : return "grenouille"
+                case .spider : return "grenouille"
+                case .dinosaur : return "grenouille"
+            }
+        }
+    }
+    
 }
 
 enum AlertType: String, Codable {

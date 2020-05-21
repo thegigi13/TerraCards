@@ -27,10 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         
         
-        
-        
         let contentView = CollectionView().environmentObject(cards)
         let contentView2 = CardVerso(card: Card())
+
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)

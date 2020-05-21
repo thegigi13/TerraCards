@@ -13,10 +13,11 @@ struct ContentView: View {
     @EnvironmentObject var cardsModelView: CardsLists
     
     var body: some View {
-        Text("Hello, World!")
+        Text("Hello, World!)")
     }
 }
 
+    
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
