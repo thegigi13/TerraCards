@@ -13,7 +13,8 @@ import MapKit
 struct TropheesView: View {
     
     private let collection = CollectionType.allCases
-    private let listeCards = CardStore()
+    @EnvironmentObject var listeCards: CardsLists
+
     
     @State var accueil:Bool = false
     
@@ -98,8 +99,14 @@ struct TropheesView: View {
 
 struct TropheesView_Previews: PreviewProvider {
     static var previews: some View {
-
-            TropheesView()
+        let env = CardsLists()
+        return TropheesView()
+            .environmentObject(env)
+            .onAppear(){
+                env.fetchAllCards(){response in
+                    print("chargé")
+                }
+        }
         
     }
 }

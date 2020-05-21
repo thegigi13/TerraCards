@@ -48,28 +48,31 @@ struct HomeView: View {
         NavigationView{
         ScrollView(.vertical, showsIndicators: false){
             ZStack {
-                Color.white
+                Color("generalBackgroundColor").opacity(0.25).frame(height:UIScreen.main.bounds.height * 120/100)
                 
                 VStack{
                     // Zone du haut
                     HStack{
                         // Titre de l'application
-                        Text("Terra Cards").font(.largeTitle).padding()
+//                        Text("Terra Cards").font(.largeTitle).padding()
+                        Text("")
                         
                     }.padding(.top, 40).padding(.horizontal, 10)
                     
                     // Zone Cadeau et Quizz
                     HStack{
                         NavigationLink(destination: NewCardsWonView()){
+                            
                             VStack{
-                                Image(systemName: "gift").font(.title)
+                                Image(systemName: "gift.fill").font(.largeTitle)
                                 Text("Cadeau").padding(.top)
+                                    .opacity(0.6)
                                 
                             }.frame(width: 70, height: 70).padding()
-                            .background(Color.white).cornerRadius(20)
-                            .foregroundColor(.black)
-                            .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
-                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+                            .background(Color("spider")).cornerRadius(20)
+                                .foregroundColor(Color(UIColor.systemBlue))
+                            .shadow(color: Color.white.opacity(0.4), radius: 5, x: -5, y: -5)
+                            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 5, y: 5)
                         }.padding(.horizontal)
                         
                         NavigationLink(destination: ContentView()){
@@ -78,16 +81,18 @@ struct HomeView: View {
                                 Text("Quizz").padding(.top)
                                 
                             }.frame(width: 70, height: 70).padding()
-                            .background(Color.white).cornerRadius(20)
+                                .background(Color.gray).cornerRadius(20)
+                                .opacity(0.3)
                             .foregroundColor(.black)
-                            .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
-                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+                            
+//                            .shadow(color: Color.white.opacity(0.4), radius: 5, x: -5, y: -5)
+//                            .shadow(color: Color.black.opacity(0.2), radius: 5, x: 10, y: 10)
                         }.padding(.horizontal)
                         
                     }
                     
                     // Mise en place de la grille des collections
-                    GridStack(rows: 4, columns: 3, hSpacing: 0, vSpacing: 0){row, col in
+                    GridStack(rows: 4, columns: 3, hSpacing: 7, vSpacing: 0){row, col in
                         VStack{
                             LittleCardView(titreCollection: self.collectionTypes[row * 3 + col].name, imageCollection: self.collectionTypes[row * 3 + col].image, couleurCard: self.collectionTypes[row * 3 + col].rawValue
                             )

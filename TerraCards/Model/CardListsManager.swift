@@ -37,8 +37,8 @@ extension CardsLists {
                 for cardRecord in cardList.records {
                     self.allCards.append(cardRecord.fields)
                 }
-            case let .failure(error) :
-                completion(.failure(error))
+            case let .failure(.decodingError(error: error)) :
+                completion(.failure(.decodingError(error: error)))
             default :
                 completion(.failure(.unknown))
                 print("on voulait une cardlist et on a autre chose")

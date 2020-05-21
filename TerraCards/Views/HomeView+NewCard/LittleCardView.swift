@@ -28,12 +28,12 @@ struct LittleCardView: View {
             VStack{
                 RoundedRectangle(cornerRadius: 25)
                     .fill(Color(couleurCard).opacity(0.7))
-                    .frame(width: 100, height: 140)
-                    .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
-                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+                    .frame(width: 100, height: 120)
+                    .shadow(color: Color.white.opacity(0.4), radius: 5, x: -5, y: -5)
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 5, y: 5)
                     .padding(.horizontal, 10)
                     .overlay(Image("\(imageCollection)").renderingMode(.original).resizable().scaledToFit().frame(width: 90, height: 90))
-                Text (titreCollection).foregroundColor(.black)
+                Text (titreCollection).foregroundColor(.black).opacity(0.6)
             }
         }
         .alert(isPresented: $showingAlert) {
