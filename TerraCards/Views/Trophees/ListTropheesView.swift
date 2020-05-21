@@ -103,9 +103,32 @@ struct TropheesView_Previews: PreviewProvider {
         return TropheesView()
             .environmentObject(env)
             .onAppear(){
-                env.fetchAllCards(){response in
-                    print("chargé")
+                env.fillLists(){response in
+                    switch response {
+                    case .success:
+                        // ici ce sont les cartes qui étaient déjà dans les UserSettings
+                        for card in env.wonCards {
+                            print("carte de départ en preview : \(card.name ?? "")")
+                        }
+                        
+                        
+                        //                carte de départ en preview : Optional("Chêne")
+                        //                carte de départ en preview : Optional("Dauphin")
+                        //                carte de départ en preview : Optional("Ortie")
+                        //                carte de départ en preview : Optional("Pavot cornu")
+                        //                carte de départ en preview : Optional("Jacinthe des bois")
+                        
+                        // on en gagne quelques autres pour le fun, attention si le nom est pas le même exactement que dans la base : crash
+                        var cardsToAdd: [Card] = []
+                        cardsToAdd.append(env.allCards.first(where: {$0.name == "Mésange bleue"})!)
+                        cardsToAdd.append(env.allCards.first(where: {$0.name == "Vipère aspic"})!)
+                        env.winCards(cards: cardsToAdd)
+                        
+                    case .failure :
+                        print("mince")
+                    }
                 }
+                
         }
         
     }
