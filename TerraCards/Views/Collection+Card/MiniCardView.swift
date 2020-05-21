@@ -13,7 +13,7 @@ struct MiniCardView: View {
     @Binding var isACardClicked: Bool
     var opacity: CGFloat = 1
     @State var big: Bool = false
-    @State var pos: CGPoint = CGPoint(x: 70, y: 380)
+    @State var pos: CGPoint = CGPoint(x: 70, y: 480)
     var sourcePos: CGPoint = CGPoint(x: 0, y: 0)
     let disappear: () -> Void
     
@@ -54,7 +54,7 @@ struct MiniCardView: View {
                     .scaleEffect(self.scale, anchor: .center)
                     
                     .onTapGesture {
-                            self.disappear()
+                            //self.disappear()
                         
                         
                         withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.7, blendDuration: 1)) {
@@ -62,13 +62,13 @@ struct MiniCardView: View {
                                 self.scale = 1
                                 self.big = true
                                 self.isACardClicked = true
-                                self.pos = CGPoint(x: (270 - proxy.frame(in: .global).center.x), y: 600 - proxy.frame(in: .global).center.y)
+                                self.pos = CGPoint(x: (270 - proxy.frame(in: .global).center.x), y: 700 - proxy.frame(in: .global).center.y)
                             }
                             else {
                                 self.scale = 0.35
                                 self.big = false
                                 self.isACardClicked = false
-                                self.pos = CGPoint(x: 70, y: 380)
+                                self.pos = CGPoint(x: 70, y: 480)
                             }
                         }
                         

@@ -20,10 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
                 
-        do {
-            try cards.fillAllCardsList()
-        } catch {
-            print(error)
+
+        
+        cards.fetchAllCards {response in
+            switch response {
+            case .success:
+                print("all cards fetched and loaded")
+            case .failure:
+                print("problem during downloading or decoding")
+                // retry ??
+            }
         }
         
         registerBackgroundTaks()
@@ -46,7 +52,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         monitor.start(queue: DispatchQueue.global())
         
+        // à enlever avant production
+        UserSettings.nbLaunches = 0
+        FileProvider.clearImagesFromCacheFolder(){response in
+            print("ok")
+        }
+        //
         
+        UserSettings.nbLaunches = UserSettings.nbLaunches + 1
+        print("nombre de lancement de l'app : \(UserSettings.nbLaunches)")
+        
+        if UserSettings.nbLaunches == 1 {
+            UserSettings.userCards = ["Mésange Bleue", "Chêne", "Dauphin"]
+        }
+        print("cartes déjà gagnées : \(UserSettings.userCards)")
+
         return true
     }
 
@@ -101,32 +121,28 @@ extension AppDelegate {
     
     
     func handleNewCardsFetcherTask(task: BGProcessingTask) {
-        scheduleNewCardsFetcher() // Recall
         
-        //Todo Work
+        scheduleNewCardsFetcher() // Recall
         task.expirationHandler = {
             //This Block call by System
             //Canle your all tak's & queues
+            self.cancelAllPandingBGTask()
+        }
+
+        cards.fetchAllCards {response in
+            switch response {
+            case .success:
+                print("all cards fetched and loaded in background")
+                task.setTaskCompleted(success: true)
+            case .failure:
+                print("problem during downloading or decoding in background")
+                task.setTaskCompleted(success: false)
+            }
         }
         
-        //Get & Set New Data
-//        let interator =  ListInterator()
-//        let presenter =  ListPresenter()
-//        presenter.interator = interator
-//
-//        presenter.setNewData()
         
-        //
-        do {
-            print("BLABLABLA")
-            try cards.fillAllCardsList()
-            task.setTaskCompleted(success: true)
 
-        } catch {
-            print(error)
-            task.setTaskCompleted(success: false)
-
-        }
+        
         
     }
 }

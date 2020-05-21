@@ -43,9 +43,7 @@ final class Card: Decodable, Identifiable, Hashable, ObservableObject {
     enum CodingKeys: String, CodingKey {
         case id, name, imageRecto, imageVerso, habitats, season, averageSize, anecdote, collection, alert, latitude, longitude, obtained, imageRectoLastChange, imageVersoLastChange
     }
-    struct imageJson: Codable {
-        let url: String
-    }
+    
     
     // Pour pouvoir parcourir un tableau de Card avec ForEach
     static func == (lhs: Card, rhs: Card) -> Bool {
@@ -116,13 +114,13 @@ final class Card: Decodable, Identifiable, Hashable, ObservableObject {
         }
         
         
-        if let imageRectoArray = try? values.decode([imageJson].self, forKey: CodingKeys.imageRecto) {
+        if let imageRectoArray = try? values.decode([ImageJson].self, forKey: CodingKeys.imageRecto) {
             self.imageRectoURL = URL(string: imageRectoArray[0].url)!
             //self.imageRecto?.isFileURL
 
         }
         
-        if let imageVersoArray = try? values.decode([imageJson].self, forKey: CodingKeys.imageVerso) {
+        if let imageVersoArray = try? values.decode([ImageJson].self, forKey: CodingKeys.imageVerso) {
             self.imageVersoURL = URL(string: imageVersoArray[0].url)!
 
         }
@@ -131,100 +129,56 @@ final class Card: Decodable, Identifiable, Hashable, ObservableObject {
         imageVerso = nil
         
     }
-    
-    func fileModificationDate(suffix: String) -> Date? {
-        let cachesURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
-        let fileURL = cachesURL.appendingPathComponent("\(self.name ?? "image_default")_\(suffix).png")
-        do {
-            let attr = try FileManager.default.attributesOfItem(atPath: fileURL.path)
-            return attr[FileAttributeKey.modificationDate] as? Date
-        } catch {
-            return nil
-        }
-    }
-    
-    func loadImageFromCache(suffix: String) -> Image? {
-        var image: Image?
-        let cachesURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
-        let fileURL = cachesURL.appendingPathComponent("\(self.name ?? "image_default")_\(suffix).png")
-        let filePath = fileURL.path
-        print("on cherche l'image dans le cache ici : \(filePath)")
 
-        if FileManager.default.fileExists(atPath: filePath) {
-            print("trouvée dans le cache")
-            image = Image(uiImage: UIImage(contentsOfFile: filePath) ?? UIImage(systemName: "chene")!)
-            return image
-        }
-        return image
-        
-        
-    }
     
-    func downloadImageFromURL(url: URL, completion: @escaping (UIImage?) -> Void) {
-        URLSession.shared.dataTask(with: url, completionHandler: {data,response,error in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-                else {
-                    print("erreur lors du téléchargement :\(error!)")
-                    completion(nil)
-                    return
-                    
-            }
-            DispatchQueue.main.async() {
-                print("bien joué !")
-                completion(image)
-                
-            }
-        } ).resume()
-        
-    }
     
-    func writeImageOnCache(image: UIImage, suffix: String) {
-        print("on écrit l'image dans le cache")
-        let cachesURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
-        let fileURL = cachesURL.appendingPathComponent("\(self.name ?? "image_default")_\(suffix).png")
-        do {
-            if let pngImageData = image.pngData() {
-                try pngImageData.write(to: fileURL, options: .atomic)
-                print("bien inscrite dans le cache à l'adresse : \(fileURL.path)")
-            }
-        } catch {
-            print("erreur inscription dans cache : \(error)")
-        }
-        
-    }
+    
     // Télécharger les images, depuis le HTTP ou depuis le Cache
     func loadingImages() {
         
         if imageRectoOnlineDate == nil ||
-                imageRectoOnlineDate! < (fileModificationDate(suffix: "recto") ?? Date())  {
+            imageRectoOnlineDate! < (FileProvider.fileModificationDate(fileURL: FileProvider.getCachedCardImageUrl(name: self.name, suffix: "recto")) ?? Date())  {
             print("cache cachou")
-            imageRecto = loadImageFromCache(suffix: "recto")
+            imageRecto = FileProvider.getImageFromCache(name: self.name, suffix: "recto")
         }
         if imageVersoOnlineDate == nil ||
-            imageVersoOnlineDate! < (fileModificationDate(suffix: "verso") ?? Date()) {
-            imageVerso = loadImageFromCache(suffix: "verso")
+            imageVersoOnlineDate! < (FileProvider.fileModificationDate(fileURL: FileProvider.getCachedCardImageUrl(name: self.name, suffix: "verso")) ?? Date()) {
+            imageVerso = FileProvider.getImageFromCache(name: self.name, suffix: "verso")
         }
 
 
         if imageRecto == nil && imageRectoURL != nil {
             print("on télécharge")
-            downloadImageFromURL(url: imageRectoURL!, completion: { image in
-                if let image = image {
-                    self.imageRecto = Image(uiImage: image)
-                    self.writeImageOnCache(image: image, suffix: "recto")
+            APIProvider.shared.downloadImageFromURL(url: imageRectoURL!, completion: { response in
+                switch response {
+                case let .success(response):
+                    switch response {
+                    case let .image(image: image):
+                        self.imageRecto = Image(uiImage: image)
+                        FileProvider.writeImageInCache(image: image, name: self.name, suffix: "recto")
+                    default:
+                        print("on a téléchargé autre chose qu'une image")
+                    }
+                case let .failure(error):
+                    print("on a téléchargé et on a échoué : \(error)")
                 }
+
             })
         }
         
         if imageVerso == nil && imageVersoURL != nil {
-            downloadImageFromURL(url: imageVersoURL!, completion: { image in
-                if let image = image {
-                    self.imageVerso = Image(uiImage: image)
-                    self.writeImageOnCache(image: image, suffix: "verso")
+            APIProvider.shared.downloadImageFromURL(url: imageVersoURL!, completion: { response in
+                switch response {
+                case let .success(response):
+                    switch response {
+                    case let .image(image: image):
+                        self.imageVerso = Image(uiImage: image)
+                        FileProvider.writeImageInCache(image: image, name: self.name, suffix: "verso")
+                    default:
+                        print("on a téléchargé autre chose qu'une image")
+                    }
+                case let .failure(error):
+                    print("on a téléchargé et on a échoué : \(error)")
                 }
             })
         }
