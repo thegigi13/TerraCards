@@ -7,13 +7,16 @@
 //
 
 import Foundation
+import SwiftUI
 
 class CardsLists: ObservableObject {
     @Published var wonCards: [Card] = []
-    @Published var missingCards: [Card] = []
+    //@Published var missingCards: [Card] = []
     @Published var allCards: [Card] = []
 
-    func fillCardsModelView() -> Void {
-        
-    }
+    @Published var connection: Bool = true
 }
+
+
+
+
