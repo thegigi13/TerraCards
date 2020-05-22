@@ -9,10 +9,13 @@
 import SwiftUI
 
 struct AppView: View {
+    
+    @EnvironmentObject var cardsModelView: CardsLists
+
     var body: some View {
        TabView {
         NavigationView {
-             TropheesView() // bouton de la tabBar sur trophées
+            TropheesView().environmentObject(cardsModelView) // bouton de la tabBar sur trophées
         }
         .tabItem({
                    // Image("icons8-book-stack-50")
@@ -21,7 +24,7 @@ struct AppView: View {
                 })
             
         NavigationView { // bouton de la tabBar de Accueil
-            Accueil()
+            HomeView().environmentObject(cardsModelView) 
         }
         .tabItem({
                     Image(systemName: "book")

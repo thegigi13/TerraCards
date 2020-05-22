@@ -13,7 +13,7 @@ struct MiniCardView: View {
     @Binding var isACardClicked: Bool
     var opacity: CGFloat = 1
     @State var big: Bool = false
-    @State var pos: CGPoint = CGPoint(x: 70, y: 480)
+    @State var pos: CGPoint = CGPoint(x: 70, y: 780)
     var sourcePos: CGPoint = CGPoint(x: 0, y: 0)
     let disappear: () -> Void
     
@@ -68,7 +68,7 @@ struct MiniCardView: View {
                                 self.scale = 0.35
                                 self.big = false
                                 self.isACardClicked = false
-                                self.pos = CGPoint(x: 70, y: 480)
+                                self.pos = CGPoint(x: 70, y: 780)
                             }
                         }
                         
