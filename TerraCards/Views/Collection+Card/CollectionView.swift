@@ -11,10 +11,25 @@ import SwiftUI
 struct CollectionView: View {
     @EnvironmentObject var cardsModelView: CardsLists
     
-    var collection: CollectionType
+    var collection: CollectionType?
+    var cardList: [Card]?
+    
+    init(collection: CollectionType) {
+        self.collection = collection
+        self.cardList = nil
+    }
+    
+    init(cardList: [Card]) {
+        self.collection = nil
+        self.cardList = cardList
+    }
     
     var collec: [Card] {
-        cardsModelView.wonCards.filter({$0.collection == self.collection})
+        if cardList == nil {
+            return cardsModelView.wonCards.filter({$0.collection == self.collection})
+        } else {
+            return cardList!
+        }
     }
     
     var collec3by3: [[Card]] {
