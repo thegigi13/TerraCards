@@ -11,7 +11,7 @@ import SwiftUI
 struct CollectionView: View {
     @EnvironmentObject var cardsModelView: CardsLists
     
-    var collection: CollectionType = .plant
+    var collection: CollectionType
     
     var collec: [Card] {
         cardsModelView.wonCards.filter({$0.collection == self.collection})
@@ -97,6 +97,6 @@ struct CollectionView: View {
 
 struct CollectionView_Previews: PreviewProvider {
     static var previews: some View {
-        CollectionView().environmentObject(CardsLists())
+        CollectionView(collection: .plant).environmentObject(CardsLists())
     }
 }
