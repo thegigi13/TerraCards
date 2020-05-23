@@ -56,19 +56,19 @@ struct CollectionView: View {
     @State var isACardClicked: Bool = false
     let bgColor: Color = Color("tree")
     @State var opacityCards: CGFloat = 1
-    func disappear() {
-        
-        if opacityCards == 1 {
-            withAnimation(.linear(duration: 0.15)) {
-                opacityCards = 0
-            }
-        } else {
-            withAnimation(.linear(duration: 0.6)) {
-                opacityCards = 1
-            }
-        }
-        
-    }
+//    func disappear() {
+//
+//        if opacityCards == 1 {
+//            withAnimation(.linear(duration: 0.15)) {
+//                opacityCards = 0
+//            }
+//        } else {
+//            withAnimation(.linear(duration: 0.6)) {
+//                opacityCards = 1
+//            }
+//        }
+//
+//    }
     
     var body: some View {
         ZStack {
@@ -86,8 +86,13 @@ struct CollectionView: View {
                 VStack(spacing: 0) {
                     ForEach(collec3by3, id: \.self, content: {row in
                         HStack {
-                            ForEach(row) { card in
-                                MiniCardView( isACardClicked: self.$isACardClicked, opacity: self.opacityCards, disappear: self.disappear, card: card)
+                            ForEach(0..<3) { i in
+                                //MiniCardView( isACardClicked: self.$isACardClicked, opacity: self.opacityCards, disappear: self.disappear, card: row[i])
+                                if i < row.count {
+                                    MiniCardView( isACardClicked: self.$isACardClicked, opacity: self.$opacityCards,  card: row[i])
+                                } else {
+                                    MiniCardView( isACardClicked: self.$isACardClicked, opacity: self.$opacityCards, card: Card()).hidden()
+                                }
                             }
                         }
                         
