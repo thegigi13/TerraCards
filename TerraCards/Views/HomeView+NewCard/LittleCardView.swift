@@ -54,8 +54,8 @@ struct LittleCardView: View {
                         .overlay(Image("\(imageCollection)").renderingMode(.original).resizable().scaledToFit().frame(width: 90, height: 90))
                 Text (titreCollection).foregroundColor(.black)
             }
-            .saturation(0)
-            .opacity(0.6)
+   //         .saturation(0)
+  //          .opacity(0.6)
 //
 //        }
         

@@ -75,17 +75,30 @@ class CardStore : ObservableObject {
 }
 
 extension CardsLists {
+    
     /*
-      fonction qui calcule le nombre total de carte
+      fonction qui calcule le nombre total de carte + ceux obtenue et le nb de prorata pour l'evolutionBar
      */
-    func numbersMaxCards() -> Int {
-        var number = 0
+    func numbersMaxObtainedCards() -> (nbCardMax :Int, nbCardObtained : Int , nbCardEvoltionBar: CGFloat) {
+        var numberMax = 0
+        var numberObtained = 0
+        var numberCardEvolutionBar:CGFloat = 0.0
+        
         allCards.forEach { card in
-            number += 1
+            numberMax += 1
         }
-        print("------------ cartes total  : \(number)")
-        return number
+        wonCards.forEach { card in
+             numberObtained += 1
+        }
+        numberCardEvolutionBar = CGFloat( 170 / numberMax * numberObtained )
+ 
+        print("-- cartes total  : \(numberMax)")
+        print("-- cartes obtenus  : \(numberObtained)")
+        print("-- nombre de l'evolutionBar  : \(numberCardEvolutionBar)")
+        
+        return (numberMax,numberObtained,numberCardEvolutionBar)
      }
+    
     
     /*
      fonction qui calcule le nombre de carte total obtenue
@@ -125,18 +138,19 @@ extension CardsLists {
         
         print("--- number total max:  \(numberMax) number obtained : \(numberObtained)  color of card : \(colorCardTrophee)")
         
-        
         return colorCardTrophee
     }
     
     /*
      calcule du nombre de carte max et obtenue ainsi que la couleur pour le contour de la carte trophee
      */
-    func numberCardsMaxCollection(collection: CollectionType) -> (obtained:Int, collectionMax: Int, cardColor: Color) {
-
+    func numberCardsMaxCollection(collection: CollectionType) -> (obtained:Int, collectionMax: Int, cardColor: Color, numberEvolutionBar: CGFloat) {
+        
+        let valeurMax = 170
         var numbersObtainedCollection = 0
         var numbersMaxCollection = 0
         var colorCardTrophee = Color.gray
+        var numberProrataEvolutionBar:CGFloat = 0.0  // nombre du prorata pour affichage de l'evolution de la bar par rapport au max de carte et ceux obtenue
         
         allCards.forEach { card in
             if card.collection == collection {
@@ -161,9 +175,45 @@ extension CardsLists {
             }
         } else { colorCardTrophee = Color.gray } // couleur gray si pas de carte obtenue
          
-        return (numbersObtainedCollection, numbersMaxCollection, colorCardTrophee)
-    }
+        if numbersObtainedCollection == 0 && numbersMaxCollection == 0 {
+            numberProrataEvolutionBar = 0.0
+        } else {
+            numberProrataEvolutionBar = CGFloat( valeurMax / numbersMaxCollection * numbersObtainedCollection)
+        }
 
+        print("-- cartes total  : \(numbersMaxCollection)")
+        print("-- cartes obtenus  : \(numbersObtainedCollection)")
+        print("-- nombre de l'evolutionBar  : \(numberProrataEvolutionBar)")
+              
+        return (numbersObtainedCollection, numbersMaxCollection, colorCardTrophee, numberProrataEvolutionBar)
+    }
+    
+    
+    func numberMaxCollection(collection: CollectionType) -> CGFloat {
+
+        var numbersMaxCollection = 0
+        
+        allCards.forEach { card in
+            if card.collection == collection {
+                numbersMaxCollection += 1
+            }
+        }
+         
+        return CGFloat(numbersMaxCollection)
+    }
+    
+    func numberObtainedCollection(collection: CollectionType) -> CGFloat {
+
+        var numbersObtainedCollection = 0
+        
+        wonCards.forEach { card in
+            if card.collection == collection {
+                numbersObtainedCollection += 1
+            }
+        }
+         
+        return CGFloat(numbersObtainedCollection)
+    }
     
     
     

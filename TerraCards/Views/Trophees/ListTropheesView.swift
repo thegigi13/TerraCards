@@ -14,14 +14,14 @@ struct TropheesView: View {
     
     private let collection = CollectionType.allCases
     @EnvironmentObject var listeCards: CardsLists
-
+    private let valeurMax:CGFloat = 170.0
     
     @State var accueil:Bool = false
     
     var body: some View {
     //    NavigationView {
             ZStack {
-                Color.colorTrophees
+                Color("colorTrophee")
                  VStack {
                         ScrollView(.vertical, showsIndicators: false) {
                             HStack {   // carte total
@@ -32,9 +32,9 @@ struct TropheesView: View {
                                     HStack {
                                         Text("Total de Cartes")
                                             .font(.callout)
-                                        Text("\(listeCards.cardsObtained())")
+                                        Text("\(listeCards.numbersMaxObtainedCards().nbCardObtained)")
                                     }.foregroundColor(Color.gray)
-                                    EvolutionBar(valMax: CGFloat(CGFloat(listeCards.numbersMaxCards())), val: CGFloat(CGFloat(listeCards.cardsObtained())))
+                                    EvolutionBar(valEvolutionBar: listeCards.numbersMaxObtainedCards().nbCardEvoltionBar)
                                         .padding()
                                 }.padding()
                             }.background(Color.colorTrophees)
@@ -47,7 +47,7 @@ struct TropheesView: View {
                                             .font(.callout)
                                         Text("4")
                                     }.foregroundColor(Color.gray)
-                                    EvolutionBar(valMax: CGFloat(4), val: CGFloat(20))
+                                    EvolutionBar(valEvolutionBar: 20)
                                         .padding()
                                 }.padding()
                             }.background(Color.colorTrophees)
@@ -58,28 +58,24 @@ struct TropheesView: View {
                                     HStack {
                                         Text("Cartes Quizz")
                                             .font(.callout)
-                                            
                                         Text("4")
-                                           
                                     }.foregroundColor(Color.gray)
-                                    EvolutionBar(valMax: CGFloat(4), val: CGFloat(20))
+                                    EvolutionBar(valEvolutionBar: 30)
                                         .padding()
                                 }.padding()
                             }.background(Color.colorTrophees)
                             ForEach(collection , id: \.id) { trophee in
                                   // toute les autres carte
                                 HStack {
-                                    CardTropheeView(image: trophee.name, contour: self.listeCards.numberCardsMaxCollection(collection: trophee).cardColor)
+                                    CardTropheeView(image: trophee.image, contour: self.listeCards.numberCardsMaxCollection(collection: trophee).cardColor)
                                         .padding()
                                     VStack {
                                         HStack {
-                                            Text(" Cartes ")
-                                            Text("\(trophee.name)")
+                                            Text("\(trophee.image)")
                                                 .font(.callout)
                                             Text("\(self.listeCards.numberCardsMaxCollection(collection: trophee).obtained)")
                                         }.foregroundColor(Color.gray)
-                                        EvolutionBar(valMax: CGFloat(self.listeCards.numberCardsMaxCollection(collection: trophee).collectionMax),
-                                                     val: CGFloat(self.listeCards.numberCardsMaxCollection(collection: trophee).obtained))
+                                        EvolutionBar(valEvolutionBar: self.listeCards.numberCardsMaxCollection(collection: trophee).numberEvolutionBar)
                                             .padding()
                                     }.padding()
                                 }.background(Color.colorTrophees)
@@ -96,6 +92,8 @@ struct TropheesView: View {
   //      }
     }
 }
+
+
 
 struct TropheesView_Previews: PreviewProvider {
     static var previews: some View {
