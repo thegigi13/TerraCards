@@ -56,9 +56,7 @@ struct LittleCardView: View {
         }
     }
     
-    var layers: Int = 5
-    var doubleLayers: CGFloat { CGFloat(layers * 2)    }
-    var doubleIntLayers: Int { Int(doubleLayers)}
+
     // création de l'extractingView pour la HomeView
     var body: some View {
             
