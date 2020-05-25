@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         monitor.start(queue: DispatchQueue.global())
         
         // à enlever avant production
-        UserSettings.nbLaunches = 2
+        UserSettings.nbLaunches = 0
         FileProvider.clearImagesFromCacheFolder(){response in
             print("ok")
         }

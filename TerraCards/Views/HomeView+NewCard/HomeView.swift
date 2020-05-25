@@ -150,8 +150,8 @@ struct HomeView: View {
                     GridStack(rows: 4, columns: 3, hSpacing: 7, vSpacing: 0){row, col in
                         VStack{
                                 LittleCardView(titreCollection: self.collectionTypes[row * 3 + col].name, imageCollection: self.collectionTypes[row * 3 + col].image, couleurCard: self.collectionTypes[row * 3 + col].rawValue, type: self.collectionTypes[row * 3 + col]
-                                ).saturation(self.isCollEmpty(collection: self.collectionTypes[row * 3 + col]) ? 0.4 : 1)
-                                .opacity(self.isCollEmpty(collection: self.collectionTypes[row * 3 + col]) ? 0.5 : 1)
+                                ).saturation(self.isCollEmpty(collection: self.collectionTypes[row * 3 + col]) ? 0.1 : 1)
+                                .opacity(self.isCollEmpty(collection: self.collectionTypes[row * 3 + col]) ? 0.3 : 1)
                             
                         }.padding(.top, 20)
                        
