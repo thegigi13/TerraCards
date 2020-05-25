@@ -30,7 +30,7 @@ struct UserDefault<T> {
 
 extension UserDefaults {
     enum Keys: String {
-        case nbLaunches, userName, userCards
+        case nbLaunches, userName, userCards, lastFreeWins
     }
     
 }
@@ -39,6 +39,7 @@ struct UserSettings {
     @UserDefault(UserDefaults.Keys.nbLaunches.rawValue, defaultValue: 0) static var nbLaunches: Int
     @UserDefault(UserDefaults.Keys.userName.rawValue, defaultValue: "username") static var userName: String
     @UserDefault(UserDefaults.Keys.userCards.rawValue, defaultValue: []) static var userCards: [String]
+    @UserDefault(UserDefaults.Keys.lastFreeWins.rawValue, defaultValue: "2001-12-31") static var lastFreeWins: String
 
 }
 

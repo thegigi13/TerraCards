@@ -18,6 +18,27 @@ extension CardsLists {
             }
         }
     }
+    
+    func threeNewCardsOrLess() -> [Card]{
+        let missCards = missingCards
+        var result: [Card] = []
+        var nbCardsInResult = 3
+        if missingCards.count < 3 {
+            nbCardsInResult = missingCards.count
+        }
+        for _ in 0..<nbCardsInResult {
+            if var random = missCards.randomElement() {
+                while
+                    result.firstIndex(where: {$0.name == random.name}) != nil{
+                        random = missCards.randomElement()!
+                }
+                result.append(random)
+            }
+            
+        }
+        print("au hasard : \(result)")
+        return result
+    }
 }
 extension CardsLists {
     typealias Completion = (Result<CardsLists,APIError>) -> ()

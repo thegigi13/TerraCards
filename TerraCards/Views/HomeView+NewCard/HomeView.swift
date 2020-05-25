@@ -47,6 +47,8 @@ struct HomeView: View {
     
     let collectionTypes = CollectionType.allCases
     
+    
+    
     var body: some View {
         
             ZStack {

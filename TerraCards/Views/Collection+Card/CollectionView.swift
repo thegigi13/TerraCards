@@ -17,11 +17,13 @@ struct CollectionView: View {
     init(collection: CollectionType) {
         self.collection = collection
         self.cardList = nil
+        self.bgColor = nil
     }
     
-    init(cardList: [Card]) {
+    init(cardList: [Card], bgColor: Color = Color.white) {
         self.collection = nil
         self.cardList = cardList
+        self.bgColor = bgColor
     }
     
     var collec: [Card] {
@@ -54,7 +56,7 @@ struct CollectionView: View {
     }
     
     @State var isACardClicked: Bool = false
-    let bgColor: Color = Color("tree")
+    let bgColor: Color?
     @State var opacityCards: CGFloat = 1
 //    func disappear() {
 //
@@ -79,7 +81,7 @@ struct CollectionView: View {
                 
             .frame(width: UIScreen.main.bounds.width * 100/100, height: UIScreen.main.bounds.height * 120/100)
                 
-            .background(Color(collec.isEmpty ? "fish" : collec[0].collection.rawValue))
+            .background(collec.isEmpty ? Color("fish") : (bgColor ?? Color(collec[0].collection.rawValue)))
             
             ScrollView {
                 
@@ -89,7 +91,7 @@ struct CollectionView: View {
                             ForEach(0..<3) { i in
                                 //MiniCardView( isACardClicked: self.$isACardClicked, opacity: self.opacityCards, disappear: self.disappear, card: row[i])
                                 if i < row.count {
-                                    MiniCardView( isACardClicked: self.$isACardClicked, opacity: self.$opacityCards,  card: row[i])
+                                    MiniCardView( isACardClicked: self.$isACardClicked, opacity: self.$opacityCards,  card: row[i] , bgColor: self.bgColor ?? Color(self.collec[0].collection.rawValue))
                                 } else {
                                     MiniCardView( isACardClicked: self.$isACardClicked, opacity: self.$opacityCards, card: Card()).hidden()
                                 }

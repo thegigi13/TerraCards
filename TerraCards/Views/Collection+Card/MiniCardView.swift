@@ -15,8 +15,9 @@ struct MiniCardView: View {
     @State var big: Bool = false
     @State var pos: CGPoint = CGPoint(x: 70, y: 780)
     var sourcePos: CGPoint = CGPoint(x: 0, y: 0)
-    
     @ObservedObject var card: Card
+    var bgColor: Color = Color.black
+
     var body: some View {
         
         return ZStack {
@@ -30,7 +31,7 @@ struct MiniCardView: View {
                         }
 
                         .frame(width: UIScreen.main.bounds.width,height: UIScreen.main.bounds.height)
-                        .background(Color(self.card.collection.rawValue))
+                        .background(self.bgColor)
                         .opacity(self.big ? 1 : 0)
                         
                         CardFlip(bgColor: Color(self.card.collection.rawValue),versoView: {

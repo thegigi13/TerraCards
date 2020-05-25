@@ -74,12 +74,12 @@ final class Card: Decodable, Identifiable, Hashable, ObservableObject {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         name = try values.decode(String.self, forKey: CodingKeys.name)
-        habitats = try values.decode([HabitatType].self, forKey: CodingKeys.habitats)
-        season = try values.decode(String.self, forKey: CodingKeys.season)
-        averageSize = try values.decode(String.self, forKey: CodingKeys.averageSize)
+        habitats = try? values.decode([HabitatType].self, forKey: CodingKeys.habitats)
+        season = try? values.decode(String.self, forKey: CodingKeys.season)
+        averageSize = try? values.decode(String.self, forKey: CodingKeys.averageSize)
         anecdote = try? values.decode(String.self, forKey: CodingKeys.anecdote)
-        collection = try values.decode(CollectionType.self, forKey: CodingKeys.collection)
-        alert = try values.decode(AlertType.self, forKey: CodingKeys.alert)
+        collection = try? values.decode(CollectionType.self, forKey: CodingKeys.collection)
+        alert = try? values.decode(AlertType.self, forKey: CodingKeys.alert)
         if let longitude = try?  values.decode(Double.self, forKey: CodingKeys.longitude) {
             self.longitude = longitude
         } else {

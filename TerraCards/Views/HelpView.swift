@@ -11,10 +11,12 @@ import SwiftUI
 struct Help: View {
     
     @EnvironmentObject var cardsModelView: CardsLists
-
+    
     @State var offset = [CGSize(width: 0, height: 0),CGSize(width: 0, height: 0),CGSize(width: 0, height: 0)]
     
     @State var sheet = 0
+    @State var endFlip = false
+    @State var opacity = 0.1
     
     var card: Card? {
         return cardsModelView.allCards.first {
@@ -65,15 +67,16 @@ struct Help: View {
                 
                 
                 VStack {
-                    Spacer().frame(height:100)
+                    Spacer().frame(height:200)
                     if card != nil {
-                        CardFlip(versoView: {
+                        CardFlip(flip: $endFlip, versoView: {
                             AnyView(CardVerso(card: self.card!))
                         }, rectoView: {
                             CardRecto(card: self.card!)
                         })
-                        .scaleEffect(0.6)
+                            .scaleEffect(0.6)
                             .padding(.bottom, -50)
+                            .disabled(endFlip)
                     }
                     
                     Text("Tu vas collectionner des cartes qui te permettront d'avoir des informations sur des animaux et des plantes des environs")
@@ -81,50 +84,61 @@ struct Help: View {
                     Text("Retourne cette carte pour voir !")
                         .padding()
                     //if showed[1] {
-                    HStack {
-                        AnimatedChevron()
-                        ThreeWords(words: ["Glisse", "pour", "continuer !"])
-                        .foregroundColor(Color.white)
-
-
+                    
+                    if endFlip {
+                        HStack {
+                            AnimatedChevron()
+                            Text("Glisse pour continuer")
+                                .foregroundColor(Color.white)
+                            
+                            
+                        }
+                        .opacity(opacity)
+                        .onAppear() {
+                            withAnimation(.linear(duration: 1)) {
+                                self.opacity = 1
+                            }
+                        }
+                        
                     }
-                        
+                    
                     //}
-                        
+                    
                     Spacer()
                 }
-                
+                    
+                    
                 .frame(width:UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*120/100)
                 .background(Color(UIColor.systemBlue))
                 .offset(x: self.offset[1].width, y: 0)                .gesture(drag)
                 .disabled(self.sheet != 1)
                 
                 
-                ThreeVerticalView(delays: [2.5,3,0],
+                ThreeVerticalView(delays: [2.5,5,0],
                                   firstView: {
-                                    ThreeWords()
+                                    ThreeWords(sentence: "Bienvenue dans TerraCards")
                                         .font(.title)
                 }, secondView: {
                     HStack {
                         //if self.showed[0] {
-                            Text("Avec TerraCards tu vas apprendre beaucoup de choses sur la faune et la flore qui t'entoure. Que tu habites à la campagne, au bord de la mer, ou même en ville")
-                                
-                                .padding(40)
-                                .transition(.move(edge: .bottom))
+                        Text("Avec TerraCards tu vas apprendre beaucoup de choses sur la faune et la flore qui t'entoure. Que tu habites à la campagne, au bord de la mer, ou même en ville")
+                            
+                            .padding(40)
+                            .transition(.move(edge: .bottom))
                         
                     }
                 }, thirdView: {
-                        ThreeWords(words: ["Glisse", "pour", "continuer !"])
+                    ThreeWords(sentence : "Glisse pour continuer")
                     
                     //.foregroundColor(Color.white)
-
+                    
                 })
                     
-                .frame(width:UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*120/100)
-                .background(Color(UIColor.systemRed))
-                .offset(x: self.offset[0].width, y: 0)
-                .gesture(drag)
-                .disabled(self.sheet != 0)
+                    .frame(width:UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*120/100)
+                    .background(Color(UIColor.systemRed))
+                    .offset(x: self.offset[0].width, y: 0)
+                    .gesture(drag)
+                    .disabled(self.sheet != 0)
                 
                 
             }.edgesIgnoringSafeArea(.all)
@@ -136,25 +150,36 @@ struct Help: View {
 
 struct ThreeWords: View {
     
+    var words: [String]
+    @State var opacities: [Double]
+    init(sentence: String) {
+        self.words = sentence.map { String($0) }
+        self._opacities = State(initialValue: Array(repeating: 0.0, count: self.words.count))
+    }
     
-    var words: [String] = ["Bienvenue", "dans", "Terra Cards !"]
-    @State var opacities: [Double] = [0, 0, 0]
-    
+    init(arrayOfWords: [String]) {
+        self.words = arrayOfWords
+        self._opacities = State(initialValue: Array(repeating: 0.0, count: self.words.count))
+    }
     
     
     var body: some View {
-        HStack {
-            ForEach (0..<words.count) {i in
-                Text(self.words[i])
-                    .opacity(self.opacities[i])
-            }
-        }.onAppear() {
-            for i in 0..<self.opacities.count {
-                withAnimation(Animation.linear(duration: 0.5).delay(Double(i)*0.5)) {
-                    self.opacities[i] = 1
+        VStack {
+            HStack(spacing: 0) {
+                ForEach (0..<words.count) {i in
+                    Text(self.words[i])
+                        .padding(0)
+                        .opacity(self.opacities[i])
                 }
+            }.onAppear() {
+                for i in 0..<self.opacities.count {
+                    withAnimation(Animation.linear(duration: 0.5).delay(Double(i)*0.05)) {
+                        self.opacities[i] = 1
+                        
+                    }
+                }
+                
             }
-            
         }
     }
 }
@@ -162,20 +187,20 @@ struct ThreeWords: View {
 struct AnimatedChevron: View {
     @State var chevronX: CGFloat = 0
     @State var opacityChevron: Double = 1
-
+    
     var body: some View {
         Image(systemName: "chevron.left")
-        .offset(x: self.chevronX, y: 0)
-        .foregroundColor(Color.white)
-        .opacity(self.opacityChevron)
-        .onAppear() {
-            withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)){
-                self.chevronX = -100
-            }
-            withAnimation(Animation.easeOut(duration: 2).repeatForever(autoreverses: false)) {
-                self.opacityChevron = 0
-
-            }
+            .offset(x: self.chevronX, y: 0)
+            .foregroundColor(Color.white)
+            .opacity(self.opacityChevron)
+            .onAppear() {
+                withAnimation(Animation.linear(duration: 2).repeatForever(autoreverses: false)){
+                    self.chevronX = -100
+                }
+                withAnimation(Animation.easeOut(duration: 2).repeatForever(autoreverses: false)) {
+                    self.opacityChevron = 0
+                    
+                }
         }
     }
 }
@@ -192,21 +217,31 @@ struct ThreeVerticalView<FirstView: View, SecondView: View, ThirdView: View>: Vi
     var body: some View {
         VStack {
             firstView().opacity(self.opacities[0])
-
+            
             secondView().opacity(self.opacities[1])
             if self.showed {
                 HStack {
-                AnimatedChevron()
-                thirdView()
-                .foregroundColor(Color.white)
-
-
+                    AnimatedChevron()
+                    thirdView()
+                        .foregroundColor(Color.white)
+                    
+                    
+                }
+            }
+            else {
+                HStack {
+                    AnimatedChevron()
+                    thirdView()
+                        .foregroundColor(Color.white)
+                    
+                    
+                }.hidden()
             }
             
             
             
             
-            }
+            
             
         }.onAppear() {
             for i in 0..<self.opacities.count {
@@ -220,7 +255,7 @@ struct ThreeVerticalView<FirstView: View, SecondView: View, ThirdView: View>: Vi
             
         }
         .onAppear() {
-            withAnimation(Animation.linear(duration:1).delay(self.delays[1])) {
+            withAnimation(Animation.linear.delay(self.delays[1])) {
                 self.showed.toggle()
             }
         }
