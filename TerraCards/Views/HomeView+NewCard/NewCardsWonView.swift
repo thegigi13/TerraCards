@@ -14,8 +14,8 @@ struct NewCardsWonView: View {
             
           // Prendre 2 cartes au hasard dans la liste des cartes non obtenues
             // utiliser un autre modele de carte? (ici c'est les cartes de collections)
-            LittleCardView(titreCollection: "Amphibiens", imageCollection : "grenouille2", couleurCard: "amphibian")
-            LittleCardView(titreCollection: "Amphibiens", imageCollection : "grenouille2", couleurCard: "amphibian")
+            LittleCardView(titreCollection: "Amphibiens", imageCollection : "grenouille2", couleurCard: "amphibian", type: .amphibian)
+            LittleCardView(titreCollection: "Amphibiens", imageCollection : "grenouille2", couleurCard: "amphibian", type: .amphibian)
             
         }.navigationBarTitle("Nouvelles cartes")
     }
