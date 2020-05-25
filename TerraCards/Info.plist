@@ -68,5 +68,13 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Utilisation de la localisation pour les cartes correspondantes au lieux</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Utilisation de la localisation pour les cartes correspondantes au lieux</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Utilisation de la localisation pour les cartes correspondantes au lieux</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Utilisation de la localisation pour les cartes correspondantes au lieux</string>
 </dict>
 </plist>

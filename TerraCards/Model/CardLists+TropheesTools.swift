@@ -9,7 +9,6 @@
 import Foundation
 import SwiftUI
 
-
 extension Color {
     
     static let offwhite = Color(red: 225/255, green: 225/255, blue: 235/255)
@@ -22,70 +21,46 @@ extension Color {
 }
 
 
-
-
-
-
 // liste de toute les cartes
 class CardStore : ObservableObject {
      
     @Published var allCards: [Card] = [
-//        Card(name: "Arachnides",
-//             imageRecto: "moustique",
-//             imageVerso: "Le moustique-tigre",
-//             habitats: [.mountains],
-//             season: "En étè",
-//             averageSize: "2",
-//             anecdote: "Le moustique tigre est l’un des 100 espèces les plus invasives du monde! On le retrouve sur les 5 continents",
-//             obtained: true,
-//             collection: CollectionType.insect,
-//             alert: AlertType.greenAlert),
-//        Card(name: "Coleoptere",
-//             imageRecto: "coléoptère",
-//             imageVerso: "Coléoptères",
-//             habitats: [.countryside],
-//             season: "spring",
-//             averageSize: "4",
-//             anecdote: "il roule sa bosse",
-//             obtained: true,
-//             collection: CollectionType.insect,
-//             alert: AlertType.greenAlert),
-//        Card(name: "Peuplier",
-//             imageRecto: "PeuplierF",
-//             imageVerso: "Peuplier",
-//             habitats: [.mountain],
-//             season: "summer",
-//             averageSize: "Très grand",
-//             anecdote: "Les papillons de nuit ( hétérogènes ) Se nourrissent de Peuplier",
-//             obtained: true,
-//             collection: CollectionType.tree,
-//             alert: AlertType.greenAlert),
-//        Card(name: "Peuplier",
-//            imageRecto: "PeuplierF",
-//            imageVerso: "Peuplier",
-//            habitats: [.mountain],
-//            season: "summer",
-//            averageSize: "Très grand",
-//            anecdote: "Les papillons de nuit ( hétérogènes ) Se nourrissent de Peuplier",
-//            obtained: true,
-//            collection: CollectionType.tree,
-//            alert: AlertType.greenAlert)
         Card()
     ]
 }
 
 extension CardsLists {
+    
     /*
-      fonction qui calcule le nombre total de carte
+      fonction qui calcule le nombre total de carte + ceux obtenue et le nb de prorata pour l'evolutionBar
      */
-    func numbersMaxCards() -> Int {
-        var number = 0
+    func numbersMaxObtainedCards() -> (nbCardMax :Int, nbCardObtained : Int , nbCardEvoltionBar: CGFloat) {
+        var numberMax = 0
+        var numberObtained = 0
+        var numberCardEvolutionBar:CGFloat = 0.0
+        
         allCards.forEach { card in
-            number += 1
+            numberMax += 1
         }
-        print("------------ cartes total  : \(number)")
-        return number
+        wonCards.forEach { card in
+             numberObtained += 1
+        }
+        
+        // test si il n'y a pas de division par 0
+        if numberMax == 0 && numberObtained == 0 {
+            numberCardEvolutionBar = 0
+        } else {
+             numberCardEvolutionBar = CGFloat( 170 / numberMax * numberObtained )
+        }
+       
+ 
+        print("-- cartes total  : \(numberMax)")
+        print("-- cartes obtenus  : \(numberObtained)")
+        print("-- nombre de l'evolutionBar  : \(numberCardEvolutionBar)")
+        
+        return (numberMax,numberObtained,numberCardEvolutionBar)
      }
+    
     
     /*
      fonction qui calcule le nombre de carte total obtenue
@@ -98,7 +73,6 @@ extension CardsLists {
         print("------------ cartes obtenue  : \(number)")
        return number
     }
-    
     
     /*
      retourne la couleur pour le contour de la carte trophee de toute les cartes
@@ -125,18 +99,19 @@ extension CardsLists {
         
         print("--- number total max:  \(numberMax) number obtained : \(numberObtained)  color of card : \(colorCardTrophee)")
         
-        
         return colorCardTrophee
     }
     
     /*
      calcule du nombre de carte max et obtenue ainsi que la couleur pour le contour de la carte trophee
      */
-    func numberCardsMaxCollection(collection: CollectionType) -> (obtained:Int, collectionMax: Int, cardColor: Color) {
-
+    func numberCardsMaxCollection(collection: CollectionType) -> (obtained:Int, collectionMax: Int, cardColor: Color, numberEvolutionBar: CGFloat) {
+        
+        let valeurMax = 170
         var numbersObtainedCollection = 0
         var numbersMaxCollection = 0
         var colorCardTrophee = Color.gray
+        var numberProrataEvolutionBar:CGFloat = 0.0  // nombre du prorata pour affichage de l'evolution de la bar par rapport au max de carte et ceux obtenue
         
         allCards.forEach { card in
             if card.collection == collection {
@@ -161,46 +136,44 @@ extension CardsLists {
             }
         } else { colorCardTrophee = Color.gray } // couleur gray si pas de carte obtenue
          
-        return (numbersObtainedCollection, numbersMaxCollection, colorCardTrophee)
-    }
+        
+        // test si il n'y a pas de division par 0
+        if numbersObtainedCollection == 0 && numbersMaxCollection == 0 {
+            numberProrataEvolutionBar = 0.0
+        } else {
+            numberProrataEvolutionBar = CGFloat( valeurMax / numbersMaxCollection * numbersObtainedCollection)
+        }
 
+        print("-- cartes total  : \(numbersMaxCollection)")
+        print("-- cartes obtenus  : \(numbersObtainedCollection)")
+        print("-- nombre de l'evolutionBar  : \(numberProrataEvolutionBar)")
+              
+        return (numbersObtainedCollection, numbersMaxCollection, colorCardTrophee, numberProrataEvolutionBar)
+    }
     
-    
-    
-    
- /*
-    func numberCardsCollectionObtained(collection: CollectionType) -> Int{
-        var numberCardsObtained = 0
+    func numberMaxCollection(collection: CollectionType) -> CGFloat {
+
+        var numbersMaxCollection = 0
+        
         allCards.forEach { card in
             if card.collection == collection {
-                numberCardsObtained += 1
+                numbersMaxCollection += 1
             }
         }
-        return numberCardsObtained
+         
+        return CGFloat(numbersMaxCollection)
     }
     
-    func isObtained(collection: CollectionType) -> (max: Int , min: Int, cardColor: Color) {
-        var numberMax = 0
-        var numberMin = 0
-        var colorCardTrophee:Color = Color.gray
-        for nb in allCards {
-            if nb.name == collection.name { // calculer le nombre de carte min max par rapport au nom
-                 numberMax += 1      // carte de meme nom
-                 if nb.obtained {
-                     numberMin += 1   //  carte obtenue
-                 }
-             }
-             if (numberMin > 0 && numberMin < Int(4/5 * numberMax)) {   // condition entre carte min et max
-                 colorCardTrophee = Color.black  // couleur black si carte obtenue > 1
-             } else if numberMin > Int(4/5 * numberMax) && numberMin < numberMax {
-                 colorCardTrophee = Color.green // couleur green si carte < 4/5 des carte max
-             } else if numberMax == numberMin {
-                 colorCardTrophee = Color.gold    // couleur gold si carte max
-             } else { colorCardTrophee = Color.gray } // couleur gray si pas de carte obtenue
+    func numberObtainedCollection(collection: CollectionType) -> CGFloat {
+
+        var numbersObtainedCollection = 0
+        
+        wonCards.forEach { card in
+            if card.collection == collection {
+                numbersObtainedCollection += 1
+            }
         }
-        return (numberMax, numberMin , colorCardTrophee )
+        return CGFloat(numbersObtainedCollection)
     }
- 
- */
 }
  
