@@ -7,9 +7,14 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct ParametresView: View {
     
+    @State var selectUserLocation: UserLocation? // variable de localisation
+    let user:[UserLocation]
+
+    @State var isActive: Bool = false
     @State var choiceHabitat = ["sea", "mountain", "city","forest", "countryside"]
     @State var habitat = HabitatType.init(rawValue: "")
     @State var activationLocal:Bool = false
@@ -20,12 +25,9 @@ struct ParametresView: View {
     @State var colorCoutryside = Color.gray
     
     var body: some View {
-  //      NavigationView {
-        
         ZStack {
             Color("colorEnvironnement")
             VStack{
-        //            Spacer()
                     Text("Dans quel environnement habites tu ?")
                     HStack {
                         VStack {
@@ -33,7 +35,6 @@ struct ParametresView: View {
                                     Image("mountains").renderingMode(.original)
                                         .resizable()
                                         .overlay(Circle().stroke(self.colorMountain,lineWidth: 4))
-
                             }.frame(width: 150.0, height: 150.0)
                             .onTapGesture {
                                 self.choiceEnvironnement = self.choiceHabitat[1]
@@ -101,29 +102,23 @@ struct ParametresView: View {
                     }
                 //    Spacer()
                     VStack {
-                        Text("Pour plus de précision, active la géolocalisation dans les paramétres du smartphone")
+                        Text("Pour plus de précision, activer la géolocalisation dans les paramétres du smartphone").padding()
                             .multilineTextAlignment(.center)
                         Toggle(isOn: $activationLocal) {
                             Text("Activer la géolocalisation")
                         }
+                        VStack{
+                              LocalisationMap(coordonneeLocalUser: $selectUserLocation, isActive: $activationLocal, local: [])
+                        }.frame(width: 170 , height: 30)
                     }.padding()
-       //             Spacer()
             }
         }.edgesIgnoringSafeArea(.all)
-            
-            /*
-                .navigationBarItems(leading: Button(action: {self.annul = true }) {
-                Text("Retour")}.sheet(isPresented: self.$annul) { Accueil() }, trailing: Button(action: { self.accueil = true }) {
-                    Text("Valider")}.sheet(isPresented: self.$accueil) { Accueil()})
-             .navigationBarTitle("Environnement", displayMode: .inline)
-             */
-  //      }
     }
 }
 
 struct ParametresView_Previews: PreviewProvider {
     static var previews: some View {
-        ParametresView()
+        ParametresView(user: [UserLocation.init(user: .init(latitude: 23, longitude: 34))])
     }
 }
 

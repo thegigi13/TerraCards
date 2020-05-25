@@ -39,6 +39,9 @@
 		C531C49F24643DEA00E192E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C531C49D24643DEA00E192E8 /* LaunchScreen.storyboard */; };
 		C531C4AA24643DEA00E192E8 /* TerraCardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531C4A924643DEA00E192E8 /* TerraCardsTests.swift */; };
 		C531C4B524643DEA00E192E8 /* TerraCardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C531C4B424643DEA00E192E8 /* TerraCardsUITests.swift */; };
+		C590DA82247BB690003157B5 /* LocalisationMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590DA81247BB690003157B5 /* LocalisationMap.swift */; };
+		C590DA84247BB7AA003157B5 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590DA83247BB7AA003157B5 /* UserLocation.swift */; };
+		C590DA86247BB839003157B5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590DA85247BB839003157B5 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +101,9 @@
 		C531C4B024643DEA00E192E8 /* TerraCardsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TerraCardsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C531C4B424643DEA00E192E8 /* TerraCardsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerraCardsUITests.swift; sourceTree = "<group>"; };
 		C531C4B624643DEA00E192E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C590DA81247BB690003157B5 /* LocalisationMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalisationMap.swift; sourceTree = "<group>"; };
+		C590DA83247BB7AA003157B5 /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
+		C590DA85247BB839003157B5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,13 +189,13 @@
 		94B8D81E24644DC5002AD58C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C590DA87247BFAE4003157B5 /* Environnement */,
 				9407816C24767F1700AC416F /* Collection+Card */,
 				94AACE352476B59E0045381D /* HomeView+NewCard */,
 				94AACE362476B5B60045381D /* Trophees */,
 				947EAA4D2476A3FE00F236F3 /* HelpView.swift */,
 				947EAA4C2476A3FE00F236F3 /* AccueilView.swift */,
 				947EAA4E2476A3FE00F236F3 /* AppView.swift */,
-				947EAA502476A3FE00F236F3 /* ParametresView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,6 +270,17 @@
 				C531C4B624643DEA00E192E8 /* Info.plist */,
 			);
 			path = TerraCardsUITests;
+			sourceTree = "<group>";
+		};
+		C590DA87247BFAE4003157B5 /* Environnement */ = {
+			isa = PBXGroup;
+			children = (
+				C590DA81247BB690003157B5 /* LocalisationMap.swift */,
+				C590DA83247BB7AA003157B5 /* UserLocation.swift */,
+				C590DA85247BB839003157B5 /* User.swift */,
+				947EAA502476A3FE00F236F3 /* ParametresView.swift */,
+			);
+			path = Environnement;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,6 +421,7 @@
 				946A49FE2476A51200F2F9D0 /* APIProvider.swift in Sources */,
 				946A49FF2476A51200F2F9D0 /* JSONProvider.swift in Sources */,
 				946A4A002476A51200F2F9D0 /* Card.swift in Sources */,
+				C590DA86247BB839003157B5 /* User.swift in Sources */,
 				946A4A012476A51200F2F9D0 /* TropheesList.swift in Sources */,
 				946A4A022476A51200F2F9D0 /* CardLists+TropheesTools.swift in Sources */,
 				946A4A032476A51200F2F9D0 /* CardsLists.swift in Sources */,
@@ -417,10 +435,12 @@
 				946A4A0B2476A51200F2F9D0 /* HomeView.swift in Sources */,
 				946A4A0C2476A51200F2F9D0 /* NewCardsWonView.swift in Sources */,
 				946A4A0E2476A51200F2F9D0 /* ListTropheesView.swift in Sources */,
+				C590DA82247BB690003157B5 /* LocalisationMap.swift in Sources */,
 				946A4A0F2476A51200F2F9D0 /* CardFlipView.swift in Sources */,
 				946A4A122476A51200F2F9D0 /* CardRectoView.swift in Sources */,
 				94FB9FA72476B20F001A6CC1 /* ParametresView.swift in Sources */,
 				946A4A132476A51200F2F9D0 /* CardVersoView.swift in Sources */,
+				C590DA84247BB7AA003157B5 /* UserLocation.swift in Sources */,
 				946A4A182476A51200F2F9D0 /* CollectionView.swift in Sources */,
 				946A4A192476A51200F2F9D0 /* MiniCardView.swift in Sources */,
 				946A49F92476A4E200F2F9D0 /* ContentView.swift in Sources */,

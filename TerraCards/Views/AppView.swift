@@ -30,7 +30,7 @@ struct AppView: View {
                     Text("Trophées")
                 })
         NavigationView {  // bouton de la tabBar sur les parametres
-            ParametresView()
+            ParametresView(user: [UserLocation.init(user: .init(latitude: 23, longitude: 34))])
         }
         .tabItem({
                     Image(systemName: "gear")   // "helm"
