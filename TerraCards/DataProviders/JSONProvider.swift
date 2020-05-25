@@ -44,7 +44,7 @@ struct JSONProvider {
                 completion(.success(result))
             }
         } catch {
-            print("erreur lors du décodage du JSON")
+            print("erreur lors du décodage du JSON : \(error)")
             completion(.failure(.decodingError(error: error)))
         }
         

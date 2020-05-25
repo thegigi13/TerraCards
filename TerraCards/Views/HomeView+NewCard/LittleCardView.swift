@@ -56,7 +56,8 @@ struct LittleCardView: View {
         }
     }
     
-        // création de l'extractingView pour la HomeView
+
+    // création de l'extractingView pour la HomeView
     var body: some View {
             
             VStack{
