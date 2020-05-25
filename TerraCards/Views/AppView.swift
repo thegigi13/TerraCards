@@ -15,7 +15,12 @@ struct AppView: View {
     var body: some View {
        TabView {
         NavigationView { // bouton de la tabBar de Accueil
-            HomeView().environmentObject(cardsModelView)
+            HomeView()
+                .environmentObject(cardsModelView)
+                .navigationBarHidden(true)
+                .navigationBarTitle("Collections")
+                //.navigationViewStyle(StackNavigationViewStyle())
+
         }
         .tabItem({
                     Image(systemName: "book")
@@ -44,7 +49,8 @@ struct AppView: View {
                     Text("Aide")
                  })
         
-        }.accentColor(.blue)
+        }
+       //.accentColor(.blue)
     }
 }
 

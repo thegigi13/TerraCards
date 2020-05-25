@@ -83,9 +83,9 @@ struct LittleCardView: View {
                                     .fill(Color.white).frame(width: 100, height: 140)
                                 
                                 RoundedRectangle(cornerRadius: 25)
-                                    .fill(Color(couleurCard).opacity(0.7))
+                                    .fill(Color(couleurCard).opacity(0.6))
                                     .frame(width: 100, height: 140)
-                                    .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
+                                    //.shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
                                     .shadow(color: Color.black.opacity(0.2), radius: 10, x: 5, y: 5)
                                     .padding(.horizontal, 10)
                                     .overlay(Image("\(imageCollection)").renderingMode(.original).resizable().scaledToFit().frame(width: 90, height: 90))

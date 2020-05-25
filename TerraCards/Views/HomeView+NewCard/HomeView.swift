@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-    // Création de la grille
+// Création de la grille
 struct GridStack<Content: View>: View {
     let rows: Int
     let columns: Int
@@ -23,23 +23,123 @@ struct GridStack<Content: View>: View {
                     HStack(spacing: self.hSpacing){
                         ForEach(0 ..< self.columns, id:\.self){ column in
                             self.content(row, column)
+                        }
                     }
                 }
             }
         }
     }
-}
     
     init(rows: Int, columns: Int, hSpacing: CGFloat, vSpacing: CGFloat, @ViewBuilder content: @escaping (Int, Int) -> Content) {
-            self.rows = rows
-            self.columns = columns
-            self.content = content
-            self.hSpacing = hSpacing
-            self.vSpacing = vSpacing
+        self.rows = rows
+        self.columns = columns
+        self.content = content
+        self.hSpacing = hSpacing
+        self.vSpacing = vSpacing
+    }
+}
+
+struct Quizz: View {
+    @State var showPlayAlertTwo = false
+    @State var alreadyPlayed = false
+    @State var activateLinkTwo = false
+    @EnvironmentObject var cardsModelView: CardsLists
+
+    var body: some View {
+        VStack{
+            NavigationLink(destination: NewCardsWonView(bgColor: Color(UIColor.systemPink)), isActive: self.$activateLinkTwo, label: {
+                Button(action: {
+                    if self.alreadyPlayed == true{
+                        self.showPlayAlertTwo = true
+                        self.activateLinkTwo = false
+
+                    } else {
+                        self.showPlayAlertTwo = false
+                        self.alreadyPlayed.toggle()
+                        self.activateLinkTwo = true
+
+                    }
+                }) {
+                    VStack{
+                        Image(systemName: "questionmark").font(.title)
+                        Text("Quizz")
+                            .font(.footnote)
+                            .padding(.top)
+                        
+                    }
+                        
+                    .frame(width: 60, height: 60)
+                    .padding()
+                    .background(Color(UIColor.systemPink))
+                    .cornerRadius(15)
+                    .foregroundColor(Color(UIColor.systemGray5))
+                    .shadow(color: Color.white.opacity(0.4), radius: 5, x: -5, y: -5)
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 5, y: 5)
+                    .padding(.horizontal, 10)
+                    .opacity(cardsModelView.possibleToWinMoreForFree ? 0.2 : (alreadyPlayed ? 0.45 : 0.8))
+                    .saturation(!cardsModelView.possibleToWinMoreForFree && !alreadyPlayed  ? 1 : 0.2)
+                }
+            })
+                
+
+            
+        }
+        .disabled(cardsModelView.possibleToWinMoreForFree)
+        .alert(isPresented: $showPlayAlertTwo) {
+            Alert(title: Text("Vous avez déjà répondu à un quizz aujourd'hui"), message: Text("Vous pouvez à nouveau participer à un quizz demain"), dismissButton: .default(Text("OK")))
         }
     }
+}
 
-    // Page HomeView
+struct Gift: View {
+    @State var showPlayAlertOne = false
+    @State var alreadyWonCards = false
+    @State var activateLinkOne = false
+    @EnvironmentObject var cardsModelView: CardsLists
+
+    var body: some View {
+        VStack{
+            NavigationLink(destination: NewCardsWonView(bgColor: Color(UIColor.systemTeal)), isActive: self.$activateLinkOne, label: {
+                Button(action: {
+                    if self.alreadyWonCards == true{
+                        self.showPlayAlertOne = true
+                        self.activateLinkOne = false
+
+                    } else {
+                        self.showPlayAlertOne = false
+                        self.alreadyWonCards.toggle()
+                        self.activateLinkOne = true
+
+                    }
+                }) {
+                    VStack{
+                        Image(systemName: "gift.fill").font(.title)
+                        Text("Cadeaux")
+                            .font(.footnote)
+                            .padding(.top)
+                        
+                    }
+                    .frame(width: 60, height: 60)
+                    .padding()
+                    .background(Color(UIColor.systemTeal))
+                    .cornerRadius(15)
+                    .foregroundColor(Color(UIColor.systemGray5))
+                    .shadow(color: Color.white.opacity(0.4), radius: 5, x: -5, y: -5)
+                    .shadow(color: Color.black.opacity(0.2), radius: 5, x: 5, y: 5)
+                    .padding(.horizontal, 10)
+                    .opacity(cardsModelView.possibleToWinMoreForFree ? 0.8 : 0.2)
+                    .saturation(cardsModelView.possibleToWinMoreForFree ? 1 : 0.2)
+                }
+            })
+            //.disabled(!cardsModelView.possibleToWinMoreForFree)
+        }.alert(isPresented: $showPlayAlertOne) {
+            Alert(title: Text("Vous avez déjà gagné des cartes aujourd'hui"), message: Text("Vous pouvez gagner de nouvelles cartes demain ou participer à un quizz"), dismissButton: .default(Text("OK")))
+        }
+    }
+}
+
+
+// Page HomeView
 struct HomeView: View {
     
     @EnvironmentObject var cardsModelView: CardsLists
@@ -48,7 +148,7 @@ struct HomeView: View {
     func isCollEmpty(collection: CollectionType) -> Bool {
         
         var numberOfCardsInCollection = 0
-        var collectionEmpty : Bool = true
+        let collectionEmpty : Bool = true
         
         cardsModelView.wonCards.forEach { card in
             if card.collection == collection {
@@ -58,7 +158,7 @@ struct HomeView: View {
                 print(cardsModelView.wonCards)
             }
         }
-
+        
         if numberOfCardsInCollection == 0 {
             return collectionEmpty == true
         } else {
@@ -66,7 +166,6 @@ struct HomeView: View {
         }
     }
     
-    @State var alreadyWonCards = false // à changer avec possibleToWinMoreForFree ?
     @State private var showPlayAlertOne: Bool = false
     @State private var activateLinkOne: Bool = false
     
@@ -75,92 +174,35 @@ struct HomeView: View {
     @State private var activateLinkTwo: Bool = false
     
     var body: some View {
-        
             ZStack {
-                Color("generalBackgroundColor").opacity(0.25)
+                Color("generalBackgroundColor").opacity(0.03)
+                .edgesIgnoringSafeArea(.all)
                 ScrollView(.vertical, showsIndicators: false){
-                VStack{
-                    // Zone du haut
-                    HStack{
-                        // Titre de l'application
-                        Text("Terra Cards").font(.largeTitle).padding()
-                        //Text("")
-                        
-                    }.padding(.top, 40).padding(.horizontal, 10)
-                    
-                    // Zone Cadeau et Quizz
-                    HStack{
-                        VStack{
-                        NavigationLink(destination: NewCardsWonView(), isActive: $activateLinkOne, label: {
-                            Button(action: {
-                                if self.alreadyWonCards == true{
-                                    self.showPlayAlertOne = true
-                                } else {
-                                    self.showPlayAlertOne = false
-                                    self.activateLinkOne = true
-                                    self.alreadyWonCards.toggle()
-                                }
-                            }) {
-                            VStack{
-                                Image(systemName: "gift.fill").font(.largeTitle)
-                                Text("Cadeau").padding(.top)
-                                    .opacity(0.6)
-                                
-                            }.frame(width: 70, height: 70).padding()
-                                .background(Color("spider")).cornerRadius(20)
-                                .foregroundColor(Color(UIColor.systemBlue))
-                                .shadow(color: Color.white.opacity(0.4), radius: 5, x: -5, y: -5)
-                                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 5, y: 5)
-                            .padding(.horizontal)
-                            }
-                                })
-                            }.alert(isPresented: $showPlayAlertOne) {
-                                Alert(title: Text("Vous avez déjà gagné des cartes aujourd'hui"), message: Text("Vous pouvez gagner de nouvelles cartes demain ou participer à un quizz"), dismissButton: .default(Text("OK")))
-                            }
-                        
-                        
-                        VStack{
-                        NavigationLink(destination: NewCardsWonView(), isActive: $activateLinkTwo, label: {
-                            Button(action: {
-                                if self.alreadyPlayed == true{
-                                    self.showPlayAlertTwo = true
-                                } else {
-                                    self.showPlayAlertTwo = false
-                                    self.activateLinkTwo = true
-                                    self.alreadyPlayed.toggle()
-                                }
-                            }) {
-                            VStack{
-                                Image(systemName: "questionmark").font(.title)
-                                Text("Quizz").padding(.top)
-                                
-                            }.frame(width: 70, height: 70).padding()
-                                .background(Color.gray).cornerRadius(20)
-                                .opacity(0.3)
-                            .foregroundColor(.black).padding(.horizontal)
+                    VStack{
+                        Spacer().frame(height: 20)
+
+                        HStack{
+                            Gift()
+                            Quizz()
                         }
-                                })
-                            }.alert(isPresented: $showPlayAlertTwo) {
-                                Alert(title: Text("Vous avez déjà répondu à un quizz aujourd'hui"), message: Text("Vous pouvez à nouveau participer à un quizz demain"), dismissButton: .default(Text("OK")))
-                            }
                         
-                    }
-                    
-                    // Mise en place de la grille des collections
-                    GridStack(rows: 4, columns: 3, hSpacing: 7, vSpacing: 0){row, col in
-                        VStack{
+                        // Mise en place de la grille des collections
+                        GridStack(rows: 4, columns: 3, hSpacing: 7, vSpacing: 0){row, col in
+                            VStack{
                                 LittleCardView(titreCollection: self.collectionTypes[row * 3 + col].name, imageCollection: self.collectionTypes[row * 3 + col].image, couleurCard: self.collectionTypes[row * 3 + col].rawValue, type: self.collectionTypes[row * 3 + col]
-                                ).saturation(self.isCollEmpty(collection: self.collectionTypes[row * 3 + col]) ? 0.4 : 1)
-                                .opacity(self.isCollEmpty(collection: self.collectionTypes[row * 3 + col]) ? 0.5 : 1)
+                                ).saturation(self.isCollEmpty(collection: self.collectionTypes[row * 3 + col]) ? 0.25 : 1)
+                                    .opacity(self.isCollEmpty(collection: self.collectionTypes[row * 3 + col]) ? 0.25 : 1)
+                                
+                            }.padding(.top, 20)
                             
-                        }.padding(.top, 20)
-                       
-                   }
-                    Spacer().frame(height: 100)
+                        }
+                        Spacer().frame(height: 100)
+                    }
                 }
             }
-        }.edgesIgnoringSafeArea(.all)
-            
+        
+        //.edgesIgnoringSafeArea(.all)
+        
         
     }
 }

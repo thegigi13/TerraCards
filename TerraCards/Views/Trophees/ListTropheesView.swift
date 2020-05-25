@@ -71,7 +71,7 @@ struct TropheesView: View {
                                         .padding()
                                     VStack {
                                         HStack {
-                                            Text("\(trophee.image)")
+                                            Text("\(trophee.name)")
                                                 .font(.callout)
                                             Text("\(self.listeCards.numberCardsMaxCollection(collection: trophee).obtained)")
                                         }.foregroundColor(Color.gray)

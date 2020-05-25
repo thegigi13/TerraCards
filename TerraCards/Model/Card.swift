@@ -253,14 +253,14 @@ enum CollectionType: String, CaseIterable, Identifiable, Codable{
     var image : String {
         get {
             switch self {
-                case .tree : return "arbre"
-                case .fish : return "lotte"
-                case .mollusc : return "grenouille"
-                case .largeMammal : return "chat"
-                case .bird : return "mesange"
-                case .insect : return "abeille charpentiere"
-                case .reptile : return "grenouille"
-                case .plant : return "plantes"
+                case .tree : return "chene"
+                case .fish : return "truite"
+                case .mollusc : return "buccin"
+                case .largeMammal : return "mams"
+                case .bird : return "moineau"
+                case .insect : return "coccinnelle"
+                case .reptile : return "vipere"
+                case .plant : return "coquelicot"
                 case .amphibian : return "grenouille"
                 case .smallMammal : return "grenouille"
                 case .spider : return "grenouille"
