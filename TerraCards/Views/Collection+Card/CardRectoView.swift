@@ -38,11 +38,16 @@ struct CardRecto: View {
                     
                     
                 }
-              card.imageRecto!
+                VStack {
+                    Spacer()
+                    card.imageRecto!
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 270)
                 .padding(.top, 30)
+                    Spacer()
+                }
+                .frame(height: 400)
                 
                 
             } else {

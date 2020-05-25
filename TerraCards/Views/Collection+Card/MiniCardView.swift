@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct MiniCardView: View {
-    @State var scale: CGFloat = 0.35
+    @State var scale: CGFloat = 0.3
     @Binding var isACardClicked: Bool
     @Binding var opacity: CGFloat
     @State var big: Bool = false
@@ -66,13 +66,13 @@ struct MiniCardView: View {
                         withAnimation(.interactiveSpring(response: 0.5, dampingFraction: 0.7, blendDuration: 1)) {
                             
                             if !self.big {
-                                self.scale = 1
+                                self.scale = 0.9
                                 self.big = true
                                 self.isACardClicked = true
                                 self.pos = CGPoint(x: (270 - proxy.frame(in: .global).center.x), y: 700 - proxy.frame(in: .global).center.y)
                             }
                             else {
-                                self.scale = 0.35
+                                self.scale = 0.3
                                 self.big = false
                                 self.isACardClicked = false
                                 self.pos = CGPoint(x: 70, y: 780)
@@ -81,8 +81,7 @@ struct MiniCardView: View {
                         
                         
                     }
-                    
-
+                
                 .disabled(!self.big ? self.isACardClicked : false)
             }
         }

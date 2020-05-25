@@ -11,9 +11,21 @@ import SwiftUI
 struct AppView: View {
     
     @EnvironmentObject var cardsModelView: CardsLists
-
+ 
     var body: some View {
        TabView {
+        NavigationView { // bouton de la tabBar de Accueil
+            HomeView()
+                .environmentObject(cardsModelView)
+                .navigationBarHidden(true)
+                .navigationBarTitle("Collections")
+                //.navigationViewStyle(StackNavigationViewStyle())
+
+        }
+        .tabItem({
+                    Image(systemName: "book")
+                    Text("Accueil")
+            })
         NavigationView {
             TropheesView().environmentObject(cardsModelView) // bouton de la tabBar sur trophées
         }
@@ -22,16 +34,8 @@ struct AppView: View {
                     Image(systemName: "rosette")
                     Text("Trophées")
                 })
-            
-        NavigationView { // bouton de la tabBar de Accueil
-            HomeView().environmentObject(cardsModelView) 
-        }
-        .tabItem({
-                    Image(systemName: "book")
-                    Text("Accueil")
-            })
         NavigationView {  // bouton de la tabBar sur les parametres
-            ParametresView()
+            ParametresView(user: [UserLocation.init(user: .init(latitude: 23, longitude: 34))])
         }
         .tabItem({
                     Image(systemName: "gear")   // "helm"
@@ -45,7 +49,8 @@ struct AppView: View {
                     Text("Aide")
                  })
         
-        }.accentColor(.blue)
+        }
+       //.accentColor(.blue)
     }
 }
 

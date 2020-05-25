@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // à enlever avant production
         UserSettings.nbLaunches = 0
+        UserSettings.lastFreeWins = "2001-01-01"
         FileProvider.clearImagesFromCacheFolder(){response in
             print("ok")
         }
@@ -76,6 +77,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // retry ??
             }
         }
+        
+        print("possible de gagner des cartes ? \(cards.possibleToWinMoreForFree)")
         return true
     }
 

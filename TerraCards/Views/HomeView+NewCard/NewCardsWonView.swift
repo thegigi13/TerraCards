@@ -11,10 +11,10 @@ import SwiftUI
 struct NewCardsWonView: View {
     @EnvironmentObject var cardsModelView: CardsLists
     @State var randomCards: [Card] = []
-    
+    var bgColor: Color
     var body: some View {
         VStack{
-            CollectionView(cardList: randomCards, bgColor: Color.green)
+            CollectionView(cardList: randomCards, bgColor: bgColor)
         }
     .onAppear(){
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
@@ -30,15 +30,13 @@ struct NewCardsWonView: View {
             print (self.cardsModelView.possibleToWinMoreForFree ? "il est possible de gagner + aujourd'hui" : "il n'est PAS possible de gagner + aujourd'hui")
         })
     }
-        
-    .navigationBarTitle("Nouvelles cartes")
     }
 }
 
 struct NewCardsWonView_Previews: PreviewProvider {
     static var previews: some View {
         let env = CardsLists()
-        return NewCardsWonView()
+        return NewCardsWonView(bgColor: Color.yellow)
             .environmentObject(env)
             .onAppear(){
                 env.fillLists(){response in

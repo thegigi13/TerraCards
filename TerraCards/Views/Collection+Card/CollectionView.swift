@@ -81,13 +81,13 @@ struct CollectionView: View {
                 
             .frame(width: UIScreen.main.bounds.width * 100/100, height: UIScreen.main.bounds.height * 120/100)
                 
-            .background(collec.isEmpty ? Color("fish") : (bgColor ?? Color(collec[0].collection.rawValue)))
+            .background(collec.isEmpty ? bgColor ?? Color("fish") : (bgColor ?? Color(collec[0].collection.rawValue)))
             
             ScrollView {
                 
                 VStack(spacing: 0) {
                     ForEach(collec3by3, id: \.self, content: {row in
-                        HStack {
+                        HStack(spacing: 0) {
                             ForEach(0..<3) { i in
                                 //MiniCardView( isACardClicked: self.$isACardClicked, opacity: self.opacityCards, disappear: self.disappear, card: row[i])
                                 if i < row.count {
@@ -97,6 +97,7 @@ struct CollectionView: View {
                                 }
                             }
                         }
+                        .padding(.horizontal, 15)
                         
                         
                         //Text("hahahahaha")
@@ -109,8 +110,7 @@ struct CollectionView: View {
                 .frame(width: UIScreen.main.bounds.width * 100/100, height: isACardClicked ? UIScreen.main.bounds.height * 120/100 : CGFloat(500 * Int(collec3by3.count)))
                 
                 
-            }
-            
+            }            
         }
         .edgesIgnoringSafeArea(.all)
         
@@ -119,6 +119,7 @@ struct CollectionView: View {
 
 struct CollectionView_Previews: PreviewProvider {
     static var previews: some View {
-        CollectionView(collection: .plant).environmentObject(CardsLists())
+        //CollectionView(collection: .plant).environmentObject(CardsLists())
+        CollectionView(cardList: [Card(), Card()])
     }
 }
