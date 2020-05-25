@@ -122,6 +122,7 @@ struct TropheesView_Previews: PreviewProvider {
                         cardsToAdd.append(env.allCards.first(where: {$0.name == "Vipère aspic"})!)
                         env.winCards(cards: cardsToAdd)
                         
+
                     case .failure :
                         print("mince")
                     }

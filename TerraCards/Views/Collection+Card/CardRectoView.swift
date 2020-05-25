@@ -20,33 +20,44 @@ struct CardRecto: View {
     }
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                Image(systemName: "xmark")
-                    .frame(width: 20)
-                    .padding()
-                    .overlay(
-                        Circle()
-                            .stroke(lineWidth: 1)
-                            .padding(6)
-                )
-                    .padding(.trailing, 20)
-                    .padding(.top, 30)
-                    .opacity(0.3)
-                
-                
-            }
+            
             if card.imageRecto != nil {
+                HStack {
+                    Spacer()
+                    Image(systemName: "xmark")
+                        .frame(width: 20)
+                        .padding()
+                        .overlay(
+                            Circle()
+                                .stroke(lineWidth: 1)
+                                .padding(6)
+                    )
+                        .padding(.trailing, 20)
+                        .padding(.top, 30)
+                        .opacity(0.3)
+                    
+                    
+                }
               card.imageRecto!
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 270)
                 .padding(.top, 30)
+                
+                
             } else {
                 imageDefault()
-                .onAppear() {
-                    self.card.loadingImages()
-                }
+                    //.resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 250, maxHeight: UIScreen.main.bounds.height * 100/100, alignment: .center)
+                    .cornerRadius(12)
+                    .contentShape(Rectangle())
+                    .clipped()
+                    .onAppear() {
+                        self.card.loadingImages()
+                    }
+                .allowsHitTesting(false)
+
             }
             
                 

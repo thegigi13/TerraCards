@@ -24,7 +24,7 @@ struct CardFlip<Content: View, Content2: View>: View {
     @State var shadow: CGFloat = 4
     
     var left: Bool {
-        if !flipped {
+        if !self.flip {
             if recto {
                 return currentAngle<0
             }  else {
@@ -40,7 +40,8 @@ struct CardFlip<Content: View, Content2: View>: View {
         
         
     }
-    @State var flipped = false
+    @State var flip = false
+    @Binding var flipBinding: Bool
     @State var newPosition: CGSize = .zero
     var recto: Bool {
         
@@ -54,11 +55,22 @@ struct CardFlip<Content: View, Content2: View>: View {
     }
     let gap = 0
     
+    
+    
     var drag: some Gesture {
-        DragGesture()
+        var flipped: Bool {
+            get {
+                self.flip
+            }
+            set(newValue) {
+                self.flip = newValue
+                self.flipBinding = newValue
+            }
+        }
+        return DragGesture()
             .onChanged { value in
                 
-                self.currentPosition.height =  self.newPosition.height + value.translation.height
+                //self.currentPosition.height =  self.newPosition.height + value.translation.height
                 
                 let gap: CGFloat = CGFloat(self.gap)
                 let negGap: CGFloat = -1*gap
@@ -85,7 +97,7 @@ struct CardFlip<Content: View, Content2: View>: View {
                     self.currentAngle = -179
                     
                 }
-                if self.flipped {
+                if flipped {
                     if self.currentAngle >= 0 {
                         self.currentAngle += 180
                     } else {
@@ -102,7 +114,7 @@ struct CardFlip<Content: View, Content2: View>: View {
                 
                 withAnimation() {
                     if Int(self.currentAngle)%180 == 0 {
-                        self.shadow = 4*(self.flipped ? -1 : 1)
+                        self.shadow = 4*(flipped ? -1 : 1)
                     } else {
                         self.shadow = 0
                     }
@@ -115,10 +127,10 @@ struct CardFlip<Content: View, Content2: View>: View {
             print("hehe \(q)")
             var resetAngle: Double = 0
             if abs(q) == 0 || abs(q) % 2 == 0 {
-                if self.flipped && self.currentAngle > 0{
+                if flipped && self.currentAngle > 0{
                     resetAngle = Double(180)
                 }
-                else if (self.flipped && self.currentAngle < 0) {
+                else if (flipped && self.currentAngle < 0) {
                     resetAngle = Double(-180)
                     
                 } else {
@@ -126,12 +138,12 @@ struct CardFlip<Content: View, Content2: View>: View {
                 }
             }
             else {
-                if !self.flipped {
+                if !flipped {
                     resetAngle = Double(180*(q/abs(q)))
-                    self.flipped = true
+                    flipped = true
                 } else {
                     resetAngle = Double(360*q/abs(q))
-                    self.flipped = false
+                    flipped = false
                 }
             }
             
@@ -147,7 +159,7 @@ struct CardFlip<Content: View, Content2: View>: View {
             
             withAnimation() {
                 if Int(self.currentAngle)%180 == 0 {
-                    self.shadow = 4*(self.flipped ? -1 : 1)
+                    self.shadow = 4*(flipped ? -1 : 1)
                 } else {
                     self.shadow = 0
                 }
@@ -157,16 +169,21 @@ struct CardFlip<Content: View, Content2: View>: View {
         }
     }
     
-    let bgColor: Color = Color("tree")
+    let bgColor: Color
     
     let versoView: Content2
     let rectoView: Content
     
-    @inlinable public init(@ViewBuilder versoView: () -> Content2, @ViewBuilder rectoView: () -> Content) {
+
+    
+    @inlinable public init(flip: Binding<Bool> = .constant(false), bgColor: Color = Color.red, @ViewBuilder versoView: () -> Content2, @ViewBuilder rectoView: () -> Content) {
         self.versoView = versoView()
         self.rectoView = rectoView()
+        
+        self.bgColor = bgColor
+        self._flipBinding = flip
+
     }
-    
     var body: some View {
         ZStack {
             ZStack {
