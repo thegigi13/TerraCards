@@ -23,6 +23,7 @@ struct CardTropheeView: View {
                 .shadow(color: self.contour, radius: 1, x: 2, y: 2)
             Image(self.image)
                 .resizable()
+                .aspectRatio(contentMode: .fit)
                 .background(Color.white)
                 .frame(width: 60.0, height: 70.0)
             
