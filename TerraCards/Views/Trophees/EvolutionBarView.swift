@@ -16,11 +16,11 @@ struct EvolutionBar: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             Rectangle()
-                .frame(width: valeurMaxLigne , height: 2.0)
+                .frame(width: valeurMaxLigne , height: 3.0)
                 .foregroundColor(Color.gray)
                 .opacity(0.2)
             Rectangle()
-                .frame(width: valEvolutionBar, height: 2.0)
+                .frame(width: valEvolutionBar, height: 3.0)
                 .foregroundColor(Color.blue)
         }
    }

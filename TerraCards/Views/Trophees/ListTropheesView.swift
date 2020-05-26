@@ -19,9 +19,8 @@ struct TropheesView: View {
     @State var accueil:Bool = false
     
     var body: some View {
-    //    NavigationView {
             ZStack {
-                Color("colorTrophee")
+                Color("ColorTrophee")
                  VStack {
                         ScrollView(.vertical, showsIndicators: false) {
                             HStack {   // carte total
@@ -33,7 +32,7 @@ struct TropheesView: View {
                                         Text("Total de Cartes")
                                             .font(.callout)
                                         Text("\(listeCards.numbersMaxObtainedCards().nbCardObtained)")
-                                    }.foregroundColor(Color.gray)
+                                    }.foregroundColor(Color.black)
                                     EvolutionBar(valEvolutionBar: listeCards.numbersMaxObtainedCards().nbCardEvoltionBar)
                                         .padding()
                                 }.padding()
@@ -46,7 +45,7 @@ struct TropheesView: View {
                                         Text("Cartes Cadeaux")
                                             .font(.callout)
                                         Text("4")
-                                    }.foregroundColor(Color.gray)
+                                    }.foregroundColor(Color.black)
                                     EvolutionBar(valEvolutionBar: 20)
                                         .padding()
                                 }.padding()
@@ -59,22 +58,22 @@ struct TropheesView: View {
                                         Text("Cartes Quizz")
                                             .font(.callout)
                                         Text("4")
-                                    }.foregroundColor(Color.gray)
+                                    }.foregroundColor(Color.black)
                                     EvolutionBar(valEvolutionBar: 30)
                                         .padding()
                                 }.padding()
                             }.background(Color.colorTrophees)
                             ForEach(collection , id: \.id) { trophee in
-                                  // toute les autres carte
+                                  // toute les autres cartes
                                 HStack {
                                     CardTropheeView(image: trophee.image, contour: self.listeCards.numberCardsMaxCollection(collection: trophee).cardColor)
-                                        .padding()
+                                        .padding() 
                                     VStack {
                                         HStack {
-                                            Text("\(trophee.name)")
+                                            Text("\(trophee.name) ")
                                                 .font(.callout)
                                             Text("\(self.listeCards.numberCardsMaxCollection(collection: trophee).obtained)")
-                                        }.foregroundColor(Color.gray)
+                                        }.foregroundColor(Color.black)
                                         EvolutionBar(valEvolutionBar: self.listeCards.numberCardsMaxCollection(collection: trophee).numberEvolutionBar)
                                             .padding()
                                     }.padding()
@@ -84,12 +83,6 @@ struct TropheesView: View {
                 }
             }
            .edgesIgnoringSafeArea(.all)
-    /*
-                .navigationBarTitle("Trophées", displayMode: .inline)
-                .navigationBarItems(leading: Button(action: {self.accueil = true }) { Text("Accueil")}.sheet(isPresented: self.$accueil) { Accueil() }
-            )
- */
-  //      }
     }
 }
 

@@ -87,15 +87,22 @@ extension CardsLists {
              numberObtained += 1
          }
         }
-        if (numberObtained > 0 && numberObtained < Int(4/5 * numberMax)) {   // condition entre carte min et max
-            colorCardTrophee = Color.black  // couleur black si carte obtenue > 1
-        } else if numberObtained > Int(4/5 * numberMax) && numberObtained < numberMax {
-            colorCardTrophee = Color.green // couleur green si carte < 4/5 des carte max
-        } else if numberMax == numberObtained {
+        
+        if numberMax == numberObtained {
             if numberObtained == 0 {
                 colorCardTrophee = Color.gray
-            } else { colorCardTrophee = Color.gold }    // couleur gold si carte max
-        } else { colorCardTrophee = Color.gray } // couleur gray si pas de carte obtenue
+            } else {
+                colorCardTrophee = Color.gold
+            }
+        } else if (numberObtained > 0 || numberObtained < Int(4/5 * numberMax)) {   // condition entre carte min et max
+            colorCardTrophee = Color.black  // couleur black si carte obtenue > 1
+        } else if numberObtained > Int(4/5 * numberMax) {
+            colorCardTrophee = Color.green // couleur green si carte > 4/5 des carte max
+        } else {
+            colorCardTrophee = Color.gray
+        } // couleur gray si pas de carte obtenue
+   
+        
         
         print("--- number total max:  \(numberMax) number obtained : \(numberObtained)  color of card : \(colorCardTrophee)")
         
@@ -124,18 +131,21 @@ extension CardsLists {
                 numbersObtainedCollection += 1
             }
         }
-        if (numbersObtainedCollection > 0 && numbersObtainedCollection < Int(4/5 * numbersMaxCollection)) {   // condition entre carte min et max
-            colorCardTrophee = Color.black  // couleur black si carte obtenue > 1
-        } else if numbersObtainedCollection > Int(4/5 * numbersMaxCollection) && numbersObtainedCollection < numbersMaxCollection {
-            colorCardTrophee = Color.green // couleur green si carte < 4/5 des carte max
-        } else if numbersMaxCollection == numbersObtainedCollection {
+        
+        if numbersMaxCollection == numbersObtainedCollection {
             if numbersObtainedCollection == 0 {
                 colorCardTrophee = Color.gray
             } else {
-                colorCardTrophee = Color.gold    // couleur gold si carte max
+                colorCardTrophee = Color.gold
             }
-        } else { colorCardTrophee = Color.gray } // couleur gray si pas de carte obtenue
-         
+        } else if (numbersObtainedCollection > 0 || numbersObtainedCollection < Int(4/5 * numbersMaxCollection)) {   // condition entre carte min et max
+            colorCardTrophee = Color.black  // couleur black si carte obtenue > 1
+        } else if numbersObtainedCollection > Int(4/5 * numbersMaxCollection) {
+            colorCardTrophee = Color.green // couleur green si carte > 4/5 des carte max
+        } else {
+            colorCardTrophee = Color.gray
+        } // couleur gray si pas de carte obtenue
+        
         
         // test si il n'y a pas de division par 0
         if numbersObtainedCollection == 0 && numbersMaxCollection == 0 {
