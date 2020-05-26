@@ -37,32 +37,32 @@ struct TropheesView: View {
                                         .padding()
                                 }.padding()
                             }.background(Color.colorTrophees)
-                            HStack {   // carte cadeeaux
-                                CardTropheeView(image: "Cadeaux-cards" , contour: Color.gray)
-                                    .padding()
-                                VStack {
-                                    HStack {
-                                        Text("Cartes Cadeaux")
-                                            .font(.callout)
-                                        Text("4")
-                                    }.foregroundColor(Color.black)
-                                    EvolutionBar(valEvolutionBar: 20)
-                                        .padding()
-                                }.padding()
-                            }.background(Color.colorTrophees)
-                            HStack {  // carte quizz
-                                CardTropheeView(image: "Quizz" , contour: Color.gray)
-                                    .padding()
-                                VStack {
-                                    HStack {
-                                        Text("Cartes Quizz")
-                                            .font(.callout)
-                                        Text("4")
-                                    }.foregroundColor(Color.black)
-                                    EvolutionBar(valEvolutionBar: 30)
-                                        .padding()
-                                }.padding()
-                            }.background(Color.colorTrophees)
+//                            HStack {   // carte cadeeaux
+//                                CardTropheeView(image: "Cadeaux-cards" , contour: Color.gray)
+//                                    .padding()
+//                                VStack {
+//                                    HStack {
+//                                        Text("Cartes Cadeaux")
+//                                            .font(.callout)
+//                                        Text("4")
+//                                    }.foregroundColor(Color.black)
+//                                    EvolutionBar(valEvolutionBar: 20)
+//                                        .padding()
+//                                }.padding()
+//                            }.background(Color.colorTrophees)
+//                            HStack {  // carte quizz
+//                                CardTropheeView(image: "Quizz" , contour: Color.gray)
+//                                    .padding()
+//                                VStack {
+//                                    HStack {
+//                                        Text("Cartes Quizz")
+//                                            .font(.callout)
+//                                        Text("4")
+//                                    }.foregroundColor(Color.black)
+//                                    EvolutionBar(valEvolutionBar: 30)
+//                                        .padding()
+//                                }.padding()
+//                            }.background(Color.colorTrophees)
                             ForEach(collection , id: \.id) { trophee in
                                   // toute les autres cartes
                                 HStack {

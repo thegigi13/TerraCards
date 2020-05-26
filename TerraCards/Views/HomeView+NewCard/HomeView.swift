@@ -52,9 +52,10 @@ struct Quizz: View {
             NavigationLink(destination: NewCardsWonView(bgColor: Color(UIColor.systemPink)), isActive: self.$activateLinkTwo, label: {
                 Button(action: {
                     print("nb de Quizz effectué : \(UserSettings.nbQuizz)")
-                    if UserSettings.nbQuizz == 5{
+                    if UserSettings.nbQuizz == 4{
                         self.showPlayAlertTwo = true
                         self.activateLinkTwo = false
+                        self.alreadyPlayed = true
 
                     } else {
                         self.showPlayAlertTwo = false
@@ -87,8 +88,8 @@ struct Quizz: View {
                     .shadow(color: Color.white.opacity(0.4), radius: 5, x: -5, y: -5)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 5, y: 5)
                     .padding(.horizontal, 10)
-                    .opacity(!self.activateLinkTwo && !clearView ? 0.2 : (alreadyPlayed ? 0.45 : 0.8))
-                    .saturation(self.activateLinkTwo || clearView  ? 1 : 0.2)
+                    .opacity((alreadyPlayed || cardsModelView.possibleToWinMoreForFree) && !clearView ? 0.2 : (alreadyPlayed ? 0.45 : 0.8))
+                    .saturation((!cardsModelView.possibleToWinMoreForFree && !alreadyPlayed) || clearView  ? 1 : 0.2)
                 }
             })
                 

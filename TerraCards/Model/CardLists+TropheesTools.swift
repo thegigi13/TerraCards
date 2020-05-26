@@ -50,7 +50,7 @@ extension CardsLists {
         if numberMax == 0 && numberObtained == 0 {
             numberCardEvolutionBar = 0
         } else {
-             numberCardEvolutionBar = CGFloat( 170 / numberMax * numberObtained )
+            numberCardEvolutionBar = CGFloat(170.0*(CGFloat(numberObtained) / CGFloat(numberMax)) )
         }
        
  
@@ -83,20 +83,21 @@ extension CardsLists {
         var colorCardTrophee = Color.gray
         allCards.forEach { card in
             numberMax += 1
-         if card.obtained {
-             numberObtained += 1
-         }
         }
         
+        wonCards.forEach { card in
+            numberObtained += 1
+        }
+                
         if numberMax == numberObtained {
             if numberObtained == 0 {
                 colorCardTrophee = Color.gray
             } else {
                 colorCardTrophee = Color.gold
             }
-        } else if (numberObtained > 0 || numberObtained < Int(4/5 * numberMax)) {   // condition entre carte min et max
+        } else if (numberObtained > 0 && CGFloat(numberObtained) < (CGFloat(4.0/5.0) * CGFloat(numberMax))) {   // condition entre carte min et max
             colorCardTrophee = Color.black  // couleur black si carte obtenue > 1
-        } else if numberObtained > Int(4/5 * numberMax) {
+        } else if CGFloat(numberObtained) >= (CGFloat(4.0/5.0) * CGFloat(numberMax)) {
             colorCardTrophee = Color.green // couleur green si carte > 4/5 des carte max
         } else {
             colorCardTrophee = Color.gray
@@ -138,9 +139,9 @@ extension CardsLists {
             } else {
                 colorCardTrophee = Color.gold
             }
-        } else if (numbersObtainedCollection > 0 || numbersObtainedCollection < Int(4/5 * numbersMaxCollection)) {   // condition entre carte min et max
+        } else if (numbersObtainedCollection > 0 && CGFloat(numbersObtainedCollection) < CGFloat(CGFloat(4.0/5.0) * CGFloat(numbersMaxCollection))) {   // condition entre carte min et max
             colorCardTrophee = Color.black  // couleur black si carte obtenue > 1
-        } else if numbersObtainedCollection > Int(4/5 * numbersMaxCollection) {
+        } else if CGFloat(numbersObtainedCollection) >= CGFloat(4.0/5.0) * CGFloat(numbersMaxCollection) {
             colorCardTrophee = Color.green // couleur green si carte > 4/5 des carte max
         } else {
             colorCardTrophee = Color.gray
