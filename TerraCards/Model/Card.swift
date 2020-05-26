@@ -262,9 +262,9 @@ enum CollectionType: String, CaseIterable, Identifiable, Codable{
                 case .reptile : return "vipere"
                 case .plant : return "coquelicot"
                 case .amphibian : return "grenouille"
-                case .smallMammal : return "grenouille"
-                case .spider : return "grenouille"
-                case .dinosaur : return "grenouille"
+                case .smallMammal : return "herisson"
+                case .spider : return "araignee"
+                case .dinosaur : return "dino"
             }
         }
     }

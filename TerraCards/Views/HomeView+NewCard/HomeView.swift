@@ -61,13 +61,21 @@ struct Quizz: View {
                     }
                 }) {
                     VStack{
-                        Image(systemName: "questionmark").font(.title)
+                        Image("questionmark3")
+                            
+                            .renderingMode(.original)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width:90, height: 90)
+                            .padding(.top, 0)
+                        //.font(.title)
+                             
                         Text("Quizz")
                             .font(.footnote)
-                            .padding(.top)
+                            .padding(.top, -20)
                         
                     }
-                        
+                    .buttonStyle(PlainButtonStyle())
                     .frame(width: 60, height: 60)
                     .padding()
                     .background(Color(UIColor.systemPink))
@@ -113,15 +121,23 @@ struct Gift: View {
                     }
                 }) {
                     VStack{
-                        Image(systemName: "gift.fill").font(.title)
-                        Text("Cadeaux")
+                        Image("gift1")
+                            
+                            .renderingMode(.original)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width:95, height: 95)
+                        //.padding(.top, 20)
+                        //.font(.title)
+                             
+                        Text("Quizz")
                             .font(.footnote)
-                            .padding(.top)
+                            .padding(.top, -22)
                         
                     }
                     .frame(width: 60, height: 60)
                     .padding()
-                    .background(Color(UIColor.systemTeal))
+                    .background(Color(UIColor.systemTeal).opacity(0.6))
                     .cornerRadius(15)
                     .foregroundColor(Color(UIColor.systemGray5))
                     .shadow(color: Color.white.opacity(0.4), radius: 5, x: -5, y: -5)
@@ -175,7 +191,7 @@ struct HomeView: View {
     
     var body: some View {
             ZStack {
-                Color("generalBackgroundColor").opacity(0.03)
+                Color("generalBackgroundColor").opacity(0.1)
                 .edgesIgnoringSafeArea(.all)
                 ScrollView(.vertical, showsIndicators: false){
                     VStack{
