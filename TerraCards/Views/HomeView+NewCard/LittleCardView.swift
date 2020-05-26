@@ -8,6 +8,32 @@
 
 import SwiftUI
 
+
+struct Layers: View {
+    var doubleLayers: CGFloat
+
+    var doubleIntLayers: Int { Int(doubleLayers)}
+
+
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 25)
+                .fill(Color.white)
+            .frame(width: 100, height: 140)
+            .offset(x: (self.doubleLayers) * 0.5, y: (self.doubleLayers) * 0.5)
+            .shadow(color: Color.black.opacity(0.1), radius: 7, x: 5, y: 5)
+            
+            ForEach((0..<doubleIntLayers), id: \.self) {i in
+                RoundedRectangle(cornerRadius: 25)
+                .fill(i % 2 == 0 ? Color(UIColor.systemGray2) : Color(UIColor.systemGray3))
+                .frame(width: 100, height: 140)
+                .offset(x: (self.doubleLayers - CGFloat(i)) * 0.5, y: (self.doubleLayers - CGFloat(i)) * 0.5)
+            }
+        
+        }
+    }
+}
+
 struct LittleCardView: View {
     var titreCollection : String
     var imageCollection : String
@@ -27,7 +53,6 @@ struct LittleCardView: View {
     }
     
     var doubleLayers: CGFloat { CGFloat(numberOfLayers(collection: type) * 2) }
-    var doubleIntLayers: Int { Int(doubleLayers)}
     
     @State private var showingAlert = false
     @State private var activateLink: Bool = false
@@ -72,12 +97,8 @@ struct LittleCardView: View {
                     }) {
                         VStack {
                             ZStack{
-                                ForEach((0..<doubleIntLayers), id: \.self) {i in
-                                    RoundedRectangle(cornerRadius: 25)
-                                        .fill(i % 2 == 0 ? Color(UIColor.systemGray2) : Color(UIColor.systemGray3))
-                                        .frame(width: 100, height: 140)
-                                        .offset(x: (self.doubleLayers - CGFloat(i)) * 0.5, y: (self.doubleLayers - CGFloat(i)) * 0.5)
-                                }
+                                
+                                Layers(doubleLayers: doubleLayers)
 
                                 RoundedRectangle(cornerRadius: 25)
                                     .fill(Color.white).frame(width: 100, height: 140)
@@ -86,11 +107,13 @@ struct LittleCardView: View {
                                     .fill(Color(couleurCard).opacity(0.6))
                                     .frame(width: 100, height: 140)
                                     //.shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
-                                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 5, y: 5)
+                                    //.shadow(color: Color.black.opacity(0.2), radius: 10, x: 5, y: 5)
                                     .padding(.horizontal, 10)
                                     .overlay(Image("\(imageCollection)").renderingMode(.original).resizable().scaledToFit().frame(width: 90, height: 90))
                             }
-                            Text (titreCollection).foregroundColor(.black)
+                            Text (titreCollection)
+                                .font(.footnote)
+                                .foregroundColor(Color(UIColor.systemGray2))
                         }
                     }
                 })
