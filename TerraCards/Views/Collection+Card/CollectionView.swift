@@ -84,7 +84,7 @@ struct CollectionView: View {
             .background(collec.isEmpty ? bgColor ?? Color("fish") : (bgColor ?? Color(collec[0].collection.rawValue)))
             
             ScrollView {
-                
+                Spacer().frame(height: 70)
                 VStack(spacing: 0) {
                     ForEach(collec3by3, id: \.self, content: {row in
                         HStack(spacing: 0) {
@@ -92,6 +92,7 @@ struct CollectionView: View {
                                 //MiniCardView( isACardClicked: self.$isACardClicked, opacity: self.opacityCards, disappear: self.disappear, card: row[i])
                                 if i < row.count {
                                     MiniCardView( isACardClicked: self.$isACardClicked, opacity: self.$opacityCards,  card: row[i] , bgColor: self.bgColor ?? Color(self.collec[0].collection.rawValue))
+                                        .frame(height: 250)
                                 } else {
                                     MiniCardView( isACardClicked: self.$isACardClicked, opacity: self.$opacityCards, card: Card()).hidden()
                                 }
@@ -100,14 +101,19 @@ struct CollectionView: View {
                         .padding(.horizontal, 15)
                         
                         
+                        
                         //Text("hahahahaha")
                         
                         
                         
                     })
-                    Spacer()
+                    ForEach(0..<(3 - collec3by3.count)) {_ in 
+                        HStack {
+                            Spacer().frame(height: 250)
+                        }
+                    }
                 }
-                .frame(width: UIScreen.main.bounds.width * 100/100, height: isACardClicked ? UIScreen.main.bounds.height * 120/100 : CGFloat(500 * Int(collec3by3.count)))
+                .frame(width: UIScreen.main.bounds.width * 100/100)
                 
                 
             }            
@@ -120,6 +126,6 @@ struct CollectionView: View {
 struct CollectionView_Previews: PreviewProvider {
     static var previews: some View {
         //CollectionView(collection: .plant).environmentObject(CardsLists())
-        CollectionView(cardList: [Card(), Card()])
+        CollectionView(cardList: Array(repeating: Card(), count: 12))
     }
 }

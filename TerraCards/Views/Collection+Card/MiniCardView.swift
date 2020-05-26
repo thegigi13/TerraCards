@@ -69,7 +69,7 @@ struct MiniCardView: View {
                                 self.scale = 0.9
                                 self.big = true
                                 self.isACardClicked = true
-                                self.pos = CGPoint(x: (270 - proxy.frame(in: .global).center.x), y: 700 - proxy.frame(in: .global).center.y)
+                                self.pos = CGPoint(x: (270 - proxy.frame(in: .global).center.x), y: 600 - proxy.frame(in: .global).center.y)
                             }
                             else {
                                 self.scale = 0.3

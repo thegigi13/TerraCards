@@ -49,19 +49,16 @@ struct Quizz: View {
     
     var body: some View {
         VStack{
-            NavigationLink(destination: NewCardsWonView(bgColor: Color(UIColor.systemPink)), isActive: self.$activateLinkTwo, label: {
+            NavigationLink(destination: NewCardsWonView(quizz: true, bgColor: Color(UIColor.systemPink)), isActive: self.$activateLinkTwo, label: {
                 Button(action: {
-                    print("nb de Quizz effectué : \(UserSettings.nbQuizz)")
-                    if UserSettings.nbQuizz == 4{
+                    if UserSettings.nbQuizz == 1 {
                         self.showPlayAlertTwo = true
                         self.activateLinkTwo = false
                         self.alreadyPlayed = true
-
                     } else {
                         self.showPlayAlertTwo = false
                         UserSettings.nbQuizz = UserSettings.nbQuizz + 1
                         self.activateLinkTwo = true
-
                     }
                 }) {
                     VStack{
@@ -74,10 +71,9 @@ struct Quizz: View {
                             .padding(.top, 0)
                         //.font(.title)
                              
-                        Text("Quizz")
+                        Text("Surprise !")
                             .font(.footnote)
                             .padding(.top, -20)
-                        
                     }
                     .buttonStyle(PlainButtonStyle())
                     .frame(width: 60, height: 60)
@@ -98,7 +94,7 @@ struct Quizz: View {
         }
         .disabled(cardsModelView.possibleToWinMoreForFree)
         .alert(isPresented: $showPlayAlertTwo) {
-            Alert(title: Text("Vous avez déjà répondu à un quizz aujourd'hui"), message: Text("Vous pouvez à nouveau participer à un quizz demain"), dismissButton: .default(Text("OK")))
+            Alert(title: Text("Tu as déjà eu assez de surprises pour aujourd'hui"), message: Text("Demain tu pourras participer à un quizz !"), dismissButton: .default(Text("OK")))
         }
     }
 }
@@ -152,7 +148,7 @@ struct Gift: View {
             })
             //.disabled(!cardsModelView.possibleToWinMoreForFree)
         }.alert(isPresented: $showPlayAlertOne) {
-            Alert(title: Text("Vous avez déjà gagné des cartes aujourd'hui"), message: Text("Vous pouvez gagner de nouvelles cartes demain ou participer à un quizz"), dismissButton: .default(Text("OK")))
+            Alert(title: Text("Tu as déjà gagné des cartes aujourd'hui"), message: Text("On t'offrira de nouvelles cartes demain"), dismissButton: .default(Text("OK")))
         }
     }
 }

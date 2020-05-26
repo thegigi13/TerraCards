@@ -11,16 +11,25 @@ import SwiftUI
 struct NewCardsWonView: View {
     @EnvironmentObject var cardsModelView: CardsLists
     @State var randomCards: [Card] = []
+    var quizz = false
     var bgColor: Color
     var body: some View {
         VStack{
             CollectionView(cardList: randomCards, bgColor: bgColor)
+            Spacer()
         }
     .onAppear(){
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
             self.randomCards = self.cardsModelView.threeNewCardsOrLess()
-            print("cartes hasard à afficher : \(self.randomCards)")
             self.cardsModelView.winCards(cards: self.randomCards)
+
+            if self.quizz {
+                self.randomCards = self.randomCards + self.cardsModelView.threeNewCardsOrLess()
+                self.cardsModelView.winCards(cards: self.randomCards)
+                self.randomCards = self.randomCards + self.cardsModelView.threeNewCardsOrLess()
+                self.cardsModelView.winCards(cards: self.randomCards)
+            }
+            print("cartes hasard à afficher : \(self.randomCards)")
             
             let formatter = DateFormatter()
             formatter.dateFormat = "yyyy-MM-dd"
