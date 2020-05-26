@@ -109,7 +109,7 @@ struct Gift: View {
         VStack{
             NavigationLink(destination: NewCardsWonView(bgColor: Color(UIColor.systemTeal)), isActive: self.$activateLinkOne, label: {
                 Button(action: {
-                    if self.alreadyWonCards == true{
+                    if self.alreadyWonCards == true || !self.cardsModelView.possibleToWinMoreForFree {
                         self.showPlayAlertOne = true
                         self.activateLinkOne = false
 
@@ -146,6 +146,13 @@ struct Gift: View {
                     
                 }
             })
+                .onAppear(){
+                    print("lool : \(self.cardsModelView.possibleToWinMoreForFree)")
+                    if !self.cardsModelView.possibleToWinMoreForFree {
+                        self.activateLinkOne = false
+
+                    }
+            }
             //.disabled(!cardsModelView.possibleToWinMoreForFree)
         }.alert(isPresented: $showPlayAlertOne) {
             Alert(title: Text("Tu as déjà gagné des cartes aujourd'hui"), message: Text("On t'offrira de nouvelles cartes demain"), dismissButton: .default(Text("OK")))
