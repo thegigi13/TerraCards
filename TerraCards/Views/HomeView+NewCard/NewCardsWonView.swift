@@ -17,7 +17,7 @@ struct NewCardsWonView: View {
             CollectionView(cardList: randomCards, bgColor: bgColor)
         }
     .onAppear(){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
             self.randomCards = self.cardsModelView.threeNewCardsOrLess()
             print("cartes hasard à afficher : \(self.randomCards)")
             self.cardsModelView.winCards(cards: self.randomCards)

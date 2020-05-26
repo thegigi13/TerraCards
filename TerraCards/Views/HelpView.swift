@@ -12,8 +12,9 @@ struct Help: View {
     
     @EnvironmentObject var cardsModelView: CardsLists
     
-    @State var offset = [CGSize(width: 0, height: 0),CGSize(width: 0, height: 0),CGSize(width: 0, height: 0)]
+    @State var offset = Array(repeating: CGSize(width: 0, height: 0), count: 4)
     
+    @State var showed = Array(repeating: false, count: 4)
     @State var sheet = 0
     @State var endFlip = false
     @State var opacity = 0.1
@@ -43,7 +44,9 @@ struct Help: View {
                 if self.offset[self.sheet].width < -100 {
                     self.sheet += 1
                     withAnimation(.linear(duration: 0.5)) {
-                        //self.showed[self.sheet].toggle()
+                        if self.sheet < self.showed.count {
+                            self.showed[self.sheet].toggle()
+                        }
                     }
                 }
                 
@@ -52,93 +55,169 @@ struct Help: View {
         
         return
             ZStack {
-                VStack {
-                    Text("")
+                ZStack {
+                    Color(UIColor.systemYellow)
+                    .edgesIgnoringSafeArea(.all)
+                    
+                    
+                    ThreeVerticalView(delays: [1,1,2],
+                                      firstView: {
+                                        ThreeWords(sentence: "Collectionne les toutes")
+                                            .font(.title)
+                    }, secondView: {
+                        HStack {
+                            //if self.showed[0] {
+                            Text("Tes cartes gagnées sont rangées dans des collections (plantes, oiseaux, poissons, etc.) Pour commencer, on t'en a offert déjà 3. A toi de découvrir où elles sont rangées et les informations qu'elles contiennent.")
+                                
+                                .padding(40)
+                                .transition(.move(edge: .bottom))
+                            
+                        }
+                    }, thirdView: {
+                        ThreeWords(sentence : "Glisse pour commencer !")
+                        
+                        //.foregroundColor(Color.white)
+                        
+                    })
                 }
                 .onAppear() {
                     withAnimation(.linear(duration: 0.5)) {
                         //self.showed2.toggle()
                     }
                 }
-                .frame(width:UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*120/100)
-                .background(Color(UIColor.systemGreen))
-                .offset(x: self.offset[2].width, y: 0)                .gesture(drag)
+                .frame(width:UIScreen.main.bounds.width)
+                .offset(x: self.offset[3].width, y: 0)
+                .gesture(drag)
+                .disabled(self.sheet != 3)
+                
+                
+                ZStack {
+                    Color(UIColor.systemGreen)
+                    .edgesIgnoringSafeArea(.all)
+                    
+                    if showed[2] {
+                    ThreeVerticalView(delays: [1,2,3],
+                                      firstView: {
+                                        Text("Gagne des cartes chaque jour !")
+                                            .font(.title)
+                    }, secondView: {
+                        VStack {
+                            HStack {
+                                Quizz(clearView: true)
+
+                                .disabled(true)
+                                Gift()
+
+                                .disabled(true)
+                            }
+
+                            Text("Des cartes comme cette mésange, tu vas pouvoir en gagner 3 gratuitement chaque jour. Tous les matins un nouveau cadeau apparaît dans TerraCards, à toi de découvrir ce qu'il y a dedans. Si tu as encore soif de connaissances sur la biodiversité, participe à des quizz pour gagner encore plus de cartes.")
+                                
+                                .padding(40)
+                                .transition(.move(edge: .bottom))
+                            
+                        }
+                    }, thirdView: {
+                        ThreeWords(sentence : "Glisse pour continuer")
+                        
+                        //.foregroundColor(Color.white)
+                        
+                    })
+                    }
+                }
+                .onAppear() {
+                    withAnimation(.linear(duration: 3)) {
+                        //self.showed2.toggle()
+                    }
+                }
+                .frame(width:UIScreen.main.bounds.width)
+                .offset(x: self.offset[2].width, y: 0)
+                .gesture(drag)
                 .disabled(self.sheet != 2)
                 
                 
-                VStack {
-                    Spacer().frame(height:200)
-                    if card != nil {
-                        CardFlip(flip: $endFlip, versoView: {
-                            AnyView(CardVerso(card: self.card!))
-                        }, rectoView: {
-                            CardRecto(card: self.card!)
-                        })
-                            .scaleEffect(0.6)
-                            .padding(.bottom, -50)
-                            .disabled(endFlip)
-                    }
+                
                     
-                    Text("Tu vas collectionner des cartes qui te permettront d'avoir des informations sur des animaux et des plantes des environs")
-                        .padding(.horizontal, 40)
-                    Text("Retourne cette carte pour voir !")
-                        .padding()
-                    //if showed[1] {
+                ZStack {
+                    Color(UIColor.systemBlue)
+                        .edgesIgnoringSafeArea(.all)
                     
-                    if endFlip {
-                        HStack {
-                            AnimatedChevron()
-                            Text("Glisse pour continuer")
-                                .foregroundColor(Color.white)
-                            
-                            
-                        }
-                        .opacity(opacity)
-                        .onAppear() {
-                            withAnimation(.linear(duration: 1)) {
-                                self.opacity = 1
-                            }
+                    VStack {
+                        //Spacer().frame(height:200)
+                        if card != nil {
+                            CardFlip(flip: $endFlip, versoView: {
+                                AnyView(CardVerso(card: self.card!))
+                            }, rectoView: {
+                                CardRecto(card: self.card!)
+                            })
+                                .scaleEffect(0.6)
+                                .padding(.bottom, -50)
+                                .disabled(endFlip)
                         }
                         
+                        Text("Tu vas collectionner des cartes qui te permettront d'avoir des informations sur des animaux et des plantes des environs")
+                            .padding(.horizontal, 40)
+                        Text("Retourne cette carte pour voir !")
+                            .padding()
+                        //if showed[1] {
+                        
+                        if endFlip {
+                            HStack {
+                                AnimatedChevron()
+                                Text("Glisse pour continuer")
+                                    .foregroundColor(Color.white)
+                                
+                                
+                            }
+                            .opacity(opacity)
+                            .onAppear() {
+                                withAnimation(.linear(duration: 1)) {
+                                    self.opacity = 1
+                                }
+                            }
+                            
+                        }
+                        
+                        //}
+                        
+                        Spacer()
                     }
-                    
-                    //}
-                    
-                    Spacer()
                 }
-                    
-                    
-                .frame(width:UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*120/100)
-                .background(Color(UIColor.systemBlue))
+                .frame(width:UIScreen.main.bounds.width)
                 .offset(x: self.offset[1].width, y: 0)                .gesture(drag)
                 .disabled(self.sheet != 1)
                 
                 
-                ThreeVerticalView(delays: [2.5,5,0],
-                                  firstView: {
-                                    ThreeWords(sentence: "Bienvenue dans TerraCards")
-                                        .font(.title)
-                }, secondView: {
-                    HStack {
-                        //if self.showed[0] {
-                        Text("Avec TerraCards tu vas apprendre beaucoup de choses sur la faune et la flore qui t'entoure. Que tu habites à la campagne, au bord de la mer, ou même en ville")
+                ZStack {
+                    Color(UIColor.systemRed)
+                        .edgesIgnoringSafeArea(.all)
+                    
+                    ThreeVerticalView(delays: [2.5,5,0],
+                                      firstView: {
+                                        ThreeWords(sentence: "Bienvenue dans TerraCards")
+                                            .font(.title)
+                    }, secondView: {
+                        HStack {
+                            //if self.showed[0] {
+                            Text("Avec TerraCards tu vas apprendre beaucoup de choses sur la faune et la flore qui t'entoure. Que tu habites à la campagne, au bord de la mer, ou même en ville")
+                                
+                                .padding(40)
+                                .transition(.move(edge: .bottom))
                             
-                            .padding(40)
-                            .transition(.move(edge: .bottom))
+                        }
+                    }, thirdView: {
+                        ThreeWords(sentence : "Glisse pour continuer")
                         
-                    }
-                }, thirdView: {
-                    ThreeWords(sentence : "Glisse pour continuer")
+                        //.foregroundColor(Color.white)
+                        
+                    })
+                        
                     
-                    //.foregroundColor(Color.white)
-                    
-                })
-                    
-                    .frame(width:UIScreen.main.bounds.width, height: UIScreen.main.bounds.height*120/100)
-                    .background(Color(UIColor.systemRed))
-                    .offset(x: self.offset[0].width, y: 0)
-                    .gesture(drag)
-                    .disabled(self.sheet != 0)
+                }
+                .frame(width:UIScreen.main.bounds.width)
+                .offset(x: self.offset[0].width, y: 0)
+                .gesture(drag)
+                .disabled(self.sheet != 0)
                 
                 
             }.edgesIgnoringSafeArea(.all)
@@ -237,12 +316,6 @@ struct ThreeVerticalView<FirstView: View, SecondView: View, ThirdView: View>: Vi
                     
                 }.hidden()
             }
-            
-            
-            
-            
-            
-            
         }.onAppear() {
             for i in 0..<self.opacities.count {
                 withAnimation(
@@ -252,7 +325,6 @@ struct ThreeVerticalView<FirstView: View, SecondView: View, ThirdView: View>: Vi
                     self.opacities[i] = 1
                 }
             }
-            
         }
         .onAppear() {
             withAnimation(Animation.linear.delay(self.delays[1])) {

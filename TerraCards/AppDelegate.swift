@@ -44,21 +44,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         monitor.start(queue: DispatchQueue.global())
         
-        // à enlever avant production
-        UserSettings.nbLaunches = 0
-        UserSettings.lastFreeWins = "2001-01-01"
-        FileProvider.clearImagesFromCacheFolder(){response in
-            print("ok")
+        
+        
+        
+        let REINIT = false
+        
+        if REINIT {
+            UserSettings.nbLaunches = 0
+            UserSettings.lastFreeWins = "2001-01-01"
+            FileProvider.clearImagesFromCacheFolder(){response in
+                print("ok")
+            }
+            UserSettings.nbQuizz = 0
+            UserSettings.userCards = []
+        } else {
+            UserSettings.nbLaunches = UserSettings.nbLaunches + 1
+            print("nombre de lancement de l'app : \(UserSettings.nbLaunches)")
+            
+//            if UserSettings.nbLaunches == 1 {
+//                UserSettings.userCards = ["Mésange bleue", "Chêne", "Dauphin"]
+//            }
+//            print("cartes déjà gagnées : \(UserSettings.userCards)")
+            
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let dateLastWins = dateFormatter.date(from: UserSettings.lastFreeWins)
+            let dateToday = dateFormatter.date(from: dateFormatter.string(from: Date()))
+            if let dateLastWins = dateLastWins, let dateToday = dateToday {
+                if dateLastWins < dateToday {
+                    UserSettings.nbQuizz = 0
+                }
+            }
         }
+        
+        
+        
+        
         //
         
-        UserSettings.nbLaunches = UserSettings.nbLaunches + 1
-        print("nombre de lancement de l'app : \(UserSettings.nbLaunches)")
         
-        if UserSettings.nbLaunches == 1 {
-            UserSettings.userCards = ["Mésange bleue", "Chêne", "Dauphin"]
-        }
-        print("cartes déjà gagnées : \(UserSettings.userCards)")
 
         cards.fillLists {response in
             switch response {

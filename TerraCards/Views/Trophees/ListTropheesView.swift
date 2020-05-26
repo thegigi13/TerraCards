@@ -79,6 +79,7 @@ struct TropheesView: View {
                                     }.padding()
                                 }.background(Color.colorTrophees)
                             }
+                            Spacer().frame(height: 75)
                         }.padding(.top, 70.0)
                 }
             }

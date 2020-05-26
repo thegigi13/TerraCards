@@ -11,46 +11,68 @@ import SwiftUI
 struct AppView: View {
     
     @EnvironmentObject var cardsModelView: CardsLists
- 
+    
     var body: some View {
-       TabView {
-        NavigationView { // bouton de la tabBar de Accueil
-            HomeView()
-                .environmentObject(cardsModelView)
-                .navigationBarHidden(true)
-                .navigationBarTitle("Collections")
-                //.navigationViewStyle(StackNavigationViewStyle())
+        ZStack {
+            
+            
+            TabView {
+                
+                NavigationView { // bouton de la tabBar de Accueil
+                        
 
-        }
-        .tabItem({
+                    HomeView()
+                        .environmentObject(cardsModelView)
+                        .navigationBarHidden(true)
+                        .navigationBarTitle("Collections")
+                        
+                        
+
+                    //.navigationViewStyle(StackNavigationViewStyle())
+                    
+                }
+                .tabItem({
                     Image(systemName: "book")
-                    Text("Accueil")
-            })
-        NavigationView {
-            TropheesView().environmentObject(cardsModelView) // bouton de la tabBar sur trophées
-        }
-        .tabItem({
-                   // Image("icons8-book-stack-50")
+                    Text("Collections")
+                })
+                NavigationView {
+                    TropheesView().environmentObject(cardsModelView) // bouton de la tabBar sur trophées
+                }
+                .tabItem({
+                    // Image("icons8-book-stack-50")
                     Image(systemName: "rosette")
                     Text("Trophées")
                 })
-        NavigationView {  // bouton de la tabBar sur les parametres
-            ParametresView(user: [UserLocation.init(user: .init(latitude: 23, longitude: 34))])
-        }
-        .tabItem({
+                NavigationView {  // bouton de la tabBar sur les parametres
+                    ParametresView(user: [UserLocation.init(user: .init(latitude: 23, longitude: 34))])
+                }
+                .tabItem({
                     Image(systemName: "gear")   // "helm"
-                    Text("Paramètres")
+                    Text("Environnement")
                 })
-        NavigationView {  // bouton de la tabBar sur l'aide a l'utilisation
-             Help()
-         }
-         .tabItem({
+                NavigationView {  // bouton de la tabBar sur l'aide a l'utilisation
+                    Help()
+                }
+                .tabItem({
                     Image(systemName: "questionmark.square")
                     Text("Aide")
-                 })
-        
+                })
+                
+            }
+//            VStack {
+//                Color.yellow
+//                    .frame(width: 200)
+//            }
+            //.frame(width: 200, height: UIScreen.main.bounds.height)
+            //.background(Color.yellow)
+            if UserSettings.nbLaunches == 1 {
+                Help()
+            }
+            
+
+            
         }
-       //.accentColor(.blue)
+        //.accentColor(.blue)
     }
 }
 

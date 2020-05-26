@@ -45,17 +45,20 @@ struct Quizz: View {
     @State var activateLinkTwo = false
     @EnvironmentObject var cardsModelView: CardsLists
 
+    var clearView = false
+    
     var body: some View {
         VStack{
             NavigationLink(destination: NewCardsWonView(bgColor: Color(UIColor.systemPink)), isActive: self.$activateLinkTwo, label: {
                 Button(action: {
-                    if self.alreadyPlayed == true{
+                    print("nb de Quizz effectué : \(UserSettings.nbQuizz)")
+                    if UserSettings.nbQuizz == 5{
                         self.showPlayAlertTwo = true
                         self.activateLinkTwo = false
 
                     } else {
                         self.showPlayAlertTwo = false
-                        self.alreadyPlayed.toggle()
+                        UserSettings.nbQuizz = UserSettings.nbQuizz + 1
                         self.activateLinkTwo = true
 
                     }
@@ -84,8 +87,8 @@ struct Quizz: View {
                     .shadow(color: Color.white.opacity(0.4), radius: 5, x: -5, y: -5)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 5, y: 5)
                     .padding(.horizontal, 10)
-                    .opacity(cardsModelView.possibleToWinMoreForFree ? 0.2 : (alreadyPlayed ? 0.45 : 0.8))
-                    .saturation(!cardsModelView.possibleToWinMoreForFree && !alreadyPlayed  ? 1 : 0.2)
+                    .opacity(!self.activateLinkTwo && !clearView ? 0.2 : (alreadyPlayed ? 0.45 : 0.8))
+                    .saturation(self.activateLinkTwo || clearView  ? 1 : 0.2)
                 }
             })
                 
@@ -130,7 +133,7 @@ struct Gift: View {
                         //.padding(.top, 20)
                         //.font(.title)
                              
-                        Text("Quizz")
+                        Text("Cadeaux")
                             .font(.footnote)
                             .padding(.top, -22)
                         
@@ -143,8 +146,7 @@ struct Gift: View {
                     .shadow(color: Color.white.opacity(0.4), radius: 5, x: -5, y: -5)
                     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 5, y: 5)
                     .padding(.horizontal, 10)
-                    .opacity(cardsModelView.possibleToWinMoreForFree ? 0.8 : 0.2)
-                    .saturation(cardsModelView.possibleToWinMoreForFree ? 1 : 0.2)
+                    
                 }
             })
             //.disabled(!cardsModelView.possibleToWinMoreForFree)
@@ -199,8 +201,12 @@ struct HomeView: View {
 
                         HStack{
                             Gift()
+                            .opacity(cardsModelView.possibleToWinMoreForFree ? 0.8 : 0.2)
+                            .saturation(cardsModelView.possibleToWinMoreForFree ? 1 : 0.2)
                             Quizz()
+                            
                         }
+                        .padding(.top,5)
                         
                         // Mise en place de la grille des collections
                         GridStack(rows: 4, columns: 3, hSpacing: 7, vSpacing: 0){row, col in
@@ -209,10 +215,10 @@ struct HomeView: View {
                                 ).saturation(self.isCollEmpty(collection: self.collectionTypes[row * 3 + col]) ? 0.25 : 1)
                                     .opacity(self.isCollEmpty(collection: self.collectionTypes[row * 3 + col]) ? 0.25 : 1)
                                 
-                            }.padding(.top, 20)
+                            }.padding(.top, 5)
                             
                         }
-                        Spacer().frame(height: 100)
+                        Spacer().frame(height: 50)
                     }
                 }
             }
